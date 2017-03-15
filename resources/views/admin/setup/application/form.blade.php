@@ -1,5 +1,8 @@
+<div class="box-header with-border">
+  <h3 class="box-title">{{ $title or null }}</h3>
+</div>
 <div class="panel-body">
-        
+
     {{ csrf_field() }}
       
       <div class="form-group">  
@@ -48,11 +51,11 @@
 
 </div>
 
-    @if($errors->any())
-      <ul class="alert alert-danger">
-      @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-      </ul>
-    @endif
+@if($errors->any())
+  <ul class="alert alert-danger">
+  @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+  @endforeach
+  </ul>
+@endif
       

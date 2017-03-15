@@ -79,11 +79,6 @@ $(document).ready(function(){
         $('#btn-save').html("Save");
         $('#myModal').modal('show');
     });
-    // DELETE button ::
-    $('.delete').click(function(){
-        $('#delete_id').val($(this).data("id"));
-    });
-
     // UPDATE button ::
     $('.open-modal').click(function(){
         $("#frmBatch").attr("action", "/admin/batch/" + $(this).val() + '/edit' );
@@ -128,13 +123,6 @@ $(document).ready(function(){
             isCtrl = false;
             isShift = false;
             return;
-        });
-    });
-</script>
-<script>
-    $(document).ready(function(){
-        $(function () {
-            $("#data_table").DataTable();
         });
     });
 </script>

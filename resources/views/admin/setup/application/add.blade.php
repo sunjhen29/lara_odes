@@ -1,19 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin',['title'=>'Setup','icon'=>'fa fa-clock-o'])
 
 @section('content')
-<div class="container-fluid">
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h4><b>Add Application</b></h4></div>
-                {!! Form::open(array('role'=>'form','url'=>'/admin/setup/application/add','action'=>'POST','class'=>'form-horizontal'))!!}
-                  @include('admin.setup.application.form')
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div><!-- end of column -->
-</div> <!-- end of row -->    
-</div> <!-- end of container -->
+    <div class="box box-info">
+        {!! Form::open(array('role'=>'form','url'=>'/admin/setup/application/add','action'=>'POST','class'=>'form-horizontal'))!!}
+            @include('admin.setup.application.form',['title'=>'Add Application'])
+        {!! Form::close() !!}
+    </div>
 @endsection
 
 

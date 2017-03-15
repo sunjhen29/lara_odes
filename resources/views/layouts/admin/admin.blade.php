@@ -54,6 +54,8 @@
 <!-- DataTables -->
 <script src="/bower_components/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/bower_components/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- Common Js File -->
+<script src="/js/common_admin.js"></script>
 
 @stack('scripts')
 
