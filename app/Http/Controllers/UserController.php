@@ -26,8 +26,6 @@ class UserController extends Controller
     public function sysusersstore(SystemUsersRequest $request){
         $user = User::create($request->all());
         $profile = $user->profile()->create([]);
-        $leave = $user->leave()->create([]);
-        //$leaves = $user->leaves()->create([]);
         return redirect('admin/setup/sysusers/view');
     }
     

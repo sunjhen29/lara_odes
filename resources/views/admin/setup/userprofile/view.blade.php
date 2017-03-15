@@ -1,51 +1,40 @@
 @extends('layouts.admin.admin',['title'=>'Setup','icon'=>'fa fa-clock-o'])
 
 @section('content')
-<div class="row">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title"><strong>User Profile</strong></h3>
-          <div class="box-tools">
-
-          </div>
-        </div><!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-          <table id="data_table" class="table table-hover">
-            <thead>
-            <tr>
-              <th>PHOTO</th>
-              <th>OPERATOR ID</th>
-              <th>USERNAME</th>
-              <th>NAME</th></th>
-              <th>CONTACT NO.</th>
-              <th>ADDRESS</th>
-              <th>ACTION</th>
-            </tr>
-            </thead>
-            <tbody>
-            @if(isset($results))
-              @foreach($results as $result)
-                <tr>
-                  <td><img src="{{ asset('/images/userprofile/'.$result->id.'.jpg') }}" class="img-thumbnail" height="60" width="60"></td>
-                  <td>{{ $result->operator_id }}</td>
-                  <td>{{ $result->name }}</td>
-                  <td>{{ $result->firstname.' '.$result->lastname }}</td>
-                  <td>{{ $result->profile['contact_no'] }}</td>
-                  <td>{{ $result->profile['address'] }}</td>
-                  <td>
-                    <a href="{{ url('/admin/setup/userprofile/'.$result->profile['id'].'/edit') }}" class="btn btn-info btn-xs">UPDATE PROFILE</a>
-                  </td>
-                </tr>
-              @endforeach
-              @endif
-            </tbody>
-            <tfoot></tfoot>
-          </table>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">View User Info</h3>
     </div>
-  </div>
-</div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <ul class="products-list product-list-in-box">
+        @if(isset($results))
+        @foreach($results as $result)
+        <li class="item">
+          <div class="product-img">
+            <img src="{{ asset('/images/userprofile/'.$result->id.'.jpg') }}" alt="User Image">
+          </div>
+          <div class="product-info">
+            <a href="javascript:void(0)" class="product-title">{{ $result->operator_id.' | '.$result->firstname.' '.$result->lastname }}
+              <span class="label label-warning pull-right">{{ $result->name }}</span></a>
+                        <span class="product-description">
+                          {{ $result->profile['contact_no'] }}
+                        </span>
+                        <span class="product-description">
+                          {{ $result->profile['address'] }}
+                        </span>
+                        <span class="product-description">
+                          <a href="{{ url('/admin/setup/userprofile/'.$result->profile['id'].'/edit') }}" class="btn btn-info btn-xs">Update Profile</a>
+                        </span>
+          </div>
+        </li>
+        @endforeach
+        @endif
+      </ul>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer text-center">
+
+    </div><!-- /.box-footer -->
+  </div><!-- /.box -->
 @endsection
