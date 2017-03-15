@@ -15,36 +15,10 @@ class AdminUserTableSeeder extends Seeder
      */
     public function run()
     {
-
         $admin = new Admin();
-        $admin->name = 'Sunday Doctolero';
-        $admin->email = 'sunjhen29@yahoo.com';
-        $admin->password = bcrypt('forever');
+        $admin->name = 'Admin';
+        $admin->email = 'admin@test.com';
+        $admin->password = bcrypt('1234');
         $admin->save();
-        
-        $admin = new Admin();
-        $admin->name = 'Michelle Ong';
-        $admin->email = 'mijaeya@gmail.com';
-        $admin->password = bcrypt('707');
-        $admin->save();
-    
-        $user = new User();
-        $user->name = 'sunjhen29';
-        $user->firstname = 'Sunday';
-        $user->lastname = 'Doctolero';
-        $user->email = 'sunjhen29@yahoo.com';
-        $user->access_level = 9;
-        $user->password = bcrypt('forever');
-        $user->save();
-        
-        $user = new User();
-        $user->name = 'mijaeya';
-        $user->firstname = 'Michele';
-        $user->lastname = 'Ong';
-        $user->email = 'mijaeya@gmail.com';
-        $user->access_level = 9;
-        $user->password = bcrypt('707');
-        $user->save();
-    
     }
 }

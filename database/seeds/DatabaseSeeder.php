@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(LookupTableSeeder::class);
          $this->call(AdminUserTableSeeder::class);
-         //$this->call(NewsLookupTableSeeder::class);
          $this->call(InitialApplicationSeeder::class);
     }
 }

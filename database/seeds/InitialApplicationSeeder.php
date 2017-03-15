@@ -8,6 +8,8 @@ use App\JobNumber;
 
 use App\Publication;
 
+use App\State;
+
 class InitialApplicationSeeder extends Seeder
 {
     /**
@@ -47,8 +49,8 @@ class InitialApplicationSeeder extends Seeder
         $jobnumber->job_number = 1234;
         $jobnumber->application = 'Australian Newspapers';
         $jobnumber->section = 'S';
-        $jobnumber->current_month = '2016-11-01';
-        $jobnumber->job_date = '2016-11-01';
+        $jobnumber->current_month = '2017-03-01';
+        $jobnumber->job_date = '2017-03-01';
         $jobnumber->stats_output = 'SP-Sample';
         $jobnumber->save();
         
@@ -75,5 +77,62 @@ class InitialApplicationSeeder extends Seeder
         $job->code = 'ABW';
         $job->invalid = 'Yes';
         $job->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'Victoria';
+        $state->code = 'VIC';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'Queensland';
+        $state->code = 'QLD';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'New South Wales';
+        $state->code = 'NSW';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'South Australia';
+        $state->code = 'SA';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'Northern Territory';
+        $state->code = 'NT';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'Western Australia';
+        $state->code = 'WA';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'Tasmania';
+        $state->code = 'TAS';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'Australia';
+        $state->state = 'Australian Capital Territory';
+        $state->code = 'ACT';
+        $state->save();
+
+        $state = new State();
+        $state->country = 'New Zealand';
+        $state->state = 'New Zealand';
+        $state->code = 'NZ';
+        $state->save();
+
+
+
     }
 }
