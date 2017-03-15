@@ -28,8 +28,13 @@ class Batch extends Model
     
     public function getBatchDateAttribute($value){
         return $value !== null ? Carbon::parse($value)->format('d/m/Y') : '';
-    } 
-    
+    }
+
+    public function getExportDateFilenameAttribute($value){
+        return Carbon::parse($this->attributes['batch_date'])->format('Ymd');
+    }
+
+
     public function interests()
     {
         return $this->hasMany('App\Interest');

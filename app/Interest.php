@@ -30,7 +30,8 @@ class Interest extends Model
     public function getContractDateAttribute($value){
         return $value !== null ? Carbon::parse($value)->format('d/m/Y') : '';
     }
-    
+
+
     public function setSettlementDateAttribute($date){
         $this->attributes['settlement_date'] = null;
     }

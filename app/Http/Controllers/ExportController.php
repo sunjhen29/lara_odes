@@ -55,31 +55,22 @@ class ExportController extends Controller
     }
     
     public function export_interest_csv(Batch $batch){
-            if( $batch){
-                $export = $batch->interests->all();    
-                $file = fopen('sample.csv','w+');
-                foreach($export as $key => $row){
-                    fputcsv($file,array($row->unit_no,
-                    $row->street_no.$row->street_no_suffix,$row->street_name,
-                    $row->street_ext,$row->street_direction,$row->suburb,
-                    $row->post_code,$row->property_type,$row->sale_type,
-                    $row->sold_price,$row->contract_date,
-                    $row->settlement_date,$row->agency_name,
-                    $row->bedroom,$row->bathroom));
-                }
-                fclose($file);
+        DB::connection()->setFetchMode(PDO::FETCH_NUM);
+        $data = DB::table('interests')
+            ->select('unit_no','street_no','street_name','street_ext','street_direction','suburb','post_code',
+                'property_type','sale_type','sold_price',DB::raw('DATE_FORMAT(contract_date,"%d/%m/%Y") as contract_date'),
+                'settlement_date','agency_name','bedroom','bathroom')
+            ->where('batch_id',$batch->id)
+            ->get();
+        DB::connection()->setFetchMode(PDO::FETCH_CLASS);
 
-                $filename = '_nz_interest.csv';
+        $filename = $batch->export_date_filename.'_nz_interest';
 
-                $headers = array(
-                    'Content-Type' => 'text/csv',
-                    );
-                
-                return response()->download('sample.csv',$filename, $headers);
-            } else {
-                flash()->info('No Record to Export');
-                return redirect()->back()->withInput();
-            }    
+        Excel::create($filename, function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data,"'",'A1',false,false);
+            });
+        })->export('csv');
     }
 
     public function export_interest_excel(Batch $batch){
@@ -88,8 +79,6 @@ class ExportController extends Controller
             ->select('state','unit_no','street_no','street_name','street_ext','street_direction','suburb','post_code',
                 'property_type','sale_type','sold_price',DB::raw('DATE_FORMAT(contract_date,"%d/%m/%Y") as contract_date'),
                 'settlement_date','agency_name','bedroom','bathroom' ,'car')
-
-
             ->where('batch_id',$batch->id)
             ->get();
         DB::connection()->setFetchMode(PDO::FETCH_CLASS);
@@ -100,7 +89,7 @@ class ExportController extends Controller
             $excel->sheet('Sheet1', function($sheet) use($data) {
                 $sheet->fromArray($data,null,'A1',false,false);
             });
-        })->export('xls');
+        })->export('xlsx');
     }
 
 
