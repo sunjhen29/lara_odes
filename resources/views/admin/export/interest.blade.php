@@ -23,7 +23,7 @@
               <label for="job_name" class="control-label">Batch Date</label>
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control" id="job_date" name="job_date" size="13" value="{{ $default_date }}" required>
+              <input type="text" class="form-control aussie_date" id="job_date" name="job_date" size="13" value="{{ $default_date }}" required>
             </div>
             <div class="col-md-2">
               <button type="submit" class="btn btn-primary">View Batches</button>
