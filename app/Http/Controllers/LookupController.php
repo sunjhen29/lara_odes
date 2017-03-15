@@ -15,10 +15,8 @@ class LookupController extends Controller
 {
     public function lookupview(){
         
-        //$results = Lookup::all();
-        $results = Lookup::paginate(15);
+        $results = Lookup::all();
         return view('admin.setup.lookup.view', compact('results'));
-        
     }
     
     public function lookupadd(){

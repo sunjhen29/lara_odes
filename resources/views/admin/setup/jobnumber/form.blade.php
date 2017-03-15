@@ -1,3 +1,6 @@
+<div class="box-header with-border">
+  <h3 class="box-title">{{ $title or null }}</h3>
+</div>
 <div class="panel-body">
         
     {{ csrf_field() }}

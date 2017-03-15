@@ -60,13 +60,11 @@
                     <li><a href="{{ url('/admin/setup/application/view') }}">Application</a></li>
                     <li><a href="{{ url('/admin/setup/sysusers/view') }}">System Users</a></li>
                     <li><a href="{{ url('/admin/setup/userprofile/view') }}">User Profile</a></li>
-                    <li><a href="{{ url('/admin/setup/leave/view') }}">Leave Management</a></li>
                     <li><a href="{{ url('/admin/setup/jobnumber/view') }}">Job Numbers</a></li>
                     <li><a href="{{ url('/admin/setup/publication/view') }}">Jobs List</a></li>
                     <li><a href="{{ url('/admin/setup/states/view') }}">States</a></li>
                     <li><a href="{{ url('/admin/setup/aupostcode/view') }}">AU Postcode</a></li>
                     <li><a href="{{ url('/admin/setup/lookup/view') }}">Lookup</a></li>
-                    <li><a href="{{ url('/admin/setup/eeleave/view') }}">Employee Leave</a></li>
                 </ul>
             </li>
 
@@ -81,8 +79,6 @@
                     <li><a href="{{ url('/news/databasebackup') }}">Backup Database</a></li>
                     <li><a href="{{ url('/news/deletepub') }}">Delete Publication</a></li>
                     <li><a href="{{ url('/news/importdata') }}">Import Data</a></li>
-                    <li><a href="{{ url('/news/importkpidata') }}">Import KPI Data</a></li>
-                    <li><a href="{{ url('/news/importcbhsfile') }}">Import CBHS File</a></li>
                 </ul>
             </li>
 
