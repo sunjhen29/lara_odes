@@ -6,65 +6,6 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title"><strong>Interest Auction Results</strong></h3>
-
-                <div class="box-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <button id="btn-add" name="btn-add" class="btn btn-success btn-md addbutton pull-right"><span class="glyphicon glyphicon-plus"></span> Add New Record</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                    <tr>
-                        <th>#</th>
-                        <th>App</th>
-                        <th>Job Name</th>
-                        <th>Batch Date</th>
-                        <th>Status</th>
-                        <th>Records</th>
-                        <th>Remarks</th>
-                        <th>Date Added</th>
-                        <th>Export Date</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tbody id="batch-list" name="batch-list">
-                    @foreach($batches as $batch)
-                        <tr id="batch{{$batch->id}}">
-                            <td>{{ $batch->id }}</td>
-                            <td>{{ $batch->application }}</td>
-                            <td>{{ $batch->job_name }}</td>
-                            <td>{{ $batch->batch_date }}</td>
-                            <td>{{ $batch->job_status }}</td>
-                            <td>{{ $batch->records }}</td>
-                            <td>{{ $batch->remarks }}</td>
-                            <td>{{ $batch->add_date }}</td>
-                            <td>{{ $batch->export_date }}</td>
-
-                            <td>
-                                <button class="btn btn-warning btn-xs btn-detail open-modal" data-toggle="modal" data-target="#myModal" value="{{$batch->id}}">Modify</button>
-                                <button class="btn btn-danger btn-xs btn-delete delete" data-toggle="modal" data-target="#delete-modal" data-id="{{ $batch->id }}">Delete</button>
-
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-                <!-- <strong><span></span></strong> -->
-            </div>
-        </div>
-        <!-- /.box -->
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title"><strong>Interest Auction Results</strong></h3>
                 <div class="box-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <button id="btn-add" name="btn-add" class="btn btn-success btn-md addbutton pull-right"><span class="glyphicon glyphicon-plus"></span> Add New Record</button>
@@ -134,6 +75,8 @@ $(document).ready(function(){
     // ADD button ::
     $('#btn-add').click(function(){
         $('#frmBatch').trigger("reset");
+        $('.modal-title').html('Add New Batch');
+        $('#btn-save').html("Save");
         $('#myModal').modal('show');
     });
     // DELETE button ::
@@ -155,7 +98,6 @@ $(document).ready(function(){
             $('#remarks').val(data.remarks);
             $('.modal-title').html('Update Record');
             $('#btn-save').html("Update");
-            $('#btn-save').val("update");
             $('#jobnumber').focus();
         })
     });
@@ -175,11 +117,10 @@ $(document).ready(function(){
             }
             if(e.keyCode == 65 && isCtrl == true && isShift == true){
                 e.preventDefault();
-                $('#btn-save').val("add");
                 $('#frmBatch').trigger("reset");
+                $('.modal-title').html('Add New Batch');
                 $('#btn-save').html("Save");
                 $('#myModal').modal('show');
-                $('#application').focus();
             }
         });
 

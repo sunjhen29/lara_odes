@@ -41,6 +41,10 @@ div.dataTables_paginate ul.pagination {
 	white-space: nowrap;
 }
 
+.dataTables_wrapper{
+	padding: 10px;
+}
+
 @media screen and (max-width: 767px) {
 	div.dataTables_wrapper > div.row > div,
 	div.dataTables_length,

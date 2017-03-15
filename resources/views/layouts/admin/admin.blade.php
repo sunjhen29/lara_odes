@@ -55,11 +55,6 @@
 <script src="/bower_components/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/bower_components/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
-
-
-
-
-
 @stack('scripts')
 
 <script>
