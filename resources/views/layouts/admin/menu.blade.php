@@ -61,7 +61,7 @@
                     <li><a href="{{ url('/admin/setup/sysusers/view') }}">System Users</a></li>
                     <li><a href="{{ url('/admin/setup/userprofile/view') }}">User Profile</a></li>
                     <li><a href="{{ url('/admin/setup/jobnumber/view') }}">Job Numbers</a></li>
-                    <li><a href="{{ url('/admin/setup/publication/view') }}">Jobs List</a></li>
+                    <li><a href="{{ url('/admin/setup/publication/view') }}">Jobs Table</a></li>
                     <li><a href="{{ url('/admin/setup/states/view') }}">States</a></li>
                     <li><a href="{{ url('/admin/setup/aupostcode/view') }}">AU Postcode</a></li>
                     <li><a href="{{ url('/admin/setup/lookup/view') }}">Lookup</a></li>
