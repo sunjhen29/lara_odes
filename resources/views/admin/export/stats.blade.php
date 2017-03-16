@@ -36,7 +36,7 @@
                             {!! Form::token() !!}
                                 <div class = "input-group pull-right">
                                     <input type="hidden" name="prod_date" id="prod_date" value="" class="form-control"/>
-                                    {!! Form::submit('Export Text File',['class'=>'btn btn-primary']) !!}
+                                    {{  Form::button('<i class="fa fa-file-text" aria-hidden="true"></i> Export To Text File',['class'=>'btn btn-primary','type'=>'submit']) }}
                                 </div><!-- /input-group -->
                             {!! Form::close() !!}
                         </div>
