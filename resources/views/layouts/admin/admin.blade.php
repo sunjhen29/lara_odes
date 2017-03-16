@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/bower_components/adminlte/plugins/datatables/dataTables.bootstrap.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="/bower_components/adminlte/plugins/select2/select2.min.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="/bower_components/adminlte/plugins/datepicker/datepicker3.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/bower_components/adminlte/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins -->
@@ -59,6 +61,8 @@
 <script src="/bower_components/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="/bower_components/adminlte/plugins/select2/select2.full.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="/bower_components/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
 
 <!-- Common Js File -->
 <script src="/js/common_admin.js"></script>
