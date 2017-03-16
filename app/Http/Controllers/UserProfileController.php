@@ -14,7 +14,8 @@ use App\User;
 class UserProfileController extends Controller
 {
     public function userprofileview(){
-        $results = User::all()->load('profile');
+        //$results = User::paginate(10)->load('profile');
+        $results = User::paginate(5);
         return view('admin.setup.userprofile.view', compact('results'));
     }
     
@@ -24,13 +25,9 @@ class UserProfileController extends Controller
     }
     
     public function userprofileupdate(Request $request, UserProfile $userprofile){
+        $request['profile_image'] = $request->file('user_img')->getClientOriginalName();
         $userprofile->update($request->all());
-        
-        $imagename = $userprofile->user_id.".".
-            $request->file('user_img')->getClientOriginalExtension();
-        $request->file('user_img')->move(
-        base_path() . '/public/images/userprofile/', $imagename
-        );        
+        $request->file('user_img')->move(base_path() . '/public/images/userprofile/', $request->profile_image);
         return redirect('admin/setup/userprofile/view');
     }
 

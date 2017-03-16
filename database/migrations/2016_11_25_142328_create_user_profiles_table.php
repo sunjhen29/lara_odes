@@ -17,6 +17,10 @@ class CreateUserProfilesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('contact_no');
             $table->string('address');
+            $table->string('profile_image');
+            $table->string('department');
+            $table->string('position');
+            $table->string('shift_schedule');
             $table->timestamps();
             
             $table->foreign('user_id')

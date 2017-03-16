@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Application;
 
+use App\UserProfile;
+
 class AppController extends Controller
 {
     public function __construct()
@@ -22,7 +24,15 @@ class AppController extends Controller
 
     public function profile(){
         $applications = Application::where('status','Active')->get();
-        return view('profile',compact('applications'));
+        $results = UserProfile::where('user_id',\Auth::guard('web')->user()->id)->first();
+        return view('profile',compact('applications','results'));
+    }
+
+    public function userprofileupdate(Request $request, UserProfile $userprofile){
+        $request['profile_image'] = $request->file('user_img')->getClientOriginalName();
+        $userprofile->update($request->all());
+        $request->file('user_img')->move(base_path() . '/public/images/userprofile/', $request->profile_image);
+        return redirect('/profile');
     }
 
 }

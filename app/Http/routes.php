@@ -174,6 +174,8 @@ Route::post('/admin/batch/delete','BatchController@destroy');
  */
 Route::get('/dataentry','AppController@index');
 Route::get('/profile','AppController@profile');
+Route::post('/profile/{userprofile}/edit', 'AppController@userprofileupdate');
+
 
 /**
  * Sandbox Controller 

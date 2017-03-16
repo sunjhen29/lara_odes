@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="/bower_components/adminlte/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins -->
     <link rel="stylesheet" href="/bower_components/adminlte/dist/css/skins/skin-green.min.css">
-
+    <!-- Admin Custom css-->
+    <link rel="stylesheet" href="/css/admin_custom.css">
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.min.js"></script>
     <script src="/js/respond.min.js"></script>
