@@ -7,4 +7,6 @@ $(document).ready(function(){
     $('.delete').click(function(){
         $('#delete_id').val($(this).data("id"));
     });
+
+    $(".select2").select2();
 });

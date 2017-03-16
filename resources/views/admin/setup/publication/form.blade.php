@@ -1,3 +1,6 @@
+<div class="box-header with-border">
+    <h3 class="box-title">{{ $title or null }}</h3>
+</div>
 <div class="panel-body">
   
     {{ csrf_field() }}
@@ -9,14 +12,14 @@
         </div>
     </div>
 
-    <div class="form-group">  
+    <div class="form-group">
         {!! Form::label('state_list[]','State Selection',['class'=>'control-label col-md-3 col-sm-2 col-xs-2']) !!}
         <div class="col-md-7 col-sm-3 col-xs-4 custom">
-        {!! Form::select('state_list[]', \App\State::lists('code','id'),null, ['id'=>'state_list', 'class'=>'form-control','multiple'=>'true']) !!}
+        {!! Form::select('state_list[]', \App\State::lists('code','id'),null, ['class'=>'form-control select2','multiple'=>'true']) !!}
         </div>
     </div>
-    
-    <div class="form-group">  
+
+    <div class="form-group">
         {!! Form::label('pub_name','Publication Name',['class'=>'control-label col-md-3 col-sm-2 col-xs-2']) !!}
         <div class="col-md-7 col-sm-3 col-xs-4 custom">
           {!! Form::text('pub_name', null, ['class'=>'form-control', 'required']) !!}

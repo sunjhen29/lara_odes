@@ -1,15 +1,4 @@
 <?php
-/**
- * Return nav-here if current path begins with this path.
- *
- * @param string $path
- * @return string
- */
-//function setActive($path) 
-//{
-    //return Request::path() == $path ? 'active' : '';
-//}
-
 function setActive($path)
 {
     if ($path == 'admin'){
@@ -28,5 +17,10 @@ function setActiveapp($path)
 function setActivecount($path)
 {
     return Request::path() == $path ? 'active' :  '';
+}
+
+function count_batch()
+{
+    return Batch::count();
 }
     

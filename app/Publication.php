@@ -16,7 +16,8 @@ class Publication extends Model
     }
     
     public function getStateListAttribute(){
-        return $this->states->lists('id');
+        return $this->states->lists('id')->toArray();
+
     }
     
     public function getStateCodeAttribute(){
@@ -24,6 +25,6 @@ class Publication extends Model
     }
     
     public function getStateCodeOnlyAttribute(){
-        return $this->states->lists('code');
+        return $this->states->lists('code')->implode(' | ');
     }
 }

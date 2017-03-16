@@ -22,7 +22,7 @@
            <!-- small box -->
            <div class="small-box bg-aqua">
              <div class="inner">
-               <h3>9</h3>
+               <h3>2</h3>
                   <h4>{{ $application->application_name }}</h4>
              </div>
              <div class="icon">

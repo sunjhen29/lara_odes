@@ -1,26 +1,17 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin',['title'=>'Setup','icon'=>'fa fa-clock-o'])
 
 @section('content')
-<div class="container-fluid">
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h4><b>Add Job</b></h4></div>
+    <div class="box box-info">
         {!! Form::open(array('role'=>'form','url'=>'/admin/setup/publication/add','action'=>'POST','class'=>'form-horizontal'))!!}
-          @include('admin.setup.publication.form')
+        @include('admin.setup.publication.form',['title'=>'Add New Job'])
         {!! Form::close() !!}
-            </div>
-        </div>
-    </div><!-- end of column -->
-</div> <!-- end of row -->    
-</div> <!-- end of container -->
+    </div>
 @endsection
 
 @push('scripts')
 <script>
-    $('#state_list').select2({
-        placeholder: 'Choose multiple state'
-    });
+
+
 </script>
 @endpush
 

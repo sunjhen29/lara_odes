@@ -14,6 +14,9 @@ class PublicationController extends Controller
 {
     public function pubview(){
         $results = Publication::all();
+
+        //dd($results[2]->state_code_only);
+
         return view('admin.setup.publication.view',compact('results'));
     }
     
