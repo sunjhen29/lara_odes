@@ -19,7 +19,8 @@ class AppController extends Controller
     
     public function index(){
         $applications = Application::where('status','Active')->get();
-        return view('dataentry',compact('applications'));
+        $results = UserProfile::where('user_id',\Auth::guard('web')->user()->id)->first();
+        return view('dataentry',compact('applications','results'));
     }
 
     public function profile(){
@@ -29,9 +30,9 @@ class AppController extends Controller
     }
 
     public function userprofileupdate(Request $request, UserProfile $userprofile){
-        $request['profile_image'] = $request->file('user_img')->getClientOriginalName();
+        $request->file('user_img')? $request['profile_image'] = $request->file('user_img')->getClientOriginalName() : null;
         $userprofile->update($request->all());
-        $request->file('user_img')->move(base_path() . '/public/images/userprofile/', $request->profile_image);
+        $request->profile_image ? $request->file('user_img')->move(base_path() . '/public/images/userprofile/', $request->profile_image) : null;
         return redirect('/profile');
     }
 

@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
-      <img src="img/user.jpg" class="img-responsive thumbnail" alt="San Fran" width="100%">
+      <img src="/images/userprofile/{{ $results->profile_image ? $results->profile_image : 'user.jpg'}}" class="img-responsive thumbnail" alt="User Image" width="100%">
       <div class="list-group">
         <a href="{{ url('/dataentry') }}" class="list-group-item active"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
         <a href="{{ url('profile') }}" class="list-group-item"><i class="glyphicon glyphicon-user"></i> Profile</a>

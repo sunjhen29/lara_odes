@@ -7,8 +7,8 @@
       <img src="/images/userprofile/{{ $results->profile_image ? $results->profile_image : 'user.jpg'}}" class="img-responsive thumbnail" alt="User Image" width="100%">
 
       <div class="list-group">
-        <a href="{{ url('dataentry') }}" class="list-group-item active"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
-        <a href="{{ url('profile') }}" class="list-group-item"><i class="glyphicon glyphicon-user"></i> Profile</a>
+        <a href="{{ url('/dataentry') }}" class="list-group-item }}"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
+        <a href="{{ url('/profile') }}" class="list-group-item active"><i class="glyphicon glyphicon-user"></i> Profile</a>
         <a href="{{ url('/logout') }}" class="list-group-item"><i class="glyphicon glyphicon-off"></i> Log Out</a>
      </div>
     </div>
