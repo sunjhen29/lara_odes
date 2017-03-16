@@ -15,7 +15,7 @@ class UserProfileController extends Controller
 {
     public function userprofileview(){
         //$results = User::paginate(10)->load('profile');
-        $results = User::paginate(5);
+        $results = User::paginate(3);
         return view('admin.setup.userprofile.view', compact('results'));
     }
     

@@ -14,6 +14,8 @@ use App\User;
 
 use App\Http\Requests\ProfileRequest;
 
+use App\Batch;
+
 
 
 class AppController extends Controller
@@ -24,6 +26,7 @@ class AppController extends Controller
     }
     
     public function index(){
+            
         $applications = Application::where('status','Active')->get();
         $results = UserProfile::where('user_id',\Auth::guard('web')->user()->id)->first();
         return view('dataentry',compact('applications','results'));
