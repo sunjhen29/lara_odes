@@ -10,6 +10,12 @@ use App\Application;
 
 use App\UserProfile;
 
+use App\User;
+
+use App\Http\Requests\ProfileRequest;
+
+
+
 class AppController extends Controller
 {
     public function __construct()
@@ -29,10 +35,18 @@ class AppController extends Controller
         return view('profile',compact('applications','results'));
     }
 
-    public function userprofileupdate(Request $request, UserProfile $userprofile){
+    public function userprofileupdate(ProfileRequest $request, UserProfile $userprofile){
+        if($request->password != "")
+        {
+            $user = User::where('operator_id',$request->operator_id)->first();
+            $user->update($request->only(['password']));
+        }
+
+
         $request->file('user_img')? $request['profile_image'] = $request->file('user_img')->getClientOriginalName() : null;
-        $userprofile->update($request->all());
+        $userprofile->update($request->except('operator_id'));
         $request->profile_image ? $request->file('user_img')->move(base_path() . '/public/images/userprofile/', $request->profile_image) : null;
+
         return redirect('/profile');
     }
 
