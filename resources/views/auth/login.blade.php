@@ -9,8 +9,8 @@
             <form role="form" method="POST" action="{{ url('/login') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="control-label">E-Mail Address</label>
-                    <input id="email" type="email" class="form-control input-lg" name="email" value="{{ old('email') }}" autofocus>
+                    <label for="email" class="control-label">Username</label>
+                    <input id="email" type="text" class="form-control input-lg" name="name" value="{{ old('name') }}" autofocus>
                     @if ($errors->has('email'))
                         <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
