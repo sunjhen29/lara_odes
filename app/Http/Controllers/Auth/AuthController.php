@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dataentry';
 
     protected $username = 'name';
 
@@ -71,4 +71,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+
+
 }

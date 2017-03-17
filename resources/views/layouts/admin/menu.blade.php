@@ -77,7 +77,6 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/admin/utilities/entrylogs') }}">Entry Logs</a></li>
                     <li><a href="{{ url('/news/databasebackup') }}">Backup Database</a></li>
-                    <li><a href="{{ url('/news/deletepub') }}">Delete Publication</a></li>
                     <li><a href="{{ url('/news/importdata') }}">Import Data</a></li>
                 </ul>
             </li>

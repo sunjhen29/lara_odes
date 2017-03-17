@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Batch;
+
 use Closure;
 
 class RedirectIfBatchNoSet
@@ -20,8 +22,7 @@ class RedirectIfBatchNoSet
             session()->forget('batch_name');
             session()->forget('batch_details');
             return redirect('/dataentry');
-       } 
-       
+       }
        return $next($request);
     }
 }

@@ -238,35 +238,4 @@ Route::post('reanz/{record}/update', 'ReanzController@update');
 Route::post('/reanz/delete', 'ReanzController@delete');
 Route::get('/reanz/search/{id}','ReanzController@search');
 
-//LEAVE (USER)
-Route::get('/leave/view', 'UserLeaveController@view');
-Route::get('/leave/add', 'UserLeaveController@entry');
-Route::post('/leave/add', 'UserLeaveController@create');
-Route::get('/leave/{result}/edit', 'UserLeaveController@modify');
-Route::post('leave/{results}/update', 'UserLeaveController@update');
-Route::get('leave/{result}/status', 'UserLeaveController@status');
-Route::post('leave/{results}/status', 'UserLeaveController@statusupdate');
-Route::post('/leave/delete', 'UserLeaveController@delete');
 
-
-//LEAVE (ADMIN)
-Route::get('/admin/setup/leave/view', 'LeaveController@adminview');
-Route::get('/admin/setup/leave/{results}/edit', 'LeaveController@edit');
-Route::post('/admin/setup/leave/{results}/edit', 'LeaveController@save');
-
-//EMPLOYEE LEAVE
-Route::get('/admin/setup/eeleave/view', 'EeLeaveController@view');
-Route::get('/admin/setup/eeleave/add', 'UserLeaveController@entry');
-Route::post('/admin/setup/eeleave/add', 'UserLeaveController@create');
-Route::get('/admin/setup/eeleave/{leave}/edit', 'LeaveController@edit');
-Route::post('/admin/setup/eeleave/{leave}/edit', 'LeaveController@update');
-Route::get('/admin/setup/eeleave/{leave}/delete', 'LeaveController@delete');
-
-//LMS
-Route::get('/admin/lms', 'LMSController@view');
-Route::get('/admin/lms/{result}/forapproval', 'LMSController@forapproval');
-Route::get('/admin/lms/{result}/fordeclinement', 'LMSController@fordeclinement');
-Route::get('/admin/lms/all', 'LMSController@view');
-Route::get('/admin/lms/pending', 'LMSController@pending');
-Route::get('/admin/lms/approved', 'LMSController@approved');
-Route::get('/admin/lms/declined', 'LMSController@declined');

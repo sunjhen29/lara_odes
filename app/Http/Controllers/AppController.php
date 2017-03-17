@@ -26,6 +26,9 @@ class AppController extends Controller
     }
     
     public function index(){
+        session()->forget('batch_name');
+        session()->forget('jobnumber');
+        session()->forget('batch_details');
         $applications = Application::where('status','Active')->get();
         $results = UserProfile::where('user_id',\Auth::guard('web')->user()->id)->first();
         return view('dataentry',compact('applications','results'));

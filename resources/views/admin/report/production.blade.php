@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin',['title'=>'Reports','icon'=> 'fa fa-pencil-square'])
 
 @section('content')
 <div class="container-fluid">
@@ -17,8 +17,8 @@
       </div>
       <div class="form-group">
           <label for="production_date">Production Date</label>
-            <input type="text" class="form-control aussie_date" id="date_from" name="date_from" placeholder='From' required pattern='^(((0[1-9]|[12]\d|3[01])/(0[13578]|1[02])/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)/(0[13456789]|1[012])/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])/02/((19|[2-9]\d)\d{2}))|(29/02/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$'>
-            <input type="text" class="form-control aussie_date" id="date_to" name="date_to" placeholder='To' required pattern='^(((0[1-9]|[12]\d|3[01])/(0[13578]|1[02])/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)/(0[13456789]|1[012])/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])/02/((19|[2-9]\d)\d{2}))|(29/02/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$'>
+            <input type="text" class="form-control" id="date_from" name="date_from" placeholder='From' required pattern='^(((0[1-9]|[12]\d|3[01])/(0[13578]|1[02])/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)/(0[13456789]|1[012])/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])/02/((19|[2-9]\d)\d{2}))|(29/02/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$'>
+            <input type="text" class="form-control" id="date_to" name="date_to" placeholder='To' required pattern='^(((0[1-9]|[12]\d|3[01])/(0[13578]|1[02])/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)/(0[13456789]|1[012])/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])/02/((19|[2-9]\d)\d{2}))|(29/02/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$'>
       </div>
       <button type="submit" id="btn-search" class="btn btn-primary">Submit</button>
     </form> <!-- end of master form-->                
@@ -50,6 +50,12 @@
 @push('scripts')
 <script>
 $(document).ready(function(){
+
+    //Datemask dd/mm/yyyy
+    $("#date_from").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    $("#date_to").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+
+
     // search button ajax
     $("#frmProductionReport").submit(function (e) {
         $.ajaxSetup({

@@ -35,7 +35,7 @@ class InterestController extends Controller
         $this->middleware('batch',['except'=>array('index','find')]);
         $this->middleware('check_application:Interest Auction Results,interest',['except'=>array('index','find')]);
         $this->middleware('start_entrytime',['only'=>array('entry','modify','verify')]);
-        session('batch_details') ? $this->current_batch = Batch::findorfail(session('batch_details')->id) : false; 
+        session('batch_details') ? $this->current_batch = Batch::findorfail(session('batch_details')->id) : false;
         $this->model = new Interest();
     }
     
@@ -43,6 +43,7 @@ class InterestController extends Controller
     {
         session()->forget('batch_name');
         session()->forget('jobnumber');
+        session()->forget('batch_details');
         return view($this->folder.'.batch');
     }
     
