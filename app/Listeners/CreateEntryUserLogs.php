@@ -30,7 +30,7 @@ class CreateEntryUserLogs
         $event->batch->entry_logs()->create([
             'batch_name'=>$event->batch_name,
             'record_id'=> $event->record_id,
-            'user_id'=>\Auth::guard("web")->user()->id,
+            'user_id'=>\Auth::guard("web")->user()->operator_id,
             'jobnumber_id' => $event->jobnumber,
             'start'=>session('start'),
             'action'=> $event->action

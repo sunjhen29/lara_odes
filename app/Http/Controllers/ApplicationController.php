@@ -12,6 +12,10 @@ use App\Application;
 
 class ApplicationController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function applicationview(){
         $results = Application::all();
         return view('/admin/setup/application/view', compact('results'));

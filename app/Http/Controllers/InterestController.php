@@ -23,7 +23,9 @@ class InterestController extends Controller
     
     private $jobnumber;
     
-    private $keyword = 'interest';
+    private $folder = 'interest';
+
+    private $relationship = 'interests';
     
     private $model;
     
@@ -41,21 +43,21 @@ class InterestController extends Controller
     {
         session()->forget('batch_name');
         session()->forget('jobnumber');
-        return view($this->keyword.'.batch');
+        return view($this->folder.'.batch');
     }
     
     public function view()
     {
-        $results = $this->current_batch->load(array($this->keyword.'s'=>function($query){
+        $results = $this->current_batch->load(array($this->relationship=>function($query){
             $query->where('batch_name',session('batch_name'));
         })); 
         
-        return view($this->keyword.'/view',compact('results'));
+        return view($this->folder.'/view',compact('results'));
     }
     
     public function entry()
     {
-        return view($this->keyword.'/entry');
+        return view($this->folder.'/entry');
     }
     
     public function create(InterestRequest $request){
@@ -80,13 +82,13 @@ class InterestController extends Controller
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'V',session('batch_name'),$record->id,session('jobnumber')->id));
         flash()->info('Verify Successful!');
-        return redirect($this->keyword.'/verify');
+        return redirect($this->folder.'/verify');
     }
     
     public function modify($id)
     {   
         $record = $this->model->findorfail($id); 
-        return view($this->keyword.'/modify',compact('record'));
+        return view($this->folder.'/modify',compact('record'));
     }
     
     public function update(InterestRequest $request,Interest $record) //must be changed
@@ -94,7 +96,7 @@ class InterestController extends Controller
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'U',session('batch_name'),$record->id,session('jobnumber')->id));
         flash()->info('Update Successful!');
-        return redirect($this->keyword.'/view');
+        return redirect($this->folder.'/view');
     }
     
     public function delete(Request $request)

@@ -29,14 +29,14 @@
       <div class="form-group">  
         {!! Form::label('current_month','For the Month of',['class'=>'control-label col-md-3']) !!}
         <div class="col-md-7 custom">
-          {!! Form::text('current_month', null, ['class'=>'form-control', 'required']) !!}
+          {!! Form::text('current_month', null, ['class'=>'form-control', 'placeholder'=>'yyyy-mm-dd Please Enter the First day of the month','required']) !!}
         </div>
       </div>
       
       <div class="form-group">  
         {!! Form::label('job_date','Job Date From',['class'=>'control-label col-md-3']) !!}
         <div class="col-md-7 custom">
-          {!! Form::text('job_date', null, ['class'=>'form-control', 'required']) !!}
+          {!! Form::text('job_date', null, ['class'=>'form-control', 'placeholder'=>'yyyy-mm-dd Please Enter the First day of the month','required']) !!}
         </div>
       </div>
       

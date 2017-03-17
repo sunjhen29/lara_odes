@@ -8,7 +8,7 @@
                                    'add_label' => 'Add Job Number',
                                    'headers'=> array('Job Number','Description','Sale/Rent','Current Month','Publication Date','Stats Output','Actions','Date Added'),
                                    'results'=>$results,
-                                   'rows'=>array('job_number','application','section','current_month','job_date','stats_output','id','created_at'),
+                                   'rows'=>array('job_number','application','section','current_month_format','current_publication_date_format','stats_output','id','created_at'),
                                    'modify_url' => '/admin/setup/jobnumber/',
                                   ])
 

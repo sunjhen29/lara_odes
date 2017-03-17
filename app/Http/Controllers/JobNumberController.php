@@ -15,6 +15,8 @@ class JobNumberController extends Controller
     public function jobnumberview(){
         
         $results = JobNumber::all();
+
+
         return view('admin.setup.jobnumber.view', compact('results'));
     }
     
