@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+use Illuminate\Support\Facades\Input;
+
+use Carbon\Carbon;
+
+
 class BatchRequest extends Request
 {
     /**
@@ -25,8 +30,9 @@ class BatchRequest extends Request
     {
         return [
             'job_name' => 'required',
-            'batch_date' => 'required|date_format:d/m/Y',
+            'batch_date' => 'required|unique:batches',
             'job_status' => 'required'
+            //'job_status' => 'required|unique:batches,job_status,NULL,id,job_name,'.$this->job_name
         ];
     }
 }

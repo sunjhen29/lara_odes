@@ -22,7 +22,7 @@ class BatchController extends Controller
     }
     
     public function store(BatchRequest $request){
-        $batch = Batch::create($request->all());
+        Batch::create($request->all());
         return redirect('admin/batch/interest');
     }
 

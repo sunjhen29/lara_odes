@@ -24,7 +24,7 @@ class ProfileRequest extends Request
     public function rules()
     {
         return [
-            'password' => 'min:6|confirmed',
+            'password' => 'sometimes|min:6|confirmed',
         ];
     }
 }

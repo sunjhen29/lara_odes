@@ -24,7 +24,6 @@ class CreateBatchesTable extends Migration
             $table->string('remarks');
             $table->date('export_date')->nullable(); 
             $table->timestamps();
-
             $table->unique(array('job_name', 'batch_date'));
         });
     }

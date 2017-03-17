@@ -63,6 +63,10 @@
 <script src="/bower_components/adminlte/plugins/select2/select2.full.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="/bower_components/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- InputMask -->
+<script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 <!-- Common Js File -->
 <script src="/js/common_admin.js"></script>

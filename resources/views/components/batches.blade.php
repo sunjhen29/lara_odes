@@ -59,7 +59,7 @@
             </div>
 
             <div class="modal-footer">
-                <input type="hidden" id="batch_id" name="batch_id" value="0">
+
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-outline" id="btn-save" value="add">Save</button>
             </div>

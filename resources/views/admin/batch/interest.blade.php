@@ -67,12 +67,20 @@
 
 @include('components.dialog',['dialog_type'=>'modal-danger','title'=>'Confirm','action'=>'/admin/batch/delete','message'=>'Are you sure you want to delete this record?'])
 
+@if($errors->any())
+    <ul class="alert alert-danger">
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+
 @endsection
 
 @push('scripts')
 <script>
 $(document).ready(function(){
-    // ADD button ::
+     // ADD button ::
     $('#btn-add').click(function(){
         $('#frmBatch').trigger("reset");
         $('.modal-title').html('Add New Batch');
