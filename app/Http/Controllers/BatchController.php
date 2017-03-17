@@ -48,25 +48,29 @@ class BatchController extends Controller
         $job_date = Carbon::createFromFormat('d/m/Y',$request->batch_date);
         $batch_date = Carbon::createFromFormat('Ymd',substr($request->batch_name,-13,8));
         $batch_code = substr($request->batch_name,-17,3); // ABC_20161101_S_01
+
         $code = Publication::where('pub_name',$request->job_name)->get()->first();
 
         if ($batch_code != $code->code){
             flash()->info('Code does not match with the Publication selected!');
             return redirect()->back()->withInput();
         }
-        
+
 
         if ($job_date->format('Y-m-d') != $batch_date->format('Y-m-d')){
             flash()->info('Publication Date & Batch Name does not match!');
             return redirect()->back()->withInput();
         }
-        
+
         $batch = Batch::where('job_name',$request->job_name)->where('batch_date',$job_date->format('Y-m-d'))->first();
-        
-        
-        
-        
-        if ($batch){
+
+         if ($batch){
+
+             if ($batch->job_status != 'Open'){
+                 flash()->info('Batch Closed! Contact Administrator!');
+                 return redirect()->back()->withInput();
+             }
+
              $job_number = JobNumber::where('application',$batch->application)
                 ->where('current_month',Carbon::now()->startOfMonth())
                 ->where('section',substr($request->batch_name,-4,1))

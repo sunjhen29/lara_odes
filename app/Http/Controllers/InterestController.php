@@ -4,25 +4,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\InterestRequest;
-use App\Http\Requests\BatchFindRequest;
 use App\Interest;
-use App\Lookup;
 use App\Batch;
-use App\UserLog;
-use Carbon\Carbon;
-use App\JobNumber;
-use App\Application;
 use App\Events\EntryRecordCreated;
-use App\Publication;
+
 
 
 class InterestController extends Controller
 {
     
     private $current_batch;
-    
-    private $jobnumber;
-    
+
     private $folder = 'interest';
 
     private $relationship = 'interests';
@@ -74,7 +66,7 @@ class InterestController extends Controller
             return view('interest.verify',compact('record')); 
         } else {
             flash()->info('No Record to verify');
-            return redirect('/interest/view');
+            return redirect($this->folder.'/view');
         }
     }
     

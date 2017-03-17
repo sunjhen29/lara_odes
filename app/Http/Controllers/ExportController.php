@@ -37,7 +37,6 @@ class ExportController extends Controller
             $batch = Batch::where('job_name','Interest Auction Results')
                             ->where('batch_date',$job_date->format('Y-m-d'))
                             ->get()->first();
-            
             if($batch){
                 $results = $batch->interests()
                 ->select('batch_id','batch_name', DB::raw('COUNT(batch_name) as records'))

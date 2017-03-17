@@ -1,4 +1,4 @@
-@extends('layouts.dataentry.dataentry',['title'=>'Interest Auction Results'])
+@extends('layouts.dataentry.dataentry',['title'=>'Interest Auction Results','folder'=>'interest'])
 
 @section('content')
 <div class="container">
