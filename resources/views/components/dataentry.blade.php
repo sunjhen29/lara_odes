@@ -2,7 +2,7 @@
     <div class="row">
 
         <div class="col-md-3">
-            <img src="img/user.jpg" class="img-responsive thumbnail" alt="User Image" width="100%">
+            <img src="/images/userprofile/{{ $results->profile_image ? $results->profile_image : 'user.jpg'}}" class="img-responsive thumbnail" alt="User Image" width="100%">
         </div> <!-- end of col-sm-3 -->
 
         <div class="col-md-9">

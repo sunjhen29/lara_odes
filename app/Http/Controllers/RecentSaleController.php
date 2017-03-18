@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\InterestRequest;
+use App\Http\Requests\RecentSaleRequest;
 use App\Recent_Sale;
 use App\Batch;
 use App\Events\EntryRecordCreated;
+use App\UserProfile;
 
 
 class RecentSaleController extends Controller
@@ -36,7 +38,8 @@ class RecentSaleController extends Controller
         session()->forget('batch_name');
         session()->forget('jobnumber');
         session()->forget('batch_details');
-        return view($this->folder.'.batch');
+        $results = UserProfile::where('user_id',\Auth::guard('web')->user()->id)->first();
+        return view($this->folder.'.batch',compact('results'));
     }
 
     public function view()
@@ -53,10 +56,10 @@ class RecentSaleController extends Controller
         return view($this->folder.'/entry');
     }
 
-    public function create(InterestRequest $request){
+    public function create(RecentSaleRequest $request){
         $record = $this->current_batch->recent_sales()->create($request->all());
         event(new EntryRecordCreated($this->current_batch,'E',session('batch_name'),$record->id,session('jobnumber')->id));
-        flash()->info('Successfully added a record.');
+        flash()->info($record->address.' added successfully.');
         return redirect()->back();
     }
 
@@ -70,7 +73,7 @@ class RecentSaleController extends Controller
         }
     }
 
-    public function storeverify(Recent_Sale $record, InterestRequest $request)
+    public function storeverify(Recent_Sale $record, RecentSaleRequest $request)
     {
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'V',session('batch_name'),$record->id,session('jobnumber')->id));
@@ -84,7 +87,7 @@ class RecentSaleController extends Controller
         return view($this->folder.'/modify',compact('record'));
     }
 
-    public function update(InterestRequest $request,Recent_Sale $record) //must be changed
+    public function update(RecentSaleRequest $request,Recent_Sale $record) //must be changed
     {
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'U',session('batch_name'),$record->id,session('jobnumber')->id));

@@ -34,7 +34,16 @@ class InitialApplicationSeeder extends Seeder
         $application->description = '';
         $application->entry_type = 'Single Entry';
         $application->save();
-        
+
+        $application = new Application();
+        $application->application_name = 'Recent Sales';
+        $application->folder_path = '/recent_sales';
+        $application->status = 'Active';
+        $application->description = '';
+        $application->entry_type = 'Single Entry';
+        $application->save();
+
+
         $jobnumber = new JobNumber();
         $jobnumber->job_number = 1234;
         $jobnumber->application = 'Interest Auction Results';

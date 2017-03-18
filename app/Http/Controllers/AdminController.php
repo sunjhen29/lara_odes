@@ -62,6 +62,12 @@ class AdminController extends Controller
         $default_date = Carbon::now()->format('d/m/Y');
         return view('admin.export.interest',compact('results','default_date'));
     }
+
+    public function showrecentsalesexport(){
+        $results = null;
+        $default_date = Carbon::now()->format('d/m/Y');
+        return view('admin.export.recent_sales',compact('results','default_date'));
+    }
     
     public function logout(){
         Auth::guard('admin')->user()->logout();

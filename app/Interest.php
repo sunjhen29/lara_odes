@@ -47,6 +47,7 @@ class Interest extends Model
         $value = '';
         $this->unit_no != '' ? $value .= $this->unit_no . '/' : null;
         $value .= $this->street_no . ' ';
+        $value .= $this->street_extension . ' ';
         $this->street_no_suffix != '' ? $value .= $this->street_no_suffix . ' ' : null;
         $value .= $this->street_name . ' ';
         $this->street_ext ? $value .= $this->street_ext . ' ' : null;

@@ -29,6 +29,7 @@ Route::get('/admin/batch/aunews','AdminController@showaunews');
 Route::get('/admin/batch/reanz','AdminController@showreanz');
 Route::get('/admin/report/production','AdminController@showproduction');
 Route::get('/admin/export/interest','AdminController@showinterestexport');
+Route::get('/admin/export/recent_sales','AdminController@showrecentsalesexport');
 
 
 
@@ -135,6 +136,10 @@ Route::post('/admin/export/interest','ExportController@show_interest');
 Route::get('/admin/export/interest/{batch}','ExportController@export_interest_csv');
 Route::get('/admin/export/interest/{batch}/excel','ExportController@export_interest_excel');
 
+Route::post('/admin/export/recent_sales','ExportController@show_recentsales');
+Route::get('/admin/export/recent_sales/{batch}','ExportController@export_recentsales_csv');
+Route::get('/admin/export/recent_sales/{batch}/excel','ExportController@export_recent_sales_excel');
+
 Route::get('/admin/export/aunews','ExportController@show_aunews');
 Route::get('/admin/export/aunews/batch','ExportController@get_aunews');
 Route::get('/admin/export/aunews/valid','ExportController@export_aunews');
@@ -148,6 +153,8 @@ Route::get('/admin/export/stats_output','ExportController@export_stats');
 /**
  * Entry Logs Controller
  */
+
+
  Route::get('/admin/utilities/entrylogs','EntryLogController@view');
 
 

@@ -7,7 +7,7 @@ use App\Http\Requests\InterestRequest;
 use App\Interest;
 use App\Batch;
 use App\Events\EntryRecordCreated;
-
+use App\UserProfile;
 
 
 class InterestController extends Controller
@@ -35,7 +35,8 @@ class InterestController extends Controller
         session()->forget('batch_name');
         session()->forget('jobnumber');
         session()->forget('batch_details');
-        return view($this->folder.'.batch');
+        $results = UserProfile::where('user_id',\Auth::guard('web')->user()->id)->first();
+        return view($this->folder.'.batch',compact('results'));
     }
     
     public function view()

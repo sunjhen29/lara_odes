@@ -6,7 +6,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title"><strong>{{ $results->batch_date }}</strong></h3>
+          <h3 class="box-title"><strong>{{ session('batch_details')->job_name.' '.$results->batch_date }}</strong></h3>
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
@@ -22,22 +22,30 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-              <th>Listing Id</th>
+              <th>State</th>
               <th>Property Address</th>
+              <th>Property Type</th>
               <th>Sale Type</th>
               <th class="text-right">Sold Price</th>
               <th class="text-center">Contract Date</th>
               <th>Agency Name</th>
+              <th>Bed</th>
+              <th>Bath</th>
+              <th>Car</th>
               <th class="text-center">Action</th>
             </tr>
             @foreach ($results->recent_sales as $result)
               <tr>
-                <td>{{ $result->listing_id }}</td>
+                <td>{{ $result->state }}</td>
                 <td><a><strong>{{ $result->address }}</strong></a></td>
+                <td>{{ $result->property_type }}</td>
                 <td>{{ $result->sale_type }}</td>
                 <td class="text-right">{{ $result->sold_price }}</td>
                 <td class="text-center">{{ $result->contract_date }}</td>
                 <td>{{ $result->agency_name }}</td>
+                <td>{{ $result->bedroom }}</td>
+                <td>{{ $result->bathroom }}</td>
+                <td>{{ $result->car }}</td>
                 <td class="text-center">
                   <a href="{{ url('/recent_sales/modify/'.$result->id) }}" class="btn btn-info btn-xs">Modify</a></button>
                   <a class="btn btn-danger btn-xs delete" data-toggle="modal" data-target="#delete-modal" data-id="{{ $result->id }}">Delete</a>

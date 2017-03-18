@@ -15,9 +15,7 @@
               <label for="job_name" class="control-label">Job Name</label>
             </div>
             <div class="col-md-2">
-              <select class="form-control" id="job_name" name="job_name">
-                <option>Interest Auction Results</option>
-              </select>
+              {!! Form::select('job_name', \App\Publication::where('application','Recent Sales')->pluck('pub_name','pub_name'), null, ['class'=>'form-control','required']) !!}
             </div>
             <div class="col-md-1">
               <label for="job_name" class="control-label">Batch Date</label>
@@ -44,8 +42,8 @@
 
         <div class="box-tools">
           <div>
-            <a href="{{ url('/admin/export/interest/'.$batch->id) }}"><button class="btn btn-success btn-md addbutton pull-right"><i class="fa fa-download" aria-hidden="true"></i>  Export to CSV</button></a>
-            <a href="{{ url('/admin/export/interest/'.$batch->id.'/excel') }}"><button class="btn btn-success btn-md addbutton pull-right"><i class="fa fa-file-excel-o" aria-hidden="true"></i>  Export to Excel</button></a>
+            <a href="{{ url('/admin/export/recent_sales/'.$batch->id) }}"><button class="btn btn-success btn-md addbutton pull-right"><i class="fa fa-download" aria-hidden="true"></i>  Export to CSV</button></a>
+            <a href="{{ url('/admin/export/recent_sales/'.$batch->id.'/excel') }}"><button class="btn btn-success btn-md addbutton pull-right"><i class="fa fa-file-excel-o" aria-hidden="true"></i>  Export to Excel</button></a>
           </div>
         </div>
       </div>
