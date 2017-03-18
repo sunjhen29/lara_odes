@@ -23,7 +23,8 @@ class BatchController extends Controller
     
     public function store(BatchRequest $request){
         Batch::create($request->all());
-        return redirect('admin/batch/interest');
+
+        return redirect()->back();
     }
 
     public function modify(Batch $batch_id){
@@ -52,7 +53,7 @@ class BatchController extends Controller
         $code = Publication::where('pub_name',$request->job_name)->get()->first();
 
         if ($batch_code != $code->code){
-            flash()->info('Code does not match with the Publication selected!');
+            flash()->info('Three letters Code does not match with the Publication selected!');
             return redirect()->back()->withInput();
         }
 
@@ -62,45 +63,45 @@ class BatchController extends Controller
             return redirect()->back()->withInput();
         }
 
+
         $batch = Batch::where('job_name',$request->job_name)->where('batch_date',$job_date->format('Y-m-d'))->first();
 
          if ($batch){
-
              if ($batch->job_status != 'Open'){
-                 flash()->info('Batch Closed! Contact Administrator!');
+                 flash()->info('Batch not open for entry! Contact Administrator!');
                  return redirect()->back()->withInput();
              }
 
-             $job_number = JobNumber::where('application',$batch->application)
+             $job_number = JobNumber::where('application',$batch->job_name)
                 ->where('current_month',Carbon::now()->startOfMonth())
                 ->where('section',substr($request->batch_name,-4,1))
                 ->where('job_number',$request->job_number)
                 ->where('job_date', $job_date->startOfMonth())
                 ->first();
-          
-            
+
+
             if(!$job_number){
                 flash()->info('Job Number Not found');
-                return redirect()->back()->withInput();    
+                return redirect()->back()->withInput();
             }
-                
-        }                     
+
+        }
+
 
         if($batch && $job_number){
             session()->put('batch_details',$batch);
             session()->put('batch_name',$request->batch_name);
             session()->put('jobnumber',$job_number);
-           
+
             $get_url = Application::where('application_name',$batch->application)->get()->first();
-            
             return redirect($get_url->folder_path.'/view');
         } else {
             flash()->info('No Record found!!');
             return redirect()->back()->withInput();
         }
-        
+
     }
-   
-   
-    
+
+
+
 }

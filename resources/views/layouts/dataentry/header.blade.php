@@ -16,9 +16,7 @@
                     @if(setActive($folder.'/modify/')=='active')
                         <li class="{{ setActive($folder.'/modify/') }}"><a href=""><i class="fa fa-plus" aria-hidden="true"></i> Modify</a></li>
                     @endif
-                    <!--
                     <li class="{{ setActiveapp($folder.'/verify') }}"><a href="{{ url('/'.$folder.'/verify') }}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Verify</a></li>
-                    -->
                     <li class="{{ setActiveapp($folder) }}"><a href="{{ url('/'.$folder) }}"><i class="fa fa-reply" aria-hidden="true"></i> Close</a></li>
                 </ul>
             </div>

@@ -35,6 +35,13 @@ class Batch extends Model
     }
 
 
+    //Application Relationships
+
+    public function recent_sales()
+    {
+        return $this->hasMany('App\Recent_Sale');
+    }
+
     public function interests()
     {
         return $this->hasMany('App\Interest');

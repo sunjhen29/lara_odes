@@ -13,9 +13,9 @@
       </div>
       
       <div class="form-group">  
-        {!! Form::label('application','Application',['class'=>'control-label col-md-3']) !!}
+        {!! Form::label('application','Job Name',['class'=>'control-label col-md-3']) !!}
         <div class="col-md-7 custom">
-          {!! Form::select('application', \App\Application::all()->lists('application_name','application_name'), null, ['class'=>'form-control']) !!}
+          {!! Form::select('application', \App\Publication::all()->pluck('pub_name','pub_name'), null, ['class'=>'form-control']) !!}
         </div>
       </div>
       

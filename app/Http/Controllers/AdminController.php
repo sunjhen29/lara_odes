@@ -36,6 +36,12 @@ class AdminController extends Controller
         $batches = Batch::where('application','Interest Auction Results')->get();
         return view('admin.batch.interest',compact('batches'));
     }
+
+    public function showrecent_sales(){
+        $batches = Batch::where('application','Recent Sales')->get();
+        return view('admin.batch.recent_sales',compact('batches'));
+    }
+
     
     public function showaunews(){
         $batches = Batch::where('application','Australian Newspapers')->get();

@@ -5,7 +5,7 @@
   <div class="col-md-12">
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">Interest Auction Results</h3>
+        <h3 class="box-title">Recent Sales</h3>
       </div>
       <div class="box-body">
         <div class="row">
@@ -15,7 +15,9 @@
               <label for="job_name" class="control-label">Job Name</label>
             </div>
             <div class="col-md-2">
-              {!! Form::select('job_name', \App\Publication::where('application','Interest Auction Results')->lists('pub_name','pub_name'), null, ['class'=>'form-control','required']) !!}
+              <select class="form-control" id="job_name" name="job_name">
+                <option>Interest Auction Results</option>
+              </select>
             </div>
             <div class="col-md-1">
               <label for="job_name" class="control-label">Batch Date</label>

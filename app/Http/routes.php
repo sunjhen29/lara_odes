@@ -24,10 +24,13 @@ Route::get('/admin/jobnumber','AdminController@showjobnumber');
 Route::get('/admin/logout', 'AdminController@logout');
 
 Route::get('/admin/batch/interest','AdminController@showinterest');
+Route::get('/admin/batch/recent_sales','AdminController@showrecent_sales');
 Route::get('/admin/batch/aunews','AdminController@showaunews');
 Route::get('/admin/batch/reanz','AdminController@showreanz');
 Route::get('/admin/report/production','AdminController@showproduction');
 Route::get('/admin/export/interest','AdminController@showinterestexport');
+
+
 
 /**
  * Invalid
@@ -203,6 +206,21 @@ Route::get('/interest/modify/{id}', 'InterestController@modify');
 Route::post('/interest/{record}/update', 'InterestController@update');
 Route::post('/interest/delete', 'InterestController@delete');
 Route::get('/interest/search/{id}','InterestController@search');
+
+/**
+ * Recent Sales Controller
+ */
+Route::get('/recent_sales','RecentSaleController@index');
+Route::post('/recent_sales', 'BatchController@find');
+Route::get('/recent_sales/view', 'RecentSaleController@view');
+Route::get('/recent_sales/entry', 'RecentSaleController@entry');
+Route::post('/recent_sales/entry', 'RecentSaleController@create');
+Route::get('/recent_sales/verify', 'RecentSaleController@verify');
+Route::post('/recent_sales/verify/{record}','RecentSaleController@storeverify');
+Route::get('/recent_sales/modify/{id}', 'RecentSaleController@modify');
+Route::post('/recent_sales/{record}/update', 'RecentSaleController@update');
+Route::post('/recent_sales/delete', 'RecentSaleController@delete');
+Route::get('/recent_sales/search/{id}','RecentSaleController@search');
 
 
 /**

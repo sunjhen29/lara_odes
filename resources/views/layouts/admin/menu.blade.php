@@ -18,6 +18,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/admin/batch/aunews') }}">Australian Newspapers</a></li>
                     <li><a href="{{ url('/admin/batch/interest') }}">Interest Auction Results</a></li>
+                    <li><a href="{{ url('/admin/batch/recent_sales') }}">Recent Sales</a></li>
                     <li><a href="{{ url('/admin/batch/reanz') }}">REA NZ Keying</a></li>
                 </ul>
             </li>
@@ -45,6 +46,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ setActive('admin/export/')}}"><a href="{{ url('/admin/export/interest') }}">Interest Auction Results</a></li>
+                    <li class="{{ setActive('admin/export/')}}"><a href="{{ url('/admin/export/recent_sales') }}">Recent Sales</a></li>
                     <li><a href="{{ url('/admin/export/aunews') }}">Australian Newspapers</a></li>
                     <li><a href="{{ url('/admin/export/stats') }}">EP90 Stats Data</a></li>
                 </ul>

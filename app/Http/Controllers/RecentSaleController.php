@@ -1,35 +1,36 @@
 <?php
 
 namespace App\Http\Controllers;
+
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\InterestRequest;
-use App\Interest;
+use App\Recent_Sale;
 use App\Batch;
 use App\Events\EntryRecordCreated;
 
 
-
-class InterestController extends Controller
+class RecentSaleController extends Controller
 {
     private $current_batch;
 
-    private $folder = 'interest';
+    private $folder = 'recent_sales';
 
-    private $relationship = 'interests';
-    
+    private $relationship = 'recent_sales';
+
     private $model;
-    
+
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('batch',['except'=>array('index','find')]);
-        $this->middleware('check_application:Interest Auction Results,interest',['except'=>array('index','find')]);
+        $this->middleware('check_application:Recent Sales,recent_sales',['except'=>array('index','find')]);
         $this->middleware('start_entrytime',['only'=>array('entry','modify','verify')]);
         session('batch_details') ? $this->current_batch = Batch::findorfail(session('batch_details')->id) : false;
-        $this->model = new Interest();
+        $this->model = new Recent_Sale();
     }
-    
+
     public function index()
     {
         session()->forget('batch_name');
@@ -37,23 +38,23 @@ class InterestController extends Controller
         session()->forget('batch_details');
         return view($this->folder.'.batch');
     }
-    
+
     public function view()
     {
         $results = $this->current_batch->load(array($this->relationship=>function($query){
             $query->where('batch_name',session('batch_name'));
-        })); 
-        
+        }));
+
         return view($this->folder.'/view',compact('results'));
     }
-    
+
     public function entry()
     {
         return view($this->folder.'/entry');
     }
-    
+
     public function create(InterestRequest $request){
-        $record = $this->current_batch->interests()->create($request->all());
+        $record = $this->current_batch->recent_sales()->create($request->all());
         event(new EntryRecordCreated($this->current_batch,'E',session('batch_name'),$record->id,session('jobnumber')->id));
         flash()->info('Successfully added a record.');
         return redirect()->back();
@@ -61,36 +62,36 @@ class InterestController extends Controller
 
     public function verify()
     {
-        if ($record = Interest::where('batch_name',session('batch_name'))->where('status','E')->first()){
+        if ($record = $this->model->where('batch_name',session('batch_name'))->where('status','E')->first()){
             return view($this->folder.'/verify',compact('record'));
         } else {
             flash()->info('No Record to verify');
             return redirect($this->folder.'/view');
         }
     }
-    
-    public function storeverify(Interest $record, InterestRequest $request)
+
+    public function storeverify(Recent_Sale $record, InterestRequest $request)
     {
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'V',session('batch_name'),$record->id,session('jobnumber')->id));
         flash()->info('Verify Successful!');
         return redirect($this->folder.'/verify');
     }
-    
+
     public function modify($id)
-    {   
-        $record = $this->model->findorfail($id); 
+    {
+        $record = $this->model->findorfail($id);
         return view($this->folder.'/modify',compact('record'));
     }
-    
-    public function update(InterestRequest $request,Interest $record) //must be changed
+
+    public function update(InterestRequest $request,Recent_Sale $record) //must be changed
     {
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'U',session('batch_name'),$record->id,session('jobnumber')->id));
         flash()->info('Update Successful!');
         return redirect($this->folder.'/view');
     }
-    
+
     public function delete(Request $request)
     {
         $record = $this->model->findorfail($request->delete_id);
@@ -100,10 +101,10 @@ class InterestController extends Controller
         flash()->info('Deleted!');
         return redirect()->back();
     }
-    
+
     //custom function
     public function search($id){
-         $result = Interest::where('listing_id',$id)->first();
-         return \Response::json($result);
-     }
+        $result = Recent_Sale::where('listing_id',$id)->first();
+        return \Response::json($result);
+    }
 }

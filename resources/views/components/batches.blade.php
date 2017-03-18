@@ -32,7 +32,7 @@
                 <div class="form-group">
                     {!! Form::label('job_name','Job Name',['class'=>'control-label col-sm-4']) !!}
                     <div class="col-sm-5">
-                        {!! Form::select('job_name', ['Interest Auction Results'=>'Interest Auction Results'], null, ['class'=>'form-control','required']) !!}
+                        {!! Form::select('job_name', \App\Publication::where('application',$application)->lists('pub_name','pub_name'), null, ['class'=>'form-control','required']) !!}
                     </div>
                 </div>
 

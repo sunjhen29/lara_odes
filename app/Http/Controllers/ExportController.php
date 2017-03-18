@@ -55,7 +55,7 @@ class ExportController extends Controller
     
     public function export_interest_csv(Batch $batch){
         DB::connection()->setFetchMode(PDO::FETCH_NUM);
-        $data = DB::table('interests')
+        $data = DB::table('recent_sales')
             ->select('unit_no','street_no','street_name','street_ext','street_direction','suburb','post_code',
                 'property_type','sale_type','sold_price',DB::raw('DATE_FORMAT(contract_date,"%d/%m/%Y") as contract_date'),
                 'settlement_date','agency_name','bedroom','bathroom')
@@ -74,7 +74,7 @@ class ExportController extends Controller
 
     public function export_interest_excel(Batch $batch){
         DB::connection()->setFetchMode(PDO::FETCH_NUM);
-        $data = DB::table('interests')
+        $data = DB::table('recent_sales')
             ->select('state','unit_no','street_no','street_name','street_ext','street_direction','suburb','post_code',
                 'property_type','sale_type','sold_price',DB::raw('DATE_FORMAT(contract_date,"%d/%m/%Y") as contract_date'),
                 'settlement_date','agency_name','bedroom','bathroom' ,'car')

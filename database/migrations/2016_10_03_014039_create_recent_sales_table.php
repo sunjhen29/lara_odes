@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInterestTable extends Migration
+class CreateRecentSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateInterestTable extends Migration
      */
     public function up()
     {
-        Schema::create('interests', function (Blueprint $table) {
+        Schema::create('recent_sales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('batch_id')->unsigned();
             $table->string('batch_name')->index();
@@ -53,6 +53,6 @@ class CreateInterestTable extends Migration
      */
     public function down()
     {
-        Schema::drop('interests'); 
+        Schema::drop('recent_sales');
     }
 }

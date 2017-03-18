@@ -2,12 +2,12 @@
 
 namespace App;
 
-use Carbon\Carbon;
-
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
 
-class Interest extends Model
+
+class Recent_Sale extends Model
 {
     protected $table = "recent_sales";
 

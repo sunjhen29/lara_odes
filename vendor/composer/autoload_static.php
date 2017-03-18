@@ -470,7 +470,7 @@ class ComposerStaticInit9bc603bb30d39284dd854d83934649b4
         'CreateBatchesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_02_061322_create_batches_table.php',
         'CreateEeLeavesTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_14_092813_create_ee_leaves_table.php',
         'CreateEntryLogsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_15_132201_create_entry_logs_table.php',
-        'CreateInterestTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_03_014039_create_interest_table.php',
+        'CreateInterestTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_03_014039_create_recent_sales_table.php',
         'CreateInvalidsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_07_134605_create_invalids_table.php',
         'CreateJobNumbersTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_21_061851_create_job_numbers_table.php',
         'CreateLeavesTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_092954_create_leaves_table.php',

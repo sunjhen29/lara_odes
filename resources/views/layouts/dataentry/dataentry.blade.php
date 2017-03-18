@@ -71,6 +71,9 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/bower_components/adminlte/dist/js/demo.js"></script>
 <!-- Date JS -->
+
+    @stack('scripts')
+
 <script>
     var $jqDate = jQuery('input.aussie_date[type=text]');
 
@@ -93,7 +96,7 @@
 
 </script>
 
-@stack('scripts')
+
 
 
 </body>
