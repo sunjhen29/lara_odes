@@ -227,7 +227,7 @@ Route::post('/recent_sales/verify/{record}','RecentSaleController@storeverify');
 Route::get('/recent_sales/modify/{id}', 'RecentSaleController@modify');
 Route::post('/recent_sales/{record}/update', 'RecentSaleController@update');
 Route::post('/recent_sales/delete', 'RecentSaleController@delete');
-Route::get('/recent_sales/search/{id}','RecentSaleController@search');
+Route::get('/recent_sales/search_post_code/{suburb}/{state}','RecentSaleController@search_postcode');
 
 
 /**

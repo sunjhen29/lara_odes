@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Requests\InterestRequest;
 use App\Http\Requests\RecentSaleRequest;
 use App\Recent_Sale;
 use App\Batch;
 use App\Events\EntryRecordCreated;
 use App\UserProfile;
+use App\AUPostCode;
 
 
 class RecentSaleController extends Controller
@@ -106,8 +106,8 @@ class RecentSaleController extends Controller
     }
 
     //custom function
-    public function search($id){
-        $result = Recent_Sale::where('listing_id',$id)->first();
-        return \Response::json($result);
+    public function search_postcode($suburb,$state){
+        $post_code = AUPostCode::where('suburb',$suburb)->where('state',$state)->first();
+        return \Response::json($post_code);
     }
 }

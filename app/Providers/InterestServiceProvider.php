@@ -15,11 +15,7 @@ class InterestServiceProvider extends ServiceProvider
     {
         $this->composeStreetExtension();
 
-        $this->composeSaleType();
- 
-        $this->composePropertyType();
-
-    }
+     }
 
     /**
      * Register the application services.
@@ -33,27 +29,8 @@ class InterestServiceProvider extends ServiceProvider
     
     private function composeStreetExtension(){
         view()->composer('interest.form',function($view){
-           $view->with('street_extension',\App\Lookup::where('filter','street_extension')->lists('name','name'));
-        });
-    }
-    
-    
-    private function composeSaleType(){
-        view()->composer('interest.form',function($view){
-           $view->with('sale_type',\App\Lookup::where('filter','sale_type')->lists('name','name'));
+           $view->with('street_extension',\App\Lookup::where('filter','street_extension')->pluck('name','name'));
         });
     }
 
-    private function composeAgencyName(){
-
-    }
-
-
-    
-    private function composePropertyType(){
-        view()->composer('interest.form',function($view){
-           $view->with('prop_type',\App\Lookup::where('filter','prop_type')->lists('name','name'));
-        });
-    }
-    
 }

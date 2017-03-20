@@ -56,7 +56,7 @@ class InterestController extends Controller
     public function create(InterestRequest $request){
         $record = $this->current_batch->interests()->create($request->all());
         event(new EntryRecordCreated($this->current_batch,'E',session('batch_name'),$record->id,session('jobnumber')->id));
-        flash()->info('Successfully added a record.');
+        flash()->info($record->address.' successfully added.');
         return redirect()->back();
     }
 

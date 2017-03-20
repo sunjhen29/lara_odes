@@ -70,7 +70,11 @@
 <script src="/bower_components/adminlte/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/bower_components/adminlte/dist/js/demo.js"></script>
-<!-- Date JS -->
+<!-- InputMask -->
+<script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
 
     @stack('scripts')
 
@@ -95,7 +99,12 @@
     });
 
 </script>
-
+<script>
+    $(document).ready(function() {
+        //Datemask dd/mm/yyyy
+        $(".ddmmyyy").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    });
+</script>
 
 
 

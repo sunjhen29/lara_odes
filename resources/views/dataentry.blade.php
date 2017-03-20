@@ -13,7 +13,7 @@
     </div>
     <div class="col-sm-9">
       <div class="page-header">
-        <h1>Dashboard</h1>
+        <h1>Dashboard {{ Auth::guard('web')->user()->lastname.', '.Auth::guard('web')->user()->firstname }}</h1>
       </div>
 
       <div class="row">

@@ -12,21 +12,22 @@
             {!! Form::text('state',null,['class'=>'form-control input-sm', 'readonly']) !!}
         </div>
     </div>
-    -->
+
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
             {!! Form::label('listing_id','Listing ID',['class'=>'control-label ']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('listing_id',null,['class'=>'form-control input-sm', 'autofocus'=>'true', 'pattern'=>'[aA-zZ0-9-]{1,15}', 'required']) !!}
+            {!! Form::text('listing_id',null,['class'=>'form-control input-sm', 'pattern'=>'[aA-zZ0-9-]{1,15}']) !!}
         </div>
     </div>
+    -->
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
             {!! Form::label('unit_no','Unit No.',['class'=>'control-label ']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('unit_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aA-zZ-\.]{1,20}']) !!}
+            {!! Form::text('unit_no',null,['class'=>'form-control input-sm', 'autofocus'=>'true','pattern'=>'[0-9aA-zZ-\.]{1,20}']) !!}
         </div>
     </div>
     <div class="row">
@@ -50,7 +51,7 @@
             {!! Form::text('street_name',null,['class'=>'form-control input-sm', 'required', 'pattern'=>'[aA-zZ0-9\s\'\.\-/&/]{1,25}', 'required']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::select('street_ext', $street_extension, null, ['class'=>'form-control input-sm','placeholder'=>'--']) !!}
+            {!! Form::select('street_ext', $street_extension, null, ['class'=>'form-control input-sm']) !!}
         </div>
         <div class="col-sm-2 col-md-1">
             {!! Form::text('street_direction',null,['class'=>'form-control input-sm', 'pattern'=>'(North|South|East|West)']) !!}
@@ -85,7 +86,7 @@
             {!! Form::label('sale_type','Sale Type',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-4 col-md-3">
-            {!! Form::select('sale_type', $sale_type, null, ['class'=>'form-control input-sm']) !!}
+            {!! Form::select('sale_type', ['Sold at Auction'=>'Sold At Auction','Sold Prior To Auction'=>'Sold Prior To Auction','Sold After Auction'=>'Sold After Auction' ], null, ['class'=>'form-control input-sm']) !!}
         </div>
     </div>
 
@@ -103,19 +104,13 @@
             {!! Form::label('contract_date','Contract Date',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-3 col-md-2">
-            {!! Form::text('contract_date',null,['class'=>'form-control input-sm aussie_date', 'placeholder'=>'dd/mm/yyyy','pattern'=>'^(((0[1-9]|[12]\d|3[01])/(0[13578]|1[02])/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)/(0[13456789]|1[012])/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])/02/((19|[2-9]\d)\d{2}))|(29/02/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$']) !!}
+            {!! Form::text('contract_date',null,['class'=>'form-control input-sm ddmmyyy', 'placeholder'=>'dd/mm/yyyy','pattern'=>'^(((0[1-9]|[12]\d|3[01])/(0[13578]|1[02])/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)/(0[13456789]|1[012])/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])/02/((19|[2-9]\d)\d{2}))|(29/02/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$']) !!}
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
             {!! Form::label('agency_name','Agency Name',['class'=>'control-label']) !!}
-
-
-
-
-
-
         </div>
         <div class="col-sm-5 col-md-4">
             {!! Form::text('agency_name',null,['class'=>'form-control input-sm', 'pattern'=>'[aA-zZ0-9\s\'\.\-/&/]{1,100}', 'list'=>'agency','required']) !!}

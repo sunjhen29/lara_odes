@@ -67,11 +67,10 @@
         <div class="col-sm-4 col-md-3">
             {!! Form::text('suburb',null,['class'=>'form-control input-sm', 'pattern'=>'[aA-zZ\s\'\.\-]{1,25}', 'required']) !!}
         </div>
-        <!--
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('post_code',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{4}', 'readonly']) !!}
+            {!! Form::text('post_code',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{4}', 'required']) !!}
         </div>
-        -->
+
     </div>
 
     <div class="row">
@@ -118,16 +117,16 @@
             {!! Form::text('agency_name',null,['class'=>'form-control input-sm', 'pattern'=>'[aA-zZ0-9\s\'\.\-/&/]{1,100}', 'list'=>'agency','required']) !!}
         </div>
     </div>
-    <!--
+
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
-            {!! Form::label('settlement_date','Settle Date',['class'=>'control-label']) !!}
+            {!! Form::label('settlement_date','Settlement Date',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-3 col-md-2">
             {!! Form::text('settlement_date',null,['class'=>'form-control input-sm', 'pattern'=>'', 'readonly']) !!}
         </div>
     </div>
-    -->
+
 
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
