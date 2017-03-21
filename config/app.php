@@ -169,7 +169,6 @@ return [
         App\Providers\InterestServiceProvider::class,
         App\Providers\AUNewsServiceProvider::class,
         App\Providers\MacrosServiceProvider::class,
-        App\Providers\LeaveServiceProvider::class,
         //App\Providers\ReaNZServiceProvider::class,
         
 
