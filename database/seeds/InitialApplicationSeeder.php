@@ -62,6 +62,7 @@ class InitialApplicationSeeder extends Seeder
         $jobnumber->job_date = '2017-03-01';
         $jobnumber->stats_output = 'SP-Sample';
         $jobnumber->save();
+
         
         $job = new Publication();
         $job->application = 'Interest Auction Results';
