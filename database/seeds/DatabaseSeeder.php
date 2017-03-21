@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
          $this->call(LookupTableSeeder::class);
          $this->call(AdminUserTableSeeder::class);
          $this->call(InitialApplicationSeeder::class);
+
     }
 }
+

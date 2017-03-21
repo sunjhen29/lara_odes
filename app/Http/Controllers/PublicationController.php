@@ -12,6 +12,11 @@ use App\Publication;
 
 class PublicationController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
+
     public function pubview(){
         $results = Publication::all();
 

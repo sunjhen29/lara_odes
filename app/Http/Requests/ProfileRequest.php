@@ -24,6 +24,9 @@ class ProfileRequest extends Request
     public function rules()
     {
         return [
+            'contact_no' => 'required',
+            'address' => 'required',
+            'user_img' => 'mimes:jpeg,bmp,png',
             'password' => 'sometimes|min:6|confirmed',
         ];
     }

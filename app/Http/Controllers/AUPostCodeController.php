@@ -18,10 +18,8 @@ class AUPostCodeController extends Controller
      }
      
      public function aupostcodeview(){
-        
-        $results = AUPostCode::all();
+        $results = AUPostCode::paginate(500);
         return view('admin.setup.aupostcode.view', compact('results'));
-        
     }
     
     public function aupostcodeadd(){
@@ -39,16 +37,13 @@ class AUPostCodeController extends Controller
     }
     
     public function aupostcodeupdate(Request $request, AUPostCode $aupostcode){
-        
         $aupostcode->update($request->all());
         return redirect('admin/setup/aupostcode/view');
-        
     }
     
     public function aupostcodedelete(Request $request){
         $record = AUPostCode::findorfail($request->delete_id);
         $record->delete();
-        
         flash()->info('Deleted!');
         return redirect()->back();
     }

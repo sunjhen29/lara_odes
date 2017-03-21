@@ -47,12 +47,9 @@ class AppController extends Controller
             $user->update($request->only(['password']));
         }
 
-
         $request->file('user_img')? $request['profile_image'] = $request->file('user_img')->getClientOriginalName() : null;
         $userprofile->update($request->except('operator_id'));
         $request->profile_image ? $request->file('user_img')->move(base_path() . '/public/images/userprofile/', $request->profile_image) : null;
-
         return redirect('/profile');
     }
-
 }

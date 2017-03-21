@@ -42,7 +42,6 @@ class AdminController extends Controller
         return view('admin.batch.recent_sales',compact('batches'));
     }
 
-    
     public function showaunews(){
         $batches = Batch::where('application','Australian Newspapers')->get();
         return view('admin.batch.aunews',compact('batches'));

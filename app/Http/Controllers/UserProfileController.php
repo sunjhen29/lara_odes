@@ -36,7 +36,7 @@ class UserProfileController extends Controller
         return view('profile.profile',compact('results'));
     }
     
-    public function updatedetails(Request $request, UserProfile $userprofile){
+    public function updatedetails(ProfileRequest $request, UserProfile $userprofile){
         $userprofile->update($request->all());
         
         $imagename = $userprofile->user_id.".".

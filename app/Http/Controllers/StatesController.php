@@ -10,6 +10,10 @@ use App\State;
 
 class StatesController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function statesview(){
         $results = State::all();
         return view('/admin/setup/states/view', compact('results'));

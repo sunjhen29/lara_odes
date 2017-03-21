@@ -31,16 +31,13 @@ class ApplicationController extends Controller
     }
     
     public function applicationedit(Application $application){
-        
         $results = $application;
         return view('admin.setup.application.edit', compact('results'));
     }
     
      public function applicationupdate(Request $request, Application $application){
-        
         $application->update($request->all());
         return redirect('admin/setup/application/view');
-        
     }
     
      public function applicationdelete(Request $request){
@@ -49,8 +46,6 @@ class ApplicationController extends Controller
         
         flash()->info('Deleted!');
         return redirect()->back();
-        
-     
     }
     
 }

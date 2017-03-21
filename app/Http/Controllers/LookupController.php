@@ -13,6 +13,10 @@ use App\Lookup;
 
 class LookupController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function lookupview(){
         
         $results = Lookup::all();

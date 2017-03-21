@@ -37,10 +37,6 @@ class Recent_Sale extends Model
         $this->attributes['settlement_date'] = null;
     }
 
-    public function setPostCodeAttribute($value)
-    {
-        return $value !== null ? $value : '';
-    }
 
     public function getAddressAttribute($value)
     {
@@ -50,10 +46,10 @@ class Recent_Sale extends Model
         $value .= $this->street_extension . ' ';
         $this->street_no_suffix != '' ? $value .= $this->street_no_suffix . ' ' : null;
         $value .= $this->street_name . ' ';
-        $this->street_ext ? $value .= $this->street_ext . ' ' : null;
+        $this->street_ext ? $value .= $this->street_ext . ', ' : null;
         $this->street_direction != '' ? $value .= $this->street_direction . ' ' : null;
-        $this->post_code != null ? $this->post_code . ' ' : null;
         $value .= $this->suburb;
+        $this->post_code != '' ? $value .= ', '.$this->post_code . ' ' : null;
         return $value;
     }
 

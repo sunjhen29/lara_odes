@@ -14,6 +14,10 @@ use App\UserProfile;
 
 class UserController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function sysusersview(){
         $results = User::all();
         return view('admin.setup.sysusers.view', compact('results'));

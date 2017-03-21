@@ -12,6 +12,11 @@ use App\JobNumber;
 
 class JobNumberController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function jobnumberview(){
         
         $results = JobNumber::all();

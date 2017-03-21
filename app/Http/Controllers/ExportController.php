@@ -30,6 +30,10 @@ use PDO;
 
 class ExportController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function show_interest(Request $request){
             if($request->job_date){
                 $job_date = Carbon::createFromFormat('d/m/Y', $request->job_date);
