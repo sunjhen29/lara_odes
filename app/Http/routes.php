@@ -30,6 +30,7 @@ Route::get('/admin/batch/reanz','AdminController@showreanz');
 Route::get('/admin/report/production','AdminController@showproduction');
 Route::get('/admin/export/interest','AdminController@showinterestexport');
 Route::get('/admin/export/recent_sales','AdminController@showrecentsalesexport');
+Route::get('/admin/export/reanz','AdminController@showreanzexport');
 
 
 
@@ -139,6 +140,11 @@ Route::get('/admin/export/interest/{batch}/excel','ExportController@export_inter
 Route::post('/admin/export/recent_sales','ExportController@show_recentsales');
 Route::get('/admin/export/recent_sales/{batch}','ExportController@export_recentsales_csv');
 Route::get('/admin/export/recent_sales/{batch}/excel','ExportController@export_recent_sales_excel');
+
+Route::post('/admin/export/reanz','ExportController@show_reanz');
+Route::get('/admin/export/reanz/{batch}','ExportController@export_reanz_csv');
+Route::get('/admin/export/reanz/{batch}/excel','ExportController@export_reanz_excel');
+
 
 Route::get('/admin/export/aunews','ExportController@show_aunews');
 Route::get('/admin/export/aunews/batch','ExportController@get_aunews');
