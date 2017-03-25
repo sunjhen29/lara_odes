@@ -217,7 +217,7 @@ class ExportController extends Controller
         DB::connection()->setFetchMode(PDO::FETCH_NUM);
         $data = DB::table('reanzs')
             ->select('listing_id','property_id','scrape_date',DB::raw('DATE_FORMAT(list_date,"%d/%m/%Y") as list_date'),'url','site_area','property_address','unit_no','st_no_pref',
-                'street_no','street_name','street_type','quadrant','suburb','city','price_guide','bedrooms',
+                'street_no','st_no_suffix','street_name','street_type','quadrant','suburb','city','price_guide','bedrooms',
                 'bathrooms','car_spaces','sale_method','auction_day',DB::raw('DATE_FORMAT(auction_date,"%d/%m/%Y") as auction_date'),'auction_time','land_size',
                 'floor_size','agency_name','agency_id','first_agent_name','first_agent_id','first_agent_mobile',
                 'first_agent_phone','first_agent_direct','second_agent_name','second_agent_id','second_agent_mobile','second_agent_phone',
@@ -231,6 +231,22 @@ class ExportController extends Controller
         Excel::create($filename, function($excel) use($data) {
             $excel->sheet('Sheet1', function($sheet) use($data) {
                 $sheet->fromArray($data,null,'A2',false,false);
+
+                $sheet->row(1,array('ListingId','PropertyId','ScrapeDate','ListDate','Url','SiteArea',
+                    'PropertyAddress','UnitNumber','StreetNumberPrefix','StreetNumber','StreetNumberSuffix','StreetName','StreetType','Quadrant',
+                    'Suburb','City','PriceGuide','Bedrooms','Bathrooms','CarSpaces','SaleMethod','AuctionDay',
+                    'AuctionDate','AuctionTime','LandSize','FloorSize','AgencyName','AgencyID','FirstAgentName',
+                    'FirstAgentID','FirstAgentMobile','FirstAgentPhone','FirstAgentDirectDial','SecondAgentName',
+                    'SecondAgentID','SecondAgentMobile','SecondAgentPhone','SecondAgentDirectDial','PhotoCount'
+                ));
+
+                $sheet->setColumnFormat(array(
+                    'B' => 'General',
+                    'R' => '0',
+                    'S' => '0',
+                    'T' => '0',
+                    'Q' => 'General'
+                ));
             });
         })->export('xlsx');
     }

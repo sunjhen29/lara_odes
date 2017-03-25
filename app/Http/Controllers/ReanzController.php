@@ -129,12 +129,18 @@ class ReaNZController extends Controller
 
         $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
 
+        $count = $crawler->filterXpath('//li[@itemprop="telephone"]')->count();
+
         if($agent_name01 == $agent_name02){
             $agent_name02 = '';
             $agent_mobile02 = '';
         }else {
             $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
-            $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(2)->text());
+            if($count == 8) {
+                $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(2)->text());
+            } else {
+                $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(3)->text());
+            }
         }
         $bedroom = preg_replace('/[^0-9]/','',$bedroom);
         $bath = preg_replace('/[^0-9]/','',$bathroom);
@@ -147,12 +153,13 @@ class ReaNZController extends Controller
             $auction_date = Carbon::createFromFormat('d M g:ia', $auction_date)->format('d/m/Y');
         }
 
-        if($price == 'Auction'){
+        if($price == 'Auction' || $price == 'Deadline Treaty'){
             $price = '';
         }
 
 
-        $details = array($property_address,$property_id,$price,$agency,$bedroom,$bath,$car,$land,$floor,$agent_name01,$agent_mobile01,$agent_name02,$agent_mobile02,$listed_date,$auction_date);
+
+        $details = array($property_address,$property_id,$price,$agency,$bedroom,$bath,$car,$land,$floor,$agent_name01,$agent_mobile01,$agent_name02,$agent_mobile02,$listed_date,$auction_date,$count);
         return \Response::json($details);
 
         //return $details;
