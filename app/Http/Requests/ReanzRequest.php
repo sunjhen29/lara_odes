@@ -25,11 +25,18 @@ class ReanzRequest extends Request
     {
         return [
             'listing_id' =>'required|numeric|unique:reanzs,listing_id',
-            //'property_id' => 'required|alpha_num',
+            'property_id' => 'required|alpha_num',
             'list_date' => 'required|date_format:d/m/Y',
             'site_area' => 'required|regex:/^[(SALE)(RENT)]+$/u',
             'property_address' => 'required',
+            'bedrooms' => 'numeric',
+            'bathrooms' => 'numeric',
+            'car_spaces' => 'numeric',
             'auction_date' => 'date_format:d/m/Y',
+            //'land_size' => 'alpha_num',
+            //'floor_size' => 'alpha_num',
+            'agency_name' => 'required',
+
         ];
     }
 }

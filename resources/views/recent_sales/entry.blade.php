@@ -31,7 +31,7 @@ $(document).ready(function(){
         })
     });
 
-    //$("input[name='agency_name']").attr('pattern','/^Ray White Double Bay$/');
+
 
 });
 </script>

@@ -13,7 +13,8 @@ class Reanz extends Model
     protected $fillable = ['batch_name','listing_id', 'property_id', 'list_date', 'site_area', 'scrape_date', 'url', 'property_address', 'unit_no', 'st_no_pref',
                            'street_no', 'st_no_suffix', 'street_name', 'street_type', 'quadrant', 'suburb', 'city', 'price_guide', 'bedrooms',
                            'bathrooms', 'car_spaces', 'sale_method', 'auction_day', 'auction_time', 'auction_date', 'land_size', 'floor_size',
-                           'agency_name', 'agent', 'agent_mobile', 'agent1', 'agent_mobile1', 'agent_id', 'agent_phone', 'direct_dial', 'photo_count'];
+                           'agency_name', 'first_agent_name', 'second_agent_name', 'first_agent_mobile', 'second_agent_mobile', 'first_agent_id', 'first_agent_phone',
+                           'first_direct_dial', 'photo_count','status','second_agent_id','second_agent_phone','second_agent_direct'];
 
     public function batch()
     {

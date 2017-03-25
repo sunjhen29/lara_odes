@@ -256,8 +256,8 @@ Route::get('/aunews/agent/{contact}','AUNewsAgencyController@search');
 Route::get('/reanz','ReanzController@index');
 Route::post('/reanz', 'BatchController@find');
 Route::get('/reanz/view', 'ReanzController@view');
-Route::get('/reanz/add', 'ReanzController@entry'); //show form
-Route::post('/reanz/add', 'ReanzController@create'); //submit form
+Route::get('/reanz/entry', 'ReanzController@entry'); //show form
+Route::post('/reanz/entry', 'ReanzController@create'); //submit form
 Route::get('/reanz/{record}/edit', 'ReanzController@modify');
 Route::post('reanz/{record}/update', 'ReanzController@update');
 Route::post('/reanz/delete', 'ReanzController@delete');

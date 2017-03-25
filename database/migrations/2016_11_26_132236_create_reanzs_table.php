@@ -45,7 +45,7 @@ class CreateReanzsTable extends Migration
             $table->string('land_size');
             $table->string('floor_size');
             $table->string('agency_name');
-            $table->string('agent');
+            $table->string('agent'); // change to agent_name1
             $table->string('agent1');
             $table->string('agent_mobile');
             $table->string('agent_mobile1');

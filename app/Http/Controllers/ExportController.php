@@ -103,6 +103,8 @@ class ExportController extends Controller
         $batch = Batch::where('job_name',$request->job_name)
             ->where('batch_date',$job_date->format('Y-m-d'))
             ->get()->first();
+
+
         if($batch){
             $results = $batch->recent_sales()
                 ->select('batch_id','batch_name', DB::raw('COUNT(batch_name) as records'))
@@ -129,7 +131,13 @@ class ExportController extends Controller
             ->get();
         DB::connection()->setFetchMode(PDO::FETCH_CLASS);
 
-        $filename = $batch->export_date_filename.'_vic_ccc';
+        if($batch->job_name == 'RAY WHITE DOUBLE BAY' ){
+            $state = 'vic';
+        }elseif($batch->job_name == 'OZ HOUSE PRICE' ){
+            $state = 'nsw';
+        }
+
+        $filename = $batch->export_date_filename.'_'.$state.'_ccc';
 
         Excel::create($filename, function($excel) use($data) {
             $excel->sheet('Sheet1', function($sheet) use($data) {

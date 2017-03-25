@@ -3,18 +3,6 @@
     {!! Form::hidden('batch_name',session('batch_name'),['class'=>'form-control input-sm', 'required','readonly']) !!}
     {!! Form::hidden('status',$status,['class'=>'form-control input-sm', 'required','readonly']) !!}
 
-
-    <!--
-    <div class="row">
-        <div class="col-sm-2 col-md-offset-2">
-            {!! Form::label('listing_id','Listing ID',['class'=>'control-label ']) !!}
-        </div>
-        <div class="col-sm-2 col-md-2">
-            {!! Form::text('listing_id',null,['class'=>'form-control input-sm', 'autofocus'=>'true', 'pattern'=>'[aA-zZ0-9-]{1,15}']) !!}
-        </div>
-    </div>
-    -->
-
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
             {!! Form::label('state','State  ',['class'=>'control-label']) !!}
@@ -163,6 +151,5 @@
             <button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-check"></span>  Submit</button>
         </div>
     </div>
-
 </div>
 

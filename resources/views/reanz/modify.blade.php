@@ -1,21 +1,23 @@
-@extends('layouts.reanz')
+@extends('layouts.dataentry.dataentry',['title'=>'REA NZ Keying','folder'=>'reanz'])
 
 @section('content')
-<div class="container-fluid">
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        
-        {!! Form::model($record,array('role'=>'form','url'=>'/reanz/'.$record->id.'/update','action'=>'POST','class'=>'form-horizontal'))!!}
-            
-            @if(substr(session('batch_name'),13,-3) == 'S')    
-                @include('reanz.sale')
-            @else(substr(session('batch_name'),13,-3) == 'R')
-                @include('reanz.rent')
+<div class="container">
+    <div class="row">
+        <!-- Horizontal Form -->
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ session('batch_details')->job_name.' '.session('batch_details')->batch_date }}</h3>
+            </div>
+
+            {!! Form::model($record,array('role'=>'form','url'=>'/reanz/'.$record->id.'/update','action'=>'POST','class'=>'form-horizontal'))!!}
+            @if(substr(session('batch_name'),13,-3) == 'S' || substr(session('batch_name'),13,-3) == 's' )
+                @include('reanz.form',['status'=>'E','site_area'=>'SALE'])
+            @elseif(substr(session('batch_name'),13,-3) == 'R' || substr(session('batch_name'),13,-3) == 'r')
+                @include('reanz.form',['status'=>'E','site_area'=>'RENT'])
             @endif
-            
-        {!! Form::close() !!}
-    </div><!-- end of column -->
-</div> <!-- end of row -->    
+            {!! Form::close() !!}
+        </div>
+    </div>
 </div> <!-- end of container -->
 @endsection
 
