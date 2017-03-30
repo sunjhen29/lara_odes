@@ -113,7 +113,7 @@ class ExportController extends Controller
                 ->get();
 
             $default_date = $request->job_date;
-            return view('/admin/export/reanz',compact('results','default_date','batch'));
+            return view('/admin/export/recent_sales',compact('results','default_date','batch'));
 
         } else {
             flash()->info('No Record Found!!');

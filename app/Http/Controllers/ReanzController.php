@@ -131,17 +131,20 @@ class ReaNZController extends Controller
 
         $count = $crawler->filterXpath('//li[@itemprop="telephone"]')->count();
 
-        if($agent_name01 == $agent_name02){
-            $agent_name02 = '';
-            $agent_mobile02 = '';
-        }else {
-            $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
-            if($count == 8) {
-                $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(2)->text());
+        // nagkakaproblema kapag walang agent
+
+            if ($agent_name01 == $agent_name02) {
+                $agent_name02 = '';
+                $agent_mobile02 = '';
             } else {
-                $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(3)->text());
+                $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
+                if ($count == 8) {
+                    $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(2)->text());
+                } else {
+                    $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(3)->text());
+                }
             }
-        }
+
         $bedroom = preg_replace('/[^0-9]/','',$bedroom);
         $bath = preg_replace('/[^0-9]/','',$bathroom);
         $car = preg_replace('/[^0-9]/','',$car);
@@ -161,9 +164,5 @@ class ReaNZController extends Controller
 
         $details = array($property_address,$property_id,$price,$agency,$bedroom,$bath,$car,$land,$floor,$agent_name01,$agent_mobile01,$agent_name02,$agent_mobile02,$listed_date,$auction_date,$count);
         return \Response::json($details);
-
-        //return $details;
-
-
      }
 }

@@ -32,7 +32,7 @@ class RecentSaleRequest extends Request
             'street_direction' => 'min:1|regex:/^[(N)(S)(E)(W)]+$/u',
             'suburb' => 'required',
             'sale_type'=>'required',
-            'sold_price' => 'min:5|max:7',
+            'sold_price' => 'min:5|max:11',
             'property_type'=>'required',
             'post_code' => 'required',
             'contract_date' => 'required|date_format:d/m/Y',

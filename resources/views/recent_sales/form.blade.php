@@ -41,7 +41,7 @@
             {!! Form::text('street_name',null,['class'=>'form-control input-sm', 'required', 'pattern'=>'[aA-zZ0-9\s\'\.\-/&/]{1,25}', 'required']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::select('street_ext',\App\Lookup::where('filter','street_extension')->pluck('name','code'), 'St', ['class'=>'form-control input-sm','placeholder'=>'--']) !!}
+            {!! Form::select('street_ext',\App\Lookup::where('filter','street_extension')->pluck('name','code'), null, ['class'=>'form-control input-sm','placeholder'=>'--']) !!}
         </div>
         <div class="col-sm-2 col-md-1">
             {!! Form::text('street_direction',null,['class'=>'form-control input-sm', 'pattern'=>'[NSEW]{1}']) !!}
