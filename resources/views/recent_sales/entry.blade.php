@@ -8,7 +8,6 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{ session('batch_details')->job_name.' '.session('batch_details')->batch_date }}</h3>
         </div>
-
         {!! Form::open(array('role'=>'form','url'=>'/recent_sales/entry','action'=>'POST','class'=>'form-horizontal'))!!}
           @include('recent_sales.form',['status'=>'E'])
         {!! Form::close() !!}
@@ -30,6 +29,12 @@ $(document).ready(function(){
             }
         })
     });
+
+
+    @if(session('last_state'))
+        $("select[name='state']").val('{{ session('last_state') }}').change();
+    @endif
+
 
 
 
