@@ -31,8 +31,8 @@ $(document).ready(function(){
     });
 
 
-    @if(session('last_state'))
-        $("select[name='state']").val('{{ session('last_state') }}').change();
+    @if(session('last_record'))
+        $("select[name='state']").val('{{ session('last_record')->state }}').change();
     @endif
 
 

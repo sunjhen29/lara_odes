@@ -60,7 +60,7 @@ class RecentSaleController extends Controller
         $record = $this->current_batch->recent_sales()->create($request->all());
         event(new EntryRecordCreated($this->current_batch,'E',session('batch_name'),$record->id,session('jobnumber')->id));
         flash()->info($record->address.' added successfully.');
-        session()->put('last_state',$record->state);
+        session()->put('last_record',$record);
         return redirect()->back();
     }
 
