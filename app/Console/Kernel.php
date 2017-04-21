@@ -25,6 +25,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('batch:RayWhiteDoubleBay')->dailyAt('12:05');
+        //$schedule->command('batch:RayWhiteDoubleBay')->dailyAt('12:05');
     }
 }

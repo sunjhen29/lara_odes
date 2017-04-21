@@ -111,7 +111,6 @@ class ReaNZController extends Controller
             //dump($node->text());
         });
 
-
         $listed_date = str_replace('\n\r','',str_replace(' ','',$crawler->filter('h4')->text()));
         $property_address = $crawler->filterXpath('//h3')->count() ? $crawler->filterXpath('//span[@itemprop="streetAddress"]')->text().$crawler->filterXpath('//span[@itemprop="addressLocality"]')->text() : '';
         $property_id = $crawler->filter('h4 > b')->count() ? str_replace('Listing # ','',$crawler->filter('h4 > b')->text()) : '';
@@ -124,26 +123,69 @@ class ReaNZController extends Controller
         $floor = $crawler->filterXpath('//li[@class="floorArea"]')->count() ? trim(str_replace('Floor','',str_replace(' ',' ',$crawler->filterXpath('//li[@class="floorArea"]')->text()))) : '';
         $auction_date = $crawler->filter('h6')->count() ? str_replace('Auction ','',$crawler->filter('h6')->text()) : '';
 
-        $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
-        $agent_mobile01 = str_replace('M ','',$crawler->filterXpath('//li[@itemprop="telephone"]')->eq(0)->text());
+        $agent_name01 = '';
+        $agent_name02 = '';
 
-        $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
+        $agent_mobile01 ='';
+        $agent_mobile02 = '';
+        $mobile=[];
 
-        $count = $crawler->filterXpath('//li[@itemprop="telephone"]')->count();
+
+
+        $agent_count = $crawler->filterXpath('//h5[@class="fn agent"]')->count() / 2;
+
+        $agent_mobiles = $crawler->filterXpath('//div[@class="agentDetailsText"]')->each(function($node){
+          return trim($node->text());
+        });
+
+
+
+
+        if($agent_count == 1){
+            $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
+            $agent_name02 = '';
+        } elseif($agent_count == 2 ){
+            if ($agent_name01 == $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text()){
+                $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
+                $agent_name02 = '';
+            }else{
+                $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
+                $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
+            }
+        }
+
+        preg_match("/[M][0-9 ]{0,20}/", $agent_mobiles[0],$mobile);
+
+        return $mobile[0];
+
+
+
+
+
+        //$agent_mobile01 = str_replace('M ','',$crawler->filterXpath('//li[@itemprop="telephone"]')->eq(0)->text());
+
+        //$agent_name02 = '';
+        $agent_mobiles='';
+        //$agent_mobile02 = '';
+
+
 
         // nagkakaproblema kapag walang agent
 
-            if ($agent_name01 == $agent_name02) {
-                $agent_name02 = '';
-                $agent_mobile02 = '';
-            } else {
-                $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
-                if ($count == 8) {
-                    $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(2)->text());
-                } else {
-                    $agent_mobile02 = str_replace('M ', '', $crawler->filterXpath('//li[@itemprop="telephone"]')->eq(3)->text());
-                }
-            }
+           // if ($agent_name01 == $agent_name02) {
+              //  $agent_name02 = '';
+               // $agent_mobile02 = '';
+           // } else {
+                //$agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
+
+                //$agent_mobiles = $crawler->filterXpath('//li[@itemprop="telephone"]')->each(function($node){
+                  //  return $node->text();
+                //});
+
+                //$agent_mobile02 = $agent_mobiles[1];
+
+
+           // }
 
         $bedroom = preg_replace('/[^0-9]/','',$bedroom);
         $bath = preg_replace('/[^0-9]/','',$bathroom);
@@ -161,8 +203,8 @@ class ReaNZController extends Controller
         }
 
 
-
-        $details = array($property_address,$property_id,$price,$agency,$bedroom,$bath,$car,$land,$floor,$agent_name01,$agent_mobile01,$agent_name02,$agent_mobile02,$listed_date,$auction_date,$count);
+        $details = array($property_address,$property_id,$price,$agency,$bedroom,$bath,$car,$land,$floor,$agent_name01,$agent_mobile01,$agent_name02,$agent_mobile02,$listed_date,$auction_date,$agent_count);
         return \Response::json($details);
      }
 }
+

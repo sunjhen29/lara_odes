@@ -28,21 +28,6 @@ $(document).ready(function(){
     $("input[name='listing_id']").blur(function(){
         $.get('/reanz/search/' + $("input[name='listing_id']").val(), function (data) {
             console.log(data);
-            //if (data.property_id) $("input[name='property_id']").val(data.property_id);
-            //if (data.property_address) $("input[name='property_address']").val(data.property_address);
-            //if (data.list_date) $("input[name='list_date']").val(data.list_date);
-            //if (data.price_guide) $("input[name='price_guide']").val(data.price_guide);
-            //if (data.bedrooms) $("input[name='bedrooms']").val(data.bedrooms);
-            //if (data.bathrooms) $("input[name='bathrooms']").val(data.bathrooms);
-            //if (data.car_spaces) $("input[name='car_spaces']").val(data.car_spaces);
-            //if (data.auction_date) $("input[name='auction_date']").val(data.auction_date);
-            //if (data.land_size) $("input[name='land_size']").val(data.land_size);
-            //if (data.floor_size) $("input[name='floor_size']").val(data.floor_size);
-            //if (data.agency_name) $("input[name='agency_name']").val(data.agency_name);
-            //if (data.first_agent_name) $("input[name='first_agent_name']").val(data.first_agent_name);
-            //if (data.first_agent_mobile) $("input[name='first_agent_mobile']").val(data.first_agent_mobile);
-            //if (data.second_agent_name) $("input[name='second_agent_name']").val(data.second_agent_name);
-            //if (data.second_agent_mobile) $("input[name='second_agent_mobile']").val(data.second_agent_mobile);
             if (data[0]) $("input[name='property_address']").val(data[0]);
             if (data[1]) $("input[name='property_id']").val(data[1]);
             if (data[2]) $("input[name='price_guide']").val(data[2]);
