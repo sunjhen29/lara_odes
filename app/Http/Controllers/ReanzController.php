@@ -126,66 +126,60 @@ class ReaNZController extends Controller
         $agent_name01 = '';
         $agent_name02 = '';
 
+        $agent_mobile = [];
         $agent_mobile01 ='';
         $agent_mobile02 = '';
-        $mobile=[];
-
-
 
         $agent_count = $crawler->filterXpath('//h5[@class="fn agent"]')->count() / 2;
 
-        $agent_mobiles = $crawler->filterXpath('//div[@class="agentDetailsText"]')->each(function($node){
-          return trim($node->text());
-        });
+        if($agent_count != 0)
+        {
+            $agent_mobiles = $crawler->filterXpath('//div[@class="agentDetailsText"]')->each(function($node){
+                return trim($node->text());
+            });
 
+            for($i=0;$i<=1;$i++){
+                preg_match("/[M][ ][0-9 ]{0,20}/", $agent_mobiles[$i],$mobile);
+                $agent_mobile[$i] = $mobile ? $mobile[0] : '';
+            }
 
-
-
-        if($agent_count == 1){
-            $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
-            $agent_name02 = '';
-        } elseif($agent_count == 2 ){
-            if ($agent_name01 == $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text()){
+            if($agent_count == 1){
                 $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
                 $agent_name02 = '';
-            }else{
-                $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
-                $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
+
+                $agent_mobile01 = str_replace('M ','',trim($agent_mobile[0]));
+                $agent_mobile02 = '';
+
+            } elseif($agent_count == 2 ){
+                if ($agent_name01 == $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text()){
+                    $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
+                    $agent_name02 = '';
+
+                    $agent_mobile01 = str_replace('M ','',trim($agent_mobile[0]));
+                    $agent_mobile02 = '';
+
+                }else{
+                    $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
+                    $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
+
+                    $agent_mobile01 = str_replace('M ','',trim($agent_mobile[0]));
+                    $agent_mobile02 = str_replace('M ','',trim($agent_mobile[1]));
+                }
             }
+
+
+
+            if (strlen($agent_mobile01) <= 8){
+                $agent_mobile01 = '';
+            }
+
+            if (strlen($agent_mobile02) <= 8){
+                $agent_mobile02 = '';
+            }
+
+
         }
 
-        preg_match("/[M][0-9 ]{0,20}/", $agent_mobiles[0],$mobile);
-
-        return $mobile[0];
-
-
-
-
-
-        //$agent_mobile01 = str_replace('M ','',$crawler->filterXpath('//li[@itemprop="telephone"]')->eq(0)->text());
-
-        //$agent_name02 = '';
-        $agent_mobiles='';
-        //$agent_mobile02 = '';
-
-
-
-        // nagkakaproblema kapag walang agent
-
-           // if ($agent_name01 == $agent_name02) {
-              //  $agent_name02 = '';
-               // $agent_mobile02 = '';
-           // } else {
-                //$agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
-
-                //$agent_mobiles = $crawler->filterXpath('//li[@itemprop="telephone"]')->each(function($node){
-                  //  return $node->text();
-                //});
-
-                //$agent_mobile02 = $agent_mobiles[1];
-
-
-           // }
 
         $bedroom = preg_replace('/[^0-9]/','',$bedroom);
         $bath = preg_replace('/[^0-9]/','',$bathroom);

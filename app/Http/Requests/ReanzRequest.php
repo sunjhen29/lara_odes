@@ -35,7 +35,9 @@ class ReanzRequest extends Request
             'auction_date' => 'date_format:d/m/Y',
             //'land_size' => 'alpha_num',
             //'floor_size' => 'alpha_num',
-            'agency_name' => 'required',
+            'agency_name' => 'required|min:15',
+            'first_agent_mobile' => 'min:8',
+            'second_agent_mobile' => 'min:8',
 
         ];
     }

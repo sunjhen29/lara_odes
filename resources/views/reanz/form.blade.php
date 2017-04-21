@@ -156,7 +156,7 @@
             {!! Form::label('land_size','Land Size',['class'=>'control-label pull-right']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('land_size', null,['class'=>'form-control input-sm land_size','pattern'=>'[mha0-9\s\.]{1,10}']) !!}
+            {!! Form::text('land_size', null,['class'=>'form-control input-sm land_size','pattern'=>'[mha0-9\s\.,]{1,10}']) !!}
         </div>
     </div>
 
@@ -165,7 +165,7 @@
             {!! Form::label('floor_size','Floor Size',['class'=>'control-label pull-right']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('floor_size', null,['class'=>'form-control input-sm', 'pattern'=>'[m0-9\s\.]{1,10}']) !!}
+            {!! Form::text('floor_size', null,['class'=>'form-control input-sm', 'pattern'=>'[m0-9\s\.,]{1,10}']) !!}
         </div>
     </div>
 
@@ -194,7 +194,7 @@
             {!! Form::label('first_agent_mobile','Mobile 1',['class'=>'control-label pull-right']) !!}
         </div>
         <div class="col-sm-3 col-md-3">
-            {!! Form::text('first_agent_mobile', null,['class'=>'form-control input-sm', 'pattern'=>'[0-9\s\-]{1,25}']) !!}
+            {!! Form::text('first_agent_mobile', null,['class'=>'form-control input-sm', 'pattern'=>'[0-9\s\-]{8,25}']) !!}
         </div>
     </div>
 
@@ -212,7 +212,7 @@
             {!! Form::label('second_agent_mobile','Mobile 2',['class'=>'control-label pull-right']) !!}
         </div>
         <div class="col-sm-3 col-md-3">
-            {!! Form::text('second_agent_mobile', null,['class'=>'form-control input-sm', 'pattern'=>'[0-9\s\-]{1,25}']) !!}
+            {!! Form::text('second_agent_mobile', null,['class'=>'form-control input-sm', 'pattern'=>'[0-9\s\-]{8,25}']) !!}
         </div>
     </div>
 
