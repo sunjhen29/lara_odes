@@ -164,6 +164,13 @@ Route::get('/admin/export/stats_output','ExportController@export_stats');
  Route::get('/admin/utilities/entrylogs','EntryLogController@view');
 
 
+/**
+ * LOokup
+ */
+Route::get('/admin/lookup/sat_auction','SatAuctionController@view');
+Route::post('/admin/lookup/sat_auction','SatAuctionController@import');
+
+
 
 /**
  * Admin Auth Controller
