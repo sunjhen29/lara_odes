@@ -23,10 +23,18 @@ Route::get('/admin/user','AdminController@showuser');
 Route::get('/admin/jobnumber','AdminController@showjobnumber');
 Route::get('/admin/logout', 'AdminController@logout');
 
+
+/**
+ * Batch Menu
+ */
 Route::get('/admin/batch/interest','AdminController@showinterest');
 Route::get('/admin/batch/recent_sales','AdminController@showrecent_sales');
 Route::get('/admin/batch/aunews','AdminController@showaunews');
 Route::get('/admin/batch/reanz','AdminController@showreanz');
+Route::get('/admin/batch/sat_auction','AdminController@showsatauction');
+
+
+
 Route::get('/admin/report/production','AdminController@showproduction');
 Route::get('/admin/export/interest','AdminController@showinterestexport');
 Route::get('/admin/export/recent_sales','AdminController@showrecentsalesexport');
@@ -241,6 +249,21 @@ Route::get('/recent_sales/modify/{id}', 'RecentSaleController@modify');
 Route::post('/recent_sales/{record}/update', 'RecentSaleController@update');
 Route::post('/recent_sales/delete', 'RecentSaleController@delete');
 Route::get('/recent_sales/search_post_code/{suburb}/{state}','RecentSaleController@search_postcode');
+
+/**
+ * Saturday Auction Controller
+ */
+Route::get('/sat_auction','SaturdayAuctionController@index');
+Route::post('/sat_auction', 'BatchController@find');
+Route::get('/sat_auction/view', 'SaturdayAuctionController@view');
+Route::get('/sat_auction/entry', 'SaturdayAuctionController@entry');
+Route::post('/sat_auction/entry', 'SaturdayAuctionController@create');
+Route::get('/sat_auction/verify', 'SaturdayAuctionController@verify');
+Route::post('/sat_auction/verify/{record}','SaturdayAuctionController@storeverify');
+Route::get('/sat_auction/modify/{id}', 'SaturdayAuctionController@modify');
+Route::post('/sat_auction/{record}/update', 'SaturdayAuctionController@update');
+Route::post('/sat_auction/delete', 'SaturdayAuctionController@delete');
+Route::get('/sat_auction/search_post_code/{suburb}/{state}','SaturdayAuctionController@search_postcode');
 
 
 /**

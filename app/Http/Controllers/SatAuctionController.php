@@ -34,7 +34,7 @@ class SatAuctionController extends Controller
                 $csv_data->property_type = $data [8];
                 $csv_data->sale_type = $data [9];
                 $csv_data->sold_price = $data [10];
-                $csv_data->contract_date = $data [11];
+                //$csv_data->contract_date = $data [11];
                 $csv_data->settlement_date = $data [12];
                 $csv_data->agency_name = $data [13];
                 $csv_data->bedroom = $data [14];
@@ -44,10 +44,6 @@ class SatAuctionController extends Controller
             }
             fclose ( $handle );
         }
-
-
-
-
         return redirect()->back();
     }
 

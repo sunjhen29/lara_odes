@@ -20,6 +20,7 @@
                     <li><a href="{{ url('/admin/batch/interest') }}">Interest Auction Results</a></li>
                     <li><a href="{{ url('/admin/batch/recent_sales') }}">Recent Sales</a></li>
                     <li><a href="{{ url('/admin/batch/reanz') }}">REA NZ Keying</a></li>
+                    <li><a href="{{ url('/admin/batch/sat_auction') }}">Saturday Auction</a></li>
                 </ul>
             </li>
 

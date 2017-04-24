@@ -31,7 +31,9 @@ class AdminController extends Controller
     public function showjobnumber(){
         return view('admin.jobnumbers');
     }
-    
+
+
+    /** Batch Menu */
     public function showinterest(){
         $batches = Batch::where('application','Interest Auction Results')->get();
         return view('admin.batch.interest',compact('batches'));
@@ -51,7 +53,19 @@ class AdminController extends Controller
         $batches = Batch::where('application','REA NZ Keying')->get();
         return view('admin.batch.reanz',compact('batches'));
     }
-    
+
+    public function showsatauction(){
+        $batches = Batch::where('application','Saturday Auction')->get();
+        return view('admin.batch.sat_auction',compact('batches'));
+    }
+
+
+
+
+
+
+
+
     public function showproduction(){
         return view('admin.report.production');
     }
