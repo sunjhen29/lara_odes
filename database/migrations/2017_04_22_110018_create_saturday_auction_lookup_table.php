@@ -14,13 +14,13 @@ class CreateSaturdayAuctionLookupTable extends Migration
     {
         Schema::create('sat_auctions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('state');
-            $table->string('unit_no');
-            $table->string('street_no');
-            $table->string('street_name');
-            $table->string('street_ext');
-            $table->string('street_direction');
-            $table->string('suburb');
+            $table->string('state')->index();
+            $table->string('unit_no')->index();
+            $table->string('street_no')->index();
+            $table->string('street_name')->index();
+            $table->string('street_ext')->index();
+            $table->string('street_direction')->index();
+            $table->string('suburb')->index();
             $table->integer('post_code')->nullable();
             $table->string('property_type');
             $table->string('sale_type');

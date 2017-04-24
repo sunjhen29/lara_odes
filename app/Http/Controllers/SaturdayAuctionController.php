@@ -104,8 +104,13 @@ class SaturdayAuctionController extends Controller
         return redirect()->back();
     }
 
-    //custom function
+    //custom functions
     public function search_postcode($suburb,$state){
+        $post_code = AUPostCode::where('suburb',$suburb)->where('state',$state)->first();
+        return \Response::json($post_code);
+    }
+
+    public function search_property($suburb,$state){
         $post_code = AUPostCode::where('suburb',$suburb)->where('state',$state)->first();
         return \Response::json($post_code);
     }
