@@ -44,16 +44,8 @@
                         <thead>
                         <tr>
                             <th>State</th>
-                            <th>Property Address</th>
-                            <th class="text-center">Property Type</th>
-                            <th>Sale Type</th>
-                            <th class="text-right">Sold Price</th>
-                            <th class="text-center">Contract Date</th>
-                            <th>Agency Name</th>
-                            <th>Bed</th>
-                            <th>Bath</th>
-                            <th>Car</th>
-                            <th>Slug</th>
+                            <th>Suburb</th>
+                            <th class="text-center">Post Code</th>
                         </tr>
                         </thead>
 
@@ -61,16 +53,8 @@
                         @foreach($results as $result)
                             <tr>
                                 <td>{{ $result->state }}</td>
-                                <td><a><strong>{{ $result->address }}</strong></a></td>
-                                <td class="text-center">{{ $result->property_type }}</td>
-                                <td>{{ $result->sale_type }}</td>
-                                <td class="text-right">{{ $result->sold_price }}</td>
-                                <td class="text-center">{{ $result->contract_date }}</td>
-                                <td>{{ $result->agency_name }}</td>
-                                <td>{{ $result->bedroom }}</td>
-                                <td>{{ $result->bathroom }}</td>
-                                <td>{{ $result->car }}</td>
-                                <td>{{ $result->slug }}</td>
+                                <td><a><strong>{{ $result->suburb }}</strong></a></td>
+                                <td class="text-center">{{ $result->post_code }}</td>
                             </tr>
                         @endforeach
                         </tbody>

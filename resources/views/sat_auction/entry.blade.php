@@ -63,7 +63,7 @@ $(document).ready(function(){
                 console.log(data);
                 if (data.state){
                     $("input[name='agency_name']").val(data.agency_name).prop('readonly',true).css('background-color','yellow');
-                    $("select[name='property_type']").val(data.property_type).prop('disabled',true).css('background-color','yellow');
+                    $("select[name='property_type']").val(data.property_type).prop('readonly',true).css('background-color','yellow');
                     $("input[name='bedroom']").val(data.bedroom).prop('readonly',true).css('background-color','yellow');
                     $("input[name='bathroom']").val(data.bathroom).prop('readonly',true).css('background-color','yellow');
                     $("input[name='car']").val(data.car).prop('readonly',true).css('background-color','yellow');
@@ -74,7 +74,7 @@ $(document).ready(function(){
                     $("input[name='bedroom']").val('').prop('readonly',false);
                     $("input[name='bathroom']").val('').prop('readonly',false);
                     $("input[name='car']").val('').prop('readonly',false);
-                    $("select[name='property_type']").val('HO').prop('disabled',false);
+                    $("select[name='property_type']").val('HO').prop('readonly',false);
 
                 }
             })

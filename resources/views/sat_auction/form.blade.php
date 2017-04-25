@@ -66,7 +66,7 @@
             {!! Form::label('property_type','Property Type',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-4 col-md-3">
-            {!! Form::select('property_type',['HO'=>'HO','CO'=>'CO','FA'=>'FA','FL'=>'FL','LA'=>'LA','UN'=>'UN','UN 70'=>'UN 70'],null,['class'=>'form-control input-sm', 'required']) !!}
+            {!! Form::select('property_type',['HO'=>'HOUSE','CO'=>'COMMERCIAL','FA'=>'FARM','FL'=>'FLAT','LA'=>'LAND','UN'=>'UNIT','UN 70'=>'TOWNHOUSE'],null,['class'=>'form-control input-sm', 'required']) !!}
         </div>
     </div>
 

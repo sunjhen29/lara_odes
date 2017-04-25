@@ -16,12 +16,12 @@ class SatAuctionController extends Controller
     }
 
     public function import(Request $request){
-        $filename = 'sample.'.$request->file('csv')->getClientOriginalExtension();
+        $filename = $request->file('csv')->getClientOriginalName();
         $request->file('csv')->move(base_path() . '/storage/upload/sat_auction/',$filename);
 
         Sat_Auction::truncate();
 
-        if (($handle = fopen ( base_path() . '/storage/upload/sat_auction/sample.csv', 'r' )) !== FALSE) {
+        if (($handle = fopen ( base_path() . '/storage/upload/sat_auction/'.$filename, 'r' )) !== FALSE) {
             while ( ($data = fgetcsv ( $handle, 1000, ',' )) !== FALSE ) {
                 $csv_data = new Sat_Auction();
                 $csv_data->state = $data [0];
