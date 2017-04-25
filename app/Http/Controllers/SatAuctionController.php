@@ -41,6 +41,7 @@ class SatAuctionController extends Controller
                 $csv_data->bedroom = $data [14];
                 $csv_data->bathroom = $data [15];
                 $csv_data->car = $data [16];
+                $csv_data->slug = str_slug($data[0].' '.$data[1].' '.$data[2].' '.$data[3].' '.$data[6],'-');
                 $csv_data->save ();
             }
             fclose ( $handle );

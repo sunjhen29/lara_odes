@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Sat_Auction extends Model
 {
+
     protected $table = 'sat_auctions';
 
     protected $fillable = ['state', 'unit_no', 'street_no', 'street_no_suffix',

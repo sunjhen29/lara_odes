@@ -264,6 +264,7 @@ Route::get('/sat_auction/modify/{id}', 'SaturdayAuctionController@modify');
 Route::post('/sat_auction/{record}/update', 'SaturdayAuctionController@update');
 Route::post('/sat_auction/delete', 'SaturdayAuctionController@delete');
 Route::get('/sat_auction/search_post_code/{suburb}/{state}','SaturdayAuctionController@search_postcode');
+Route::get('/sat_auction/search_property/{address}','SaturdayAuctionController@search_property');
 
 
 /**

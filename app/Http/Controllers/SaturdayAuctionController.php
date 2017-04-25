@@ -10,6 +10,7 @@ use App\Batch;
 use App\Events\EntryRecordCreated;
 use App\UserProfile;
 use App\AUPostCode;
+use App\Sat_Auction;
 
 class SaturdayAuctionController extends Controller
 {
@@ -110,8 +111,8 @@ class SaturdayAuctionController extends Controller
         return \Response::json($post_code);
     }
 
-    public function search_property($suburb,$state){
-        $post_code = AUPostCode::where('suburb',$suburb)->where('state',$state)->first();
-        return \Response::json($post_code);
+    public function search_property($address){
+        $property = Sat_Auction::where('slug',$address)->first();
+        return \Response::json($property);
     }
 }

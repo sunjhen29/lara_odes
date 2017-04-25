@@ -31,7 +31,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title"><strong>Recent Sales</strong></h3>
+                    <h3 class="box-title"><strong>View Table</strong></h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <button id="btn-add" name="btn-add" class="btn btn-success btn-md addbutton pull-right"><span class="glyphicon glyphicon-plus"></span> Add New Record</button>
@@ -53,6 +53,7 @@
                             <th>Bed</th>
                             <th>Bath</th>
                             <th>Car</th>
+                            <th>Slug</th>
                         </tr>
                         </thead>
 
@@ -69,6 +70,7 @@
                                 <td>{{ $result->bedroom }}</td>
                                 <td>{{ $result->bathroom }}</td>
                                 <td>{{ $result->car }}</td>
+                                <td>{{ $result->slug }}</td>
                             </tr>
                         @endforeach
                         </tbody>
