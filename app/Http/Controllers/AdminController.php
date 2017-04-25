@@ -69,7 +69,9 @@ class AdminController extends Controller
     public function showproduction(){
         return view('admin.report.production');
     }
-    
+
+    /** Export Menu */
+
     public function showinterestexport(){
         $results = null;
         $default_date = Carbon::now()->format('d/m/Y');
@@ -80,6 +82,12 @@ class AdminController extends Controller
         $results = null;
         $default_date = Carbon::now()->format('d/m/Y');
         return view('admin.export.recent_sales',compact('results','default_date'));
+    }
+
+    public function showsatauctionexport(){
+        $results = null;
+        $default_date = Carbon::now()->format('d/m/Y');
+        return view('admin.export.sat_auction',compact('results','default_date'));
     }
 
     public function showreanzexport(){

@@ -165,6 +165,70 @@ class ExportController extends Controller
         })->export('xlsx');
     }
 
+    public function show_sat_auction(Request $request){
+
+        if($request->job_date){
+            $job_date = Carbon::createFromFormat('d/m/Y', $request->job_date);
+        }
+        $batch = Batch::where('job_name',$request->job_name)
+            ->where('batch_date',$job_date->format('Y-m-d'))
+            ->get()->first();
+
+
+        if($batch){
+            $results = $batch->recent_sales()
+                ->select('batch_id','batch_name', DB::raw('COUNT(batch_name) as records'))
+                ->groupBy('batch_name')
+                ->orderBy('batch_name')
+                ->get();
+
+            $default_date = $request->job_date;
+            return view('/admin/export/sat_auction',compact('results','default_date','batch'));
+
+        } else {
+            flash()->info('No Record Found!!');
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function export_sat_auction_csv(Batch $batch){
+        DB::connection()->setFetchMode(PDO::FETCH_NUM);
+        $data = DB::table('recent_sales')
+            ->select('state','unit_no','street_no','street_name','street_ext','street_direction','suburb','post_code',
+                'property_type','sale_type','sold_price',DB::raw('DATE_FORMAT(contract_date,"%d/%m/%Y") as contract_date'),
+                'settlement_date','agency_name','bedroom','bathroom','car')
+            ->where('batch_id',$batch->id)
+            ->get();
+        DB::connection()->setFetchMode(PDO::FETCH_CLASS);
+
+        $filename = $batch->export_date_filename.'_vic_ccc';
+
+        Excel::create($filename, function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data,"'",'A1',false,false);
+            });
+        })->export('csv');
+    }
+
+    public function export_sat_auction_excel(Batch $batch){
+        DB::connection()->setFetchMode(PDO::FETCH_NUM);
+        $data = DB::table('recent_sales')
+            ->select('state','unit_no','street_no','street_name','street_ext','street_direction','suburb','post_code',
+                'property_type','sale_type','sold_price',DB::raw('DATE_FORMAT(contract_date,"%d/%m/%Y") as contract_date'),
+                'settlement_date','agency_name','bedroom','bathroom' ,'car')
+            ->where('batch_id',$batch->id)
+            ->get();
+        DB::connection()->setFetchMode(PDO::FETCH_CLASS);
+
+        $filename = $batch->job_name.' '.$batch->batch_date;
+
+        Excel::create($filename, function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data,null,'A1',false,false);
+            });
+        })->export('xlsx');
+    }
+
     public function show_reanz(Request $request){
 
         if($request->job_date){

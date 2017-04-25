@@ -48,6 +48,7 @@
                 <ul class="treeview-menu">
                     <li class="{{ setActive('admin/export/')}}"><a href="{{ url('/admin/export/interest') }}">Interest Auction Results</a></li>
                     <li class="{{ setActive('admin/export/')}}"><a href="{{ url('/admin/export/recent_sales') }}">Recent Sales</a></li>
+                    <li class="{{ setActive('admin/export/')}}"><a href="{{ url('/admin/export/sat_auction') }}">Saturday Auction</a></li>
                     <li class="{{ setActive('admin/export/')}}"><a href="{{ url('/admin/export/reanz') }}">REA NZ Keying</a></li>
                     <li><a href="{{ url('/admin/export/aunews') }}">Australian Newspapers</a></li>
                     <li><a href="{{ url('/admin/export/stats') }}">EP90 Stats Data</a></li>
@@ -106,6 +107,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="/admin/lookup/sat_auction">Sat Auctions</a></li>
+                    <li><a href="/admin/lookup/natalpha">Natalpha</a></li>
+
                 </ul>
             </li>
         </ul>
