@@ -58,7 +58,25 @@
         <div class="col-sm-2 col-md-2">
             {!! Form::text('post_code',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{4}', 'required']) !!}
         </div>
+    </div>
 
+    <br>
+    <div class="row">
+        <div class="col-sm-2 col-md-offset-2">
+            {!! Form::label('bedroom','Bed',['class'=>'control-label']) !!}
+        </div>
+        <div class="col-sm-2 col-md-1">
+            {!! Form::text('bedroom',null,['class'=>"form-control input-sm", 'pattern'=>'[0-9-]{1,2}']) !!}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2 col-md-offset-2">
+            {!! Form::label('sold_price','Sold Price',['class'=>'control-label']) !!}
+        </div>
+        <div class="col-sm-3 col-md-2">
+            {!! Form::text('sold_price',null,['class'=>'form-control input-sm']) !!}
+        </div>
     </div>
 
     <div class="row">
@@ -79,14 +97,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-2 col-md-offset-2">
-            {!! Form::label('sold_price','Sold Price',['class'=>'control-label']) !!}
-        </div>
-        <div class="col-sm-3 col-md-2">
-            {!! Form::text('sold_price',null,['class'=>'form-control input-sm']) !!}
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
@@ -112,16 +122,6 @@
         </div>
         <div class="col-sm-3 col-md-2">
             {!! Form::text('settlement_date',null,['class'=>'form-control input-sm', 'pattern'=>'', 'readonly']) !!}
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-2 col-md-offset-2">
-            {!! Form::label('bedroom','Bed',['class'=>'control-label']) !!}
-        </div>
-        <div class="col-sm-2 col-md-1">
-            {!! Form::text('bedroom',null,['class'=>"form-control input-sm", 'pattern'=>'[0-9-]{1,2}']) !!}
         </div>
     </div>
 

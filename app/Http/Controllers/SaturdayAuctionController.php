@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Doctrine\DBAL\Event\SchemaAlterTableAddColumnEventArgs;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\RecentSaleRequest;
@@ -11,8 +12,10 @@ use App\Events\EntryRecordCreated;
 use App\UserProfile;
 use App\AUPostCode;
 use App\Sat_Auction;
+use App\ScrapeSatAuction;
 
 use Goutte;
+use Carbon\Carbon;
 
 use Goutte\Client;
 
@@ -25,6 +28,12 @@ class SaturdayAuctionController extends Controller
     private $relationship = 'recent_sales';
 
     private $model;
+
+    private $suburb = [];
+    private $locality = '';
+    private $property_type = ['Townhouse'=>'UN','House'=>'HO','Apartment'=>'UN','Unit'=>'UN','Villa'=>'UN','Land'=>'LA','Commercial'=>'CO','Farm'=>'FA','Flat/Unit/Apartment'=>'UN','Flat'=>'UN','Block of Flats'=>'UN'];
+    private $sale_type = ['Auction Sale'=>'Sold At Auction','Passed in at Auction'=>'Passed In','Sold Before Auction'=>'Sold Prior To Auction','Passed in Vendor Bid'=>'Vendor Bid','Sold After Auction'=>'Sold After Auction'];
+    private $count = 0;
 
     public function __construct()
     {
@@ -118,122 +127,76 @@ class SaturdayAuctionController extends Controller
     public function search_property($address){
         $property = Sat_Auction::where('slug',$address)->first();
         return \Response::json($property);
+
+        $scrape = ScrapeSatAuction::where('slug',$address)->first();
+        return \Response::json($scrape);
     }
 
-    public function scrape(){
-        $client = new \Goutte\Client();
+    public function sample(){
+        return "hello";
+    }
 
+    public function scrape($page){
+        $link = array('','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+
+        $url = 'https://propertydata.realestateview.com.au/propertydata/auction-results/victoria/'.$link[$page].'/#alphabet_links';
+        $client = new \Goutte\Client();
         $guzzleClient = new \GuzzleHttp\Client(array(
             'timeout' => 90,
             'verify' => false,
         ));
-
         $client->setClient($guzzleClient);
-
-        $url = 'https://propertydata.realestateview.com.au/propertydata/auction-results/victoria/B/#alphabet_links';
         $crawler = $client->request('get',$url);
 
-        dd($crawler);
+        $this->suburb = $crawler->filterXPath('//div[@class="pd-content-heading-dark-inner"]')->each(function($node){
+           return str_replace(' Sales & Auction Results','',trim($node->text()));
+        });
+
+        //Sat_Auction::truncate();
+
+        $crawler->filterXPath('//div[@class="pd-table-inner"]')->each(function($rows,$i){
+            $this->locality = $this->suburb[$i];
+            $rows->filterXpath('//tr')->each(function($data,$x){
+                if ($x != 0){
+                    if(trim($data->filter('td')->eq(4)->text()) != 'Private Sale')
+                    {
+                        $record = new ScrapeSatAuction();
+                        $record->state = 'vic';
+                        //$record->street_name = trim(str_replace("\t",'',str_replace("\n", '', mb_convert_encoding($data->filter('td')->eq(0)->text(),'UTF-8'))));
+                        $record->street_name = trim(str_replace("\t",'',str_replace("\n", '', mb_convert_encoding($data->filter('td')->eq(0)->text(),'UTF-8'))));
+
+                        $record->suburb = $this->locality;
+                        $record->bedroom = trim($data->filter('td')->eq(1)->text()) != '-' ? trim($data->filter('td')->eq(1)->text()) : '';
 
 
-        $sample = $crawler->filterXPath('//h2')->eq(1)->text();
-
-        dd($sample);
-
-
-
-
-
-
-
-        $listed_date = str_replace('\n\r','',str_replace(' ','',$crawler->filter('h4')->text()));
-        $property_address = $crawler->filterXpath('//h3')->count() ? $crawler->filterXpath('//span[@itemprop="streetAddress"]')->text().$crawler->filterXpath('//span[@itemprop="addressLocality"]')->text() : '';
-        $property_id = $crawler->filter('h4 > b')->count() ? str_replace('Listing # ','',$crawler->filter('h4 > b')->text()) : '';
-        $price = $crawler->filter('h2')->count() ? trim(str_replace('\n','',$crawler->filter('h2')->text())) : '';
-        $agency = $crawler->filterXpath('//h5')->count() ? trim($crawler->filterXpath('//h5')->text().' '.$crawler->filterXpath('//p[@class="smallText"]')->text()) : '';
-        $bedroom = $crawler->filterXpath('//li[@class="bedrooms"]')->count() ? trim(str_replace('Bedrooms','',str_replace(' ',' ',$crawler->filterXpath('//li[@class="bedrooms"]')->text()))) : '';
-        $bathroom = $crawler->filterXpath('//li[@class="bathrooms"]')->count() ? trim(str_replace('Bathroom','',str_replace(' ',' ',$crawler->filterXpath('//li[@class="bathrooms"]')->text()))) : '';
-        $car = $crawler->filterXpath('//li[@class="carParks"]')->count() ? trim(str_replace('Car Spaces','',str_replace(' ',' ',$crawler->filterXpath('//li[@class="carParks"]')->text()))) : '';
-        $land = $crawler->filterXpath('//li[@class="landArea"]')->count() ? trim(str_replace('Land','',str_replace(' ',' ',$crawler->filterXpath('//li[@class="landArea"]')->text()))) : '';
-        $floor = $crawler->filterXpath('//li[@class="floorArea"]')->count() ? trim(str_replace('Floor','',str_replace(' ',' ',$crawler->filterXpath('//li[@class="floorArea"]')->text()))) : '';
-        $auction_date = $crawler->filter('h6')->count() ? str_replace('Auction ','',$crawler->filter('h6')->text()) : '';
-
-        $agent_name01 = '';
-        $agent_name02 = '';
-
-        $agent_mobile = [];
-        $agent_mobile01 ='';
-        $agent_mobile02 = '';
-
-        $agent_count = $crawler->filterXpath('//h5[@class="fn agent"]')->count() / 2;
-
-        if($agent_count != 0)
-        {
-            $agent_mobiles = $crawler->filterXpath('//div[@class="agentDetailsText"]')->each(function($node){
-                return trim($node->text());
-            });
-
-            for($i=0;$i<=1;$i++){
-                preg_match("/[M][ ][0-9 ]{0,20}/", $agent_mobiles[$i],$mobile);
-                $agent_mobile[$i] = $mobile ? $mobile[0] : '';
-            }
-
-            if($agent_count == 1){
-                $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
-                $agent_name02 = '';
-
-                $agent_mobile01 = str_replace('M ','',trim($agent_mobile[0]));
-                $agent_mobile02 = '';
-
-            } elseif($agent_count == 2 ){
-                if ($agent_name01 == $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text()){
-                    $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
-                    $agent_name02 = '';
-
-                    $agent_mobile01 = str_replace('M ','',trim($agent_mobile[0]));
-                    $agent_mobile02 = '';
-
-                }else{
-                    $agent_name01 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(0)->text();
-                    $agent_name02 = $crawler->filterXpath('//h5[@class="fn agent"]')->eq(1)->text();
-
-                    $agent_mobile01 = str_replace('M ','',trim($agent_mobile[0]));
-                    $agent_mobile02 = str_replace('M ','',trim($agent_mobile[1]));
+                        $record->property_type = $this->property_type[trim($data->filter('td')->eq(3)->text())];
+                        $record->sale_type = $this->sale_type[trim($data->filter('td')->eq(4)->text())];
+                        if($record->sale_type == 'Passed In' || $record->sale_type == 'Withdrawn'){
+                            $record->sold_price = '';
+                        } else {
+                            $record->sold_price = trim($data->filter('td')->eq(2)->text()) != 'undisclosed' ? intval(preg_replace('/[^0-9]+/', '', trim($data->filter('td')->eq(2)->text()))) : 'Undisclosed';
+                        }
+                        $record->contract_date = Carbon::createFromFormat('d/m/Y',trim($data->filter('td')->eq(5)->text()))->toDateString();;
+                        $record->agency_name = trim($data->filter('td')->eq(6)->text());
+                        $record->slug = str_slug(trim(str_replace("\n", '', 'vic ' . $data->filter('td')->eq(0)->text())) . ' ' . $this->locality, '-');
+                        $record->save();
+                        $this->count++;
+                        echo $record->address;
+                    }
                 }
-            }
+            });
+        });
 
+        echo $this->count." records.";
 
+        $next = $page + 1;
 
-            if (strlen($agent_mobile01) <= 8){
-                $agent_mobile01 = '';
-            }
-
-            if (strlen($agent_mobile02) <= 8){
-                $agent_mobile02 = '';
-            }
-
-
+        if($next <= 26){
+            return redirect('/sat_auction/scrape/'.$next);
+        } else {
+            return "Finished Scraping";
         }
 
-
-        $bedroom = preg_replace('/[^0-9]/','',$bedroom);
-        $bath = preg_replace('/[^0-9]/','',$bathroom);
-        $car = preg_replace('/[^0-9]/','',$car);
-        $listed_date = substr($listed_date,strpos($listed_date,'Listed')+ 6);
-        $listed_date = Carbon::createFromFormat('dMY', $listed_date)->format('d/m/Y');
-
-        if($auction_date){
-            $auction_date = substr($auction_date,strpos($auction_date,'day')+ 4);
-            $auction_date = Carbon::createFromFormat('d M g:ia', $auction_date)->format('d/m/Y');
-        }
-
-        if($price == 'Auction' || $price == 'Deadline Treaty'){
-            $price = '';
-        }
-
-
-        $details = array($property_address,$property_id,$price,$agency,$bedroom,$bath,$car,$land,$floor,$agent_name01,$agent_mobile01,$agent_name02,$agent_mobile02,$listed_date,$auction_date,$agent_count);
-        return \Response::json($details);
     }
 
 }

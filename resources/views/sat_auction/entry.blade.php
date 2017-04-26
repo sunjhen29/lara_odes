@@ -64,14 +64,25 @@ $(document).ready(function(){
                 if (data.state){
                     $("input[name='agency_name']").val(data.agency_name).prop('readonly',true).css('background-color','yellow');
                     $("select[name='property_type']").val(data.property_type).prop('readonly',true).css('background-color','yellow');
+                    $("select[name='sale_type']").val(data.sale_type).prop('readonly',true).css('background-color','yellow');
+                    $("input[name='sold_price']").val(data.sold_price).prop('readonly',true).css('background-color','yellow');
+
+                    if(data.contract_date != ''){
+                        var original_date = data.contract_date;
+                        contract_date = original_date.split("-").reverse().join("/");
+                        $("input[name='contract_date']").val(contract_date).prop('readonly',true).css('background-color','yellow');
+                    }
                     $("input[name='bedroom']").val(data.bedroom).prop('readonly',true).css('background-color','yellow');
                     $("input[name='bathroom']").val(data.bathroom).prop('readonly',true).css('background-color','yellow');
                     $("input[name='car']").val(data.car).prop('readonly',true).css('background-color','yellow');
-                    $("select[name='sale_type']").focus();
+
 
                 } else {
                     $("input[name='agency_name']").val('').prop('readonly',false);
                     $("input[name='bedroom']").val('').prop('readonly',false);
+                    $("input[name='sold_price']").val('').prop('readonly',false);
+                    $("input[name='contract_date']").val('').prop('readonly',false);
+                    $("input[name='sale_type']").val('').prop('readonly',false);
                     $("input[name='bathroom']").val('').prop('readonly',false);
                     $("input[name='car']").val('').prop('readonly',false);
                     $("select[name='property_type']").val('HO').prop('readonly',false);
