@@ -52,40 +52,34 @@ $(document).ready(function(){
 
 
         $("input[name='suburb']").blur(function(){
-
             $address = $("select[name='state']").val() + ' ' + $("input[name='unit_no']").val() + ' ' + $("input[name='street_no']").val() + ' ' + $("input[name='street_name']").val()+ ' ' + $("select[name='street_ext']").val() + ' ' + $("input[name='suburb']").val();
-
             $property = slug($address);
-
-            console.log($property);
-
             $.get('/sat_auction/search_property/' + $property , function (data) {
                 console.log(data);
                 if (data.state){
-                    $("input[name='agency_name']").val(data.agency_name).prop('readonly',true).css('background-color','yellow');
-                    $("select[name='property_type']").val(data.property_type).prop('readonly',true).css('background-color','yellow');
-                    $("select[name='sale_type']").val(data.sale_type).prop('readonly',true).css('background-color','yellow');
-                    $("input[name='sold_price']").val(data.sold_price).prop('readonly',true).css('background-color','yellow');
+                    $("input[name='agency_name']").val(data.agency_name).css('background-color',data.color);
+                    $("select[name='property_type']").val(data.property_type).css('background-color',data.color);
+                    $("select[name='sale_type']").val(data.sale_type).css('background-color',data.color);
+                    $("input[name='sold_price']").val(data.sold_price).css('background-color',data.color);
+                    $("input[name='bedroom']").val(data.bedroom).css('background-color',data.color);
+                    $("input[name='bathroom']").val(data.bathroom).css('background-color',data.color);
+                    $("input[name='car']").val(data.car).css('background-color',data.color);
 
                     if(data.contract_date != ''){
                         var original_date = data.contract_date;
                         contract_date = original_date.split("-").reverse().join("/");
-                        $("input[name='contract_date']").val(contract_date).prop('readonly',true).css('background-color','yellow');
+                        $("input[name='contract_date']").val(contract_date).css('background-color',data.color);
                     }
-                    $("input[name='bedroom']").val(data.bedroom).prop('readonly',true).css('background-color','yellow');
-                    $("input[name='bathroom']").val(data.bathroom).prop('readonly',true).css('background-color','yellow');
-                    $("input[name='car']").val(data.car).prop('readonly',true).css('background-color','yellow');
-
-
                 } else {
-                    $("input[name='agency_name']").val('').prop('readonly',false);
-                    $("input[name='bedroom']").val('').prop('readonly',false);
-                    $("input[name='sold_price']").val('').prop('readonly',false);
-                    $("input[name='contract_date']").val('').prop('readonly',false);
-                    $("input[name='sale_type']").val('').prop('readonly',false);
-                    $("input[name='bathroom']").val('').prop('readonly',false);
-                    $("input[name='car']").val('').prop('readonly',false);
-                    $("select[name='property_type']").val('HO').prop('readonly',false);
+                    alert(data.message);
+                    $("input[name='agency_name']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                    $("input[name='bedroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');;
+                    $("input[name='sold_price']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                    $("input[name='contract_date']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                    $("select[name='sale_type']").val('Sold At Auction').prop('readonly',false).css('background-color','#ffe6f3');
+                    $("input[name='bathroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                    $("input[name='car']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                    $("select[name='property_type']").val('HO').prop('readonly',false).css('background-color','#ffe6f3');
 
                 }
             })

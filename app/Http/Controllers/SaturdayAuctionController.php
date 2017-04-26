@@ -125,15 +125,28 @@ class SaturdayAuctionController extends Controller
     }
 
     public function search_property($address){
-        $property = Sat_Auction::where('slug',$address)->first();
-        return \Response::json($property);
-
+        $rp_data = Sat_Auction::where('slug',$address)->first();
         $scrape = ScrapeSatAuction::where('slug',$address)->first();
-        return \Response::json($scrape);
-    }
 
-    public function sample(){
-        return "hello";
+        $details = [];
+        if (!$rp_data AND !$scrape){
+            $details['message'] = 'No Record Found!! Please check your entry';
+        }else{
+
+            $details['state'] = $rp_data ? $rp_data->state : $scrape->state;
+            $details['agency_name'] = $rp_data ? $rp_data->agency_name : $scrape->agency_name;
+            $details['bedroom'] = $rp_data ? $rp_data->bedroom : $scrape->bedroom;
+            $details['bathroom'] = $rp_data ? $rp_data->bathroom : '';
+            $details['car'] = $rp_data ? $rp_data->car : '';
+            $details['property_type'] = $rp_data ? $rp_data->property_type : $scrape->property_type;
+            $details['sold_price'] = $scrape ? $scrape->sold_price : '';
+            $details['sale_type'] = $scrape ? $scrape->sale_type : '';
+            $details['contract_date'] = $scrape ? $scrape->contract_date : '';
+            $details['color']= $rp_data ? '#ffffe6' : '#e6fff2';
+        }
+
+
+        return \Response::json($details);
     }
 
     public function scrape($page){
@@ -162,7 +175,6 @@ class SaturdayAuctionController extends Controller
                     {
                         $record = new ScrapeSatAuction();
                         $record->state = 'vic';
-                        //$record->street_name = trim(str_replace("\t",'',str_replace("\n", '', mb_convert_encoding($data->filter('td')->eq(0)->text(),'UTF-8'))));
                         $record->street_name = trim(str_replace("\t",'',str_replace("\n", '', mb_convert_encoding($data->filter('td')->eq(0)->text(),'UTF-8'))));
 
                         $record->suburb = $this->locality;
