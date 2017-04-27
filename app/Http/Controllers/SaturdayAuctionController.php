@@ -31,7 +31,7 @@ class SaturdayAuctionController extends Controller
 
     private $suburb = [];
     private $locality = '';
-    private $property_type = ['Townhouse'=>'UN','House'=>'HO','Apartment'=>'UN','Unit'=>'UN','Villa'=>'UN','Land'=>'LA','Commercial'=>'CO','Farm'=>'FA','Flat/Unit/Apartment'=>'UN','Flat'=>'UN','Block of Flats'=>'UN'];
+    private $property_type = ['House - Semi-detached'=>'HO','Townhouse'=>'UN','House'=>'HO','Apartment'=>'UN','Unit'=>'UN','Villa'=>'UN','Land'=>'LA','Commercial'=>'CO','Farm'=>'FA','Flat/Unit/Apartment'=>'UN','Flat'=>'UN','Block of Flats'=>'UN'];
     private $sale_type = ['Auction Sale'=>'Sold At Auction','Passed in at Auction'=>'Passed In','Sold Before Auction'=>'Sold Prior To Auction','Passed in Vendor Bid'=>'Vendor Bid','Sold After Auction'=>'Sold After Auction'];
     private $count = 0;
 
@@ -122,6 +122,11 @@ class SaturdayAuctionController extends Controller
     public function search_postcode($suburb,$state){
         $post_code = AUPostCode::where('suburb',$suburb)->where('state',$state)->first();
         return \Response::json($post_code);
+    }
+
+    public function search_suburb($address){
+       $scrape = ScrapeSatAuction::where('slug','LIKE',$address.'%')->first();
+       return \Response::json($scrape);
     }
 
     public function search_property($address){

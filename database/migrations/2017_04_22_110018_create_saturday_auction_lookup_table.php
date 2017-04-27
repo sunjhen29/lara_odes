@@ -31,7 +31,7 @@ class CreateSaturdayAuctionLookupTable extends Migration
             $table->string('bedroom');
             $table->string('bathroom');
             $table->string('car');
-            $table->string('slug')->unique()->index();
+            $table->string('slug')->index();
             $table->timestamps();
         });
     }

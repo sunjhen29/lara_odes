@@ -49,6 +49,23 @@ $(document).ready(function(){
             return $slug.toLowerCase();
         }
 
+        $("input[name='street_name']").blur(function() {
+            $address = $("select[name='state']").val() + ' ' + $("input[name='unit_no']").val() + ' ' + $("input[name='street_no']").val() + ' ' + $("input[name='street_name']").val();
+            $property = slug($address);
+            $.get('/sat_auction/search_suburb/' + $property , function (data) {
+                console.log(data);
+                if (data.state){
+                    $('#suburbs').append('<option>'+data.suburb+'</option>');
+                }
+            })
+        });
+
+        //$("input").focusin(function(){
+          //  $(this).css("background-color", "yellow");
+        //});
+        //$("input").focusout(function(){
+          //  $(this).css("background-color", "white");
+        //});
 
 
         $("input[name='suburb']").blur(function(){

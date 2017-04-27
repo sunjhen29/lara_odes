@@ -17,7 +17,7 @@
             {!! Form::label('unit_no','Unit No.',['class'=>'control-label ']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('unit_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aA-zZ-.]{1,20}','autofocus']) !!}
+            {!! Form::text('unit_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aA-zZ\-.]{1,20}','autofocus']) !!}
         </div>
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
             {!! Form::label('street_no','Street No.',['class'=>'control-label ']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('street_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aZ-zZ-.]{1,25}', 'required']) !!}
+            {!! Form::text('street_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aZ-zZ\-.]{1,25}', 'required']) !!}
         </div>
         <!--
         <div class="col-sm-1 col-md-1">
@@ -53,7 +53,12 @@
             {!! Form::label('suburb','Suburb',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-4 col-md-3">
-            {!! Form::text('suburb',null,['class'=>'form-control input-sm', 'required']) !!}
+            {!! Form::text('suburb',null,['class'=>'form-control input-sm', 'list'=>'suburbs', 'required']) !!}
+            <datalist id="suburbs">
+
+            </datalist>
+
+
         </div>
         <div class="col-sm-2 col-md-2">
             {!! Form::text('post_code',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{4}', 'required']) !!}
@@ -66,7 +71,7 @@
             {!! Form::label('bedroom','Bed',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-2 col-md-1">
-            {!! Form::text('bedroom',null,['class'=>"form-control input-sm", 'pattern'=>'[0-9-]{1,2}']) !!}
+            {!! Form::text('bedroom',null,['class'=>"form-control input-sm", 'pattern'=>'[0-9]{1,2}']) !!}
         </div>
     </div>
 
