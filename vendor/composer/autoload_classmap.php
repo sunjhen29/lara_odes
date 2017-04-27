@@ -28,6 +28,7 @@ return array(
     'CreateReanzsTable' => $baseDir . '/database/migrations/2016_11_26_132236_create_reanzs_table.php',
     'CreateRecentSalesTable' => $baseDir . '/database/migrations/2016_10_03_014039_create_recent_sales_table.php',
     'CreateReivLookupTable' => $baseDir . '/database/migrations/2017_04_22_105750_create_reiv_lookup_table.php',
+    'CreateSatAuctionStExtensionsTable' => $baseDir . '/database/migrations/2017_04_27_140958_create_sat_auction_st_extensions_table.php',
     'CreateSaturdayAuctionLookupTable' => $baseDir . '/database/migrations/2017_04_22_110018_create_saturday_auction_lookup_table.php',
     'CreateScrapeSatAuctionTable' => $baseDir . '/database/migrations/2017_04_26_145633_create_scrape_sat_auction_table.php',
     'CreateStatesTable' => $baseDir . '/database/migrations/2016_11_08_073138_create_states_table.php',

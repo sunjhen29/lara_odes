@@ -108,7 +108,7 @@
                 <ul class="treeview-menu">
                     <li><a href="/admin/lookup/sat_auction">Sat Auctions</a></li>
                     <li><a href="/admin/lookup/natalpha">Natalpha</a></li>
-
+                    <li><a href="/admin/lookup/sat_auction_st_extension">Sat Auction Street Extensions</a></li>
                 </ul>
             </li>
         </ul>

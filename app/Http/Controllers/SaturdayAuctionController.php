@@ -197,14 +197,10 @@ class SaturdayAuctionController extends Controller
                         $record->agency_name = trim($data->filter('td')->eq(6)->text());
                         $record->slug = str_slug(trim(str_replace("\n", '', 'vic ' . $data->filter('td')->eq(0)->text())) . ' ' . $this->locality, '-');
                         $record->save();
-                        $this->count++;
-                        echo $record->address;
                     }
                 }
             });
         });
-
-        echo $this->count." records.";
 
         $next = $page + 1;
 

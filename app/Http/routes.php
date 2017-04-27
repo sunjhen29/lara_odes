@@ -186,6 +186,9 @@ Route::post('/admin/lookup/sat_auction','SatAuctionController@import');
 Route::get('/admin/lookup/natalpha','NatalphaController@view');
 Route::post('/admin/lookup/natalpha','NatalphaController@import');
 
+Route::get('/admin/lookup/sat_auction_st_extension','SatAuctionStExtensionController@view');
+Route::post('/admin/lookup/sat_auction_st_extension','SatAuctionStExtensionController@import');
+
 
 
 /**
