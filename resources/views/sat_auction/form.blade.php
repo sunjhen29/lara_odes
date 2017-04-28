@@ -55,7 +55,6 @@
         <div class="col-sm-4 col-md-3">
             {!! Form::text('suburb',null,['class'=>'form-control input-sm', 'list'=>'suburbs', 'required']) !!}
             <datalist id="suburbs">
-
             </datalist>
 
 
@@ -98,7 +97,7 @@
             {!! Form::label('sale_type','Sale Type',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-4 col-md-3">
-            {!! Form::select('sale_type', ['Normal Sale'=>'Normal Sale','No Bid'=>'No Bid','Passed In'=>'Passed In','Sold After Auction'=>'Sold After Auction','Sold At Auction'=>'Sold At Auction','Sold Prior To Auction'=>'Sold Prior To Auction','Vendor Bid'=>'Vendor Bid','Withdrawn'=>'Withdrawn' ], null, ['class'=>'form-control input-sm']) !!}
+            {!! Form::select('sale_type', ['Sold At Auction'=>'Sold At Auction','No Bid'=>'No Bid','Passed In'=>'Passed In','Sold After Auction'=>'Sold After Auction','Sold Prior To Auction'=>'Sold Prior To Auction','Vendor Bid'=>'Vendor Bid','Withdrawn'=>'Withdrawn' ], null, ['class'=>'form-control input-sm']) !!}
         </div>
     </div>
 

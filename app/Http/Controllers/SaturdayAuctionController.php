@@ -188,7 +188,7 @@ class SaturdayAuctionController extends Controller
 
                         $record->property_type = $this->property_type[trim($data->filter('td')->eq(3)->text())];
                         $record->sale_type = $this->sale_type[trim($data->filter('td')->eq(4)->text())];
-                        if($record->sale_type == 'Passed In' || $record->sale_type == 'Withdrawn'){
+                        if($record->sale_type == 'Passed In' || $record->sale_type == 'Withdrawn' || $record->sale_type == 'No Bid'){
                             $record->sold_price = '';
                         } else {
                             $record->sold_price = trim($data->filter('td')->eq(2)->text()) != 'undisclosed' ? intval(preg_replace('/[^0-9]+/', '', trim($data->filter('td')->eq(2)->text()))) : 'Undisclosed';

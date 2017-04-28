@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\AUPostCode;
+use App\NewsOffline;
 
 
 class NatalphaController extends Controller
