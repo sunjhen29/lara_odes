@@ -106,9 +106,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/admin/lookup/sat_auction">Sat Auctions</a></li>
-                    <li><a href="/admin/lookup/natalpha">Natalpha</a></li>
-                    <li><a href="/admin/lookup/sat_auction_st_extension">Sat Auction Street Extensions</a></li>
+                    <li><a href="/admin/lookup/sat_auction">REV Auction Lookup</a></li>
+                    <li><a href="/admin/lookup/home_price">Home Price Guide Lookup</a></li>
+                    <li><a href="/admin/lookup/sat_auction_st_extension">Sat Auction Street Extensions Lookup</a></li>
+                    <li><a href="/admin/lookup/natalpha">Post Code Lookup</a></li>
                 </ul>
             </li>
         </ul>

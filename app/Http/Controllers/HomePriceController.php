@@ -5,26 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
-use App\Sat_Auction;
+use App\HomePrice;
 use Carbon\Carbon;
 
-class SatAuctionController extends Controller
+class HomePriceController extends Controller
 {
     public function view(){
-        $results = Sat_Auction::all();
-        return view('admin.lookup.sat_auction',compact('results'));
+        $results = HomePrice::all();
+        return view('admin.lookup.home_price',compact('results'));
     }
 
     public function import(Request $request){
         $filename = $request->file('csv')->getClientOriginalName();
-        $request->file('csv')->move(base_path() . '/storage/upload/sat_auction/',$filename);
+        $request->file('csv')->move(base_path() . '/storage/upload/home_price/',$filename);
 
-        Sat_Auction::truncate();
+        HomePrice::truncate();
 
-        if (($handle = fopen ( base_path() . '/storage/upload/sat_auction/'.$filename, 'r' )) !== FALSE) {
+        if (($handle = fopen ( base_path() . '/storage/upload/home_price/'.$filename, 'r' )) !== FALSE) {
             while ( ($data = fgetcsv ( $handle, 1000, ',' )) !== FALSE ) {
-                $csv_data = new Sat_Auction();
+                $csv_data = new HomePrice();
                 $csv_data->state = $data [0];
                 $csv_data->unit_no = $data [1];
                 $csv_data->street_no = $data [2];
@@ -49,5 +48,4 @@ class SatAuctionController extends Controller
         }
         return redirect()->back();
     }
-
 }

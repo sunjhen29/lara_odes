@@ -170,7 +170,9 @@ class SaturdayAuctionController extends Controller
            return str_replace(' Sales & Auction Results','',trim($node->text()));
         });
 
-        //Sat_Auction::truncate();
+        if($page == 1){
+            ScrapeSatAuction::truncate();
+        }
 
         $crawler->filterXPath('//div[@class="pd-table-inner"]')->each(function($rows,$i){
             $this->locality = $this->suburb[$i];

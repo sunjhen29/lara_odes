@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Sat_Auction;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
