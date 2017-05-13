@@ -60,12 +60,16 @@ class SaturdayAuctionController extends Controller
             $query->where('batch_name',session('batch_name'));
         }));
 
+        //$lookup = Sat_Auction::where('suburb','LIKE','A%')->get();
+        //$lookup .= Sat_Auction::where('suburb','LIKE','B%')->get();
+        //return $lookup;
         return view($this->folder.'/view',compact('results'));
     }
 
     public function entry()
     {
-        return view($this->folder.'/entry');
+        $results = Sat_Auction::all();
+        return view($this->folder.'/entry',compact('results'));
     }
 
     public function create(RecentSaleRequest $request){
@@ -137,7 +141,6 @@ class SaturdayAuctionController extends Controller
         if (!$rp_data AND !$scrape){
             $details['message'] = 'No Record Found!! Please check your entry';
         }else{
-
             $details['state'] = $rp_data ? $rp_data->state : $scrape->state;
             $details['agency_name'] = $rp_data ? $rp_data->agency_name : $scrape->agency_name;
             $details['bedroom'] = $rp_data ? $rp_data->bedroom : $scrape->bedroom;

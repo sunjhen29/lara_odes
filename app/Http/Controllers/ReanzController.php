@@ -139,7 +139,7 @@ class ReaNZController extends Controller
             });
 
             for($i=0;$i<=1;$i++){
-                preg_match("/[M][ ][0-9 ]{0,20}/", $agent_mobiles[$i],$mobile);
+                preg_match("/[M][ ][0-9 -]{0,20}/", $agent_mobiles[$i],$mobile);
                 $agent_mobile[$i] = $mobile ? $mobile[0] : '';
             }
 
@@ -192,7 +192,7 @@ class ReaNZController extends Controller
             $auction_date = Carbon::createFromFormat('d M g:ia', $auction_date)->format('d/m/Y');
         }
 
-        if($price == 'Auction' || $price == 'Deadline Treaty'){
+        if($price == 'Auction' || $price == 'Deadline Treaty' || $price == 'Tender'){
             $price = '';
         }
 

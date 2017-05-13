@@ -13,12 +13,57 @@
         {!! Form::close() !!}
     </div>
 </div>
+
+
+<div id="search_modal"class="modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Find Property</h4>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <th>State</th>
+                        <th>Property Address</th>
+                        <th class="text-center">Prop. Type</th>
+                        <th>Agency Name</th>
+                        <th>B</th>
+                        <th>B</th>
+                        <th>C</th>
+                    </tr>
+                    @foreach ($results as $result)
+                        <tr>
+                            <td>{{ $result->state }}</td>
+                            <td><a><strong>{{ $result->address }}</strong></a></td>
+                            <td class="text-center">{{ $result->property_type }}</td>
+                            <td>{{ substr($result->agency_name,0,15) }}</td>
+                            <td>{{ $result->bedroom }}</td>
+                            <td>{{ $result->bathroom }}</td>
+                            <td>{{ $result->car }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>  <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 </div> <!-- end of container -->
 @endsection
 
 @push('scripts')
 <script>
 $(document).ready(function(){
+    $('#search_modal').modal('show');
+
     $("input[name='suburb']").blur(function(){
         $.get('/sat_auction/search_post_code/' + $("input[name='suburb']").val() + '/' + $("select[name='state']").val() , function (data) {
             console.log(data);
@@ -50,8 +95,9 @@ $(document).ready(function(){
         }
 
         $("input[name='street_name']").blur(function() {
-            $address = $("select[name='state']").val() + ' ' + $("input[name='unit_no']").val() + ' ' + $("input[name='street_no']").val() + ' ' + $("input[name='street_name']").val();
+            $address = $("select[name='state']").val() + ' ' + $("input[name='unit_no']").val() + ' ' + $("input[name='street_no']").val() + ' ' + $("input[name='street_name']").val() + ' ' + $("input[name='street_ext']").val();
             $property = slug($address);
+            console.log($property);
             $.get('/sat_auction/search_suburb/' + $property , function (data) {
                 console.log(data);
                 if (data.state){
@@ -69,7 +115,7 @@ $(document).ready(function(){
 
 
         $("input[name='suburb']").blur(function(){
-            $address = $("select[name='state']").val() + ' ' + $("input[name='unit_no']").val() + ' ' + $("input[name='street_no']").val() + ' ' + $("input[name='street_name']").val()+ ' ' + $("select[name='street_ext']").val() + ' ' + $("input[name='suburb']").val();
+            $address = $("select[name='state']").val() + ' ' + $("input[name='unit_no']").val() + ' ' + $("input[name='street_no']").val() + ' ' + $("input[name='street_name']").val()+ ' ' + $("input[name='street_ext']").val() + ' ' + $("input[name='suburb']").val();
             $property = slug($address);
             $.get('/sat_auction/search_property/' + $property , function (data) {
                 console.log(data);

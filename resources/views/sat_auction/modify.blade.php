@@ -10,7 +10,7 @@
             </div>
         
             {!! Form::model($record,array('role'=>'form','url'=>'/sat_auction/'.$record->id.'/update','action'=>'POST','class'=>'form-horizontal'))!!}
-                @include('recent_sales.form',['status'=>$record->status])
+                @include('sat_auction.form',['status'=>$record->status])
             {!! Form::close() !!}
 
         </div>
