@@ -79,7 +79,7 @@
             {!! Form::label('sold_price','Sold Price',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-3 col-md-2">
-            {!! Form::text('sold_price',null,['class'=>'form-control input-sm']) !!}
+            {!! Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'[Aa-Zz0-9]{5,15}','required']) !!}
         </div>
     </div>
 
@@ -97,7 +97,7 @@
             {!! Form::label('sale_type','Sale Type',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-4 col-md-3">
-            {!! Form::select('sale_type', ['Sold At Auction'=>'Sold At Auction','No Bid'=>'No Bid','Passed In'=>'Passed In','Sold After Auction'=>'Sold After Auction','Sold Prior To Auction'=>'Sold Prior To Auction','Vendor Bid'=>'Vendor Bid','Withdrawn'=>'Withdrawn' ], null, ['class'=>'form-control input-sm']) !!}
+            {!! Form::select('sale_type', ['Sold At Auction'=>'Sold At Auction','No Bid'=>'No Bid','Passed In'=>'Passed In','Sold After Auction'=>'Sold After Auction','Sold Prior To Auction'=>'Sold Prior To Auction','Vendor Bid'=>'Vendor Bid','Withdrawn'=>'Withdrawn' ], null, ['class'=>'form-control input-sm', 'required']) !!}
         </div>
     </div>
 

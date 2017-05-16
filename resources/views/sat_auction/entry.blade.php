@@ -37,7 +37,7 @@
                     @foreach ($results as $result)
                         <tr>
                             <td>{{ $result->state }}</td>
-                            <td><a><strong>{{ $result->address }}</strong></a></td>
+                            <td><strong><a class="generate" href="#" data-id="{{ str_slug($result->address_only) }}">{{ $result->address }}</a></strong></td>
                             <td class="text-center">{{ $result->property_type }}</td>
                             <td>{{ substr($result->agency_name,0,15) }}</td>
                             <td>{{ $result->bedroom }}</td>
@@ -62,6 +62,57 @@
 @push('scripts')
 <script>
 $(document).ready(function(){
+
+    $('.generate').click(function(){
+        $('#search_modal').modal('hide');
+        $property = $(this).data('id');
+
+        console.log($property);
+        $.get('/sat_auction/search_property/' + $property , function (data) {
+            console.log(data);
+            if (data.state){
+
+                $("select[name='state']").val(data.state.toUpperCase()).css('background-color',data.color);
+                $("input[name='unit_no']").val(data.unit_no).css('background-color',data.color);
+                $("input[name='street_no']").val(data.street_no).css('background-color',data.color);
+                $("input[name='street_name']").val(data.street_name).css('background-color',data.color);
+                $("input[name='street_ext']").val(data.street_ext).css('background-color',data.color);
+                $("input[name='street_direction']").val(data.street_direction).css('background-color',data.color);
+                $("input[name='suburb']").val(data.suburb).css('background-color',data.color);
+                $("input[name='post_code']").val(data.post_code).css('background-color',data.color);
+
+                $("input[name='agency_name']").val(data.agency_name).css('background-color',data.color);
+                $("select[name='property_type']").val(data.property_type).css('background-color',data.color);
+                $("select[name='sale_type']").val(data.sale_type).css('background-color',data.color);
+                $("input[name='sold_price']").val(data.sold_price).css('background-color',data.color);
+                $("input[name='bedroom']").val(data.bedroom).css('background-color',data.color);
+                $("input[name='bathroom']").val(data.bathroom).css('background-color',data.color);
+                $("input[name='car']").val(data.car).css('background-color',data.color);
+
+                if(data.contract_date != ''){
+                    var original_date = data.contract_date;
+                    contract_date = original_date.split("-").reverse().join("/");
+                    $("input[name='contract_date']").val(contract_date).css('background-color',data.color);
+                }
+            } else {
+                alert(data.message);
+                $("input[name='agency_name']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='bedroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');;
+                $("input[name='sold_price']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='contract_date']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("select[name='sale_type']").val('Sold At Auction').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='bathroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='car']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("select[name='property_type']").val('HO').prop('readonly',false).css('background-color','#ffe6f3');
+
+            }
+        })
+    });
+
+
+
+
+
     $('#search_modal').modal('show');
 
     $("input[name='suburb']").blur(function(){

@@ -13,7 +13,7 @@
 /**
  * Home Controller
  */
-Route::get('/','HomeController@welcome');
+Route::get('/','AppController@index');
 
 /**
  * AdminController

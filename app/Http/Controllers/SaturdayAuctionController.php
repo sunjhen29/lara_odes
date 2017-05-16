@@ -141,6 +141,14 @@ class SaturdayAuctionController extends Controller
         if (!$rp_data AND !$scrape){
             $details['message'] = 'No Record Found!! Please check your entry';
         }else{
+            $details['state'] = $rp_data ? strtoupper($rp_data->state) : strtoupper($scrape->state);
+            $details['unit_no'] = $rp_data ? $rp_data->unit_no : $scrape->unit_no;
+            $details['street_no'] = $rp_data ? $rp_data->street_no : $scrape->street_no;
+            $details['street_name'] = $rp_data ? $rp_data->street_name : $scrape->street_name;
+            $details['street_ext'] = $rp_data ? $rp_data->street_ext : $scrape->street_ext;
+            $details['street_direction'] = $rp_data ? $rp_data->street_direction : $scrape->street_direction;
+            $details['suburb'] = $rp_data ? $rp_data->suburb : $scrape->suburb;
+            $details['post_code'] = $rp_data ? $rp_data->post_code : $scrape->post_code;
             $details['state'] = $rp_data ? $rp_data->state : $scrape->state;
             $details['agency_name'] = $rp_data ? $rp_data->agency_name : $scrape->agency_name;
             $details['bedroom'] = $rp_data ? $rp_data->bedroom : $scrape->bedroom;
@@ -152,7 +160,6 @@ class SaturdayAuctionController extends Controller
             $details['contract_date'] = $scrape ? $scrape->contract_date : '';
             $details['color']= $rp_data ? '#ffffe6' : '#e6fff2';
         }
-
 
         return \Response::json($details);
     }
