@@ -38,10 +38,10 @@
             {!! Form::label('street_name','Street Name',['class'=>'control-label ']) !!}
         </div>
         <div class="col-sm-4 col-md-3">
-            {!! Form::text('street_name',null,['class'=>'form-control input-sm', 'required', 'required']) !!}
+            {!! Form::text('street_name',null,['class'=>'form-control input-sm', 'required']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('street_ext', null, ['class'=>'form-control input-sm','placeholder'=>' ']) !!}
+            {!! Form::text('street_ext', null, ['class'=>'form-control input-sm','pattern'=>'[aA-zZ]{2,15}']) !!}
         </div>
         <div class="col-sm-2 col-md-1">
             {!! Form::text('street_direction',null,['class'=>'form-control input-sm', 'pattern'=>'[NSEW]{1}']) !!}
@@ -116,7 +116,7 @@
             {!! Form::label('agency_name','Agency Name',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-5 col-md-4">
-            {!! Form::text('agency_name',null,['class'=>'form-control input-sm', 'pattern'=>'[aA-zZ0-9\s\'\.\-/&/]{1,100}', 'list'=>'agency','required']) !!}
+            {!! Form::text('agency_name',null,['class'=>'form-control input-sm', 'pattern'=>'[aA-zZ0-9\s\'\.\-/&/]{2,100}', 'list'=>'agency','required']) !!}
         </div>
     </div>
 

@@ -29,7 +29,7 @@ class RecentSaleRequest extends Request
             'street_no' => 'required',
             'street_no_suffix' => 'max:1|alpha',
             'street_name' => 'required',
-            'street_direction' => 'min:1|regex:/^[(N)(S)(E)(W)]+$/u',
+            'street_direction' => 'max:1|regex:/^[(N)(S)(E)(W)]+$/u',
             'suburb' => 'required',
             'sale_type'=>'required',
             'sold_price' => 'min:5|max:11',
@@ -37,9 +37,9 @@ class RecentSaleRequest extends Request
             'post_code' => 'required',
             'contract_date' => 'required|date_format:d/m/Y',
             'agency_name' => 'required',
-            'bedroom' => 'min:1',
-            'bathroom' => 'min:1',
-            'car' => 'min:1',
+            'bedroom' => 'max:2',
+            'bathroom' => 'max:2',
+            'car' => 'max:2',
         ];
         
     }
