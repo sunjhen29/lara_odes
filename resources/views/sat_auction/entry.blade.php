@@ -92,6 +92,8 @@ $(document).ready(function(){
                     var original_date = data.contract_date;
                     contract_date = original_date.split("-").reverse().join("/");
                     $("input[name='contract_date']").val(contract_date).css('background-color',data.color);
+
+                    //
                 }
             } else {
                 alert(data.message);

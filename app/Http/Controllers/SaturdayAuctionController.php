@@ -59,10 +59,6 @@ class SaturdayAuctionController extends Controller
         $results = $this->current_batch->load(array($this->relationship=>function($query){
             $query->where('batch_name',session('batch_name'));
         }));
-
-        //$lookup = Sat_Auction::where('suburb','LIKE','A%')->get();
-        //$lookup .= Sat_Auction::where('suburb','LIKE','B%')->get();
-        //return $lookup;
         return view($this->folder.'/view',compact('results'));
     }
 
