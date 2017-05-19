@@ -43,6 +43,22 @@ class InitialApplicationSeeder extends Seeder
         $application->entry_type = 'Single Entry';
         $application->save();
 
+        $application = new Application();
+        $application->application_name = 'REA NZ Keying';
+        $application->folder_path = '/reanz';
+        $application->status = 'Active';
+        $application->description = '';
+        $application->entry_type = 'Single Entry';
+        $application->save();
+
+        $application = new Application();
+        $application->application_name = 'Saturday Auction';
+        $application->folder_path = '/sat_auction';
+        $application->status = 'Active';
+        $application->description = '';
+        $application->entry_type = 'Single Entry';
+        $application->save();
+
 
         $jobnumber = new JobNumber();
         $jobnumber->job_number = 1234;

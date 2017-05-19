@@ -15,7 +15,6 @@ class LookupTableSeeder extends Seeder
     {
         //Street Extenstions
 
-
         $lookup = new Lookup();
         $lookup->filter = 'street_extension';
         $lookup->name = 'Street';
