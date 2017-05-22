@@ -117,15 +117,15 @@
       <file leaf-file-name="form.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5520717">
-              <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.64725643">
+              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
               <folding>
-                <marker date="1495414486651" expanded="true" signature="4232:4542" placeholder="..." />
-                <marker date="1495414486651" expanded="true" signature="4246:4540" placeholder="..." />
-                <marker date="1495414486651" expanded="true" signature="4260:4485" placeholder="..." />
-                <marker date="1495414486651" expanded="true" signature="4805:5197" placeholder="..." />
-                <marker date="1495414486651" expanded="true" signature="4817:5195" placeholder="..." />
-                <marker date="1495414486651" expanded="true" signature="4839:5194" placeholder="..." />
+                <marker date="1495415539517" expanded="true" signature="4248:4558" placeholder="..." />
+                <marker date="1495415539517" expanded="true" signature="4262:4556" placeholder="..." />
+                <marker date="1495415539517" expanded="true" signature="4276:4501" placeholder="..." />
+                <marker date="1495415539517" expanded="true" signature="4821:5213" placeholder="..." />
+                <marker date="1495415539517" expanded="true" signature="4833:5211" placeholder="..." />
+                <marker date="1495415539517" expanded="true" signature="4855:5210" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -789,15 +789,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/form.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5520717">
-          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.64725643">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
           <folding>
-            <marker date="1495414486651" expanded="true" signature="4232:4542" placeholder="..." />
-            <marker date="1495414486651" expanded="true" signature="4246:4540" placeholder="..." />
-            <marker date="1495414486651" expanded="true" signature="4260:4485" placeholder="..." />
-            <marker date="1495414486651" expanded="true" signature="4805:5197" placeholder="..." />
-            <marker date="1495414486651" expanded="true" signature="4817:5195" placeholder="..." />
-            <marker date="1495414486651" expanded="true" signature="4839:5194" placeholder="..." />
+            <marker date="1495415539517" expanded="true" signature="4248:4558" placeholder="..." />
+            <marker date="1495415539517" expanded="true" signature="4262:4556" placeholder="..." />
+            <marker date="1495415539517" expanded="true" signature="4276:4501" placeholder="..." />
+            <marker date="1495415539517" expanded="true" signature="4821:5213" placeholder="..." />
+            <marker date="1495415539517" expanded="true" signature="4833:5211" placeholder="..." />
+            <marker date="1495415539517" expanded="true" signature="4855:5210" placeholder="..." />
           </folding>
         </state>
       </provider>

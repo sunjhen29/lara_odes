@@ -56,7 +56,7 @@
             {!! Form::text('suburb',null,['class'=>'form-control input-sm', 'list'=>'suburbs', 'required']) !!}
             <datalist id="suburbs">
             </datalist>
-
+        ////////
 
         </div>
         <div class="col-sm-2 col-md-2">
