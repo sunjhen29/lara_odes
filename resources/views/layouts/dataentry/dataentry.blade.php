@@ -16,8 +16,13 @@
     <link rel="stylesheet" href="/bower_components/adminlte/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins -->
     <link rel="stylesheet" href="/bower_components/adminlte/dist/css/skins/_all-skins.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/bower_components/adminlte/plugins/datatables/dataTables.bootstrap.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/dataentry_cus.css">
+
+
+
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.min.js"></script>
     <script src="/js/respond.min.js"></script>
@@ -74,6 +79,9 @@
 <script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="/bower_components/adminlte/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- DataTables -->
+<script src="/bower_components/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/bower_components/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
 
     @stack('scripts')

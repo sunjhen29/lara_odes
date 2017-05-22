@@ -16,6 +16,18 @@
 
 
 <div id="search_modal"class="modal">
+    @include('components.datatable',[
+       'title'=>'Search Property',
+       'add_url' => '#',
+       'add_label' => 'Search',
+       'headers'=> array('State','Property Address','Suburb','Prop Type','Agency Name','Bed','Bath','Car'),
+       'results'=>$results,
+       'rows'=>array('state','address','suburb','property_type','agency_name','bedroom','bathroom','car'),
+       'modify_url' => '/admin/setup/sysusers/',
+     ])
+
+
+
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,7 +36,8 @@
                 <h4 class="modal-title">Find Property</h4>
             </div>
             <div class="modal-body">
-                <table>
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead class="thead-inverse">
                     <tr>
                         <th>State</th>
                         <th>Property Address</th>
@@ -34,6 +47,7 @@
                         <th>B</th>
                         <th>C</th>
                     </tr>
+                    </thead>
                     @foreach ($results as $result)
                         <tr>
                             <td>{{ $result->state }}</td>
@@ -61,6 +75,12 @@
 @push('scripts')
 <script>
 $(document).ready(function(){
+
+    $(function () {
+        $("#data_table").DataTable();
+    });
+
+
 
     $('.generate').click(function(){
         $('#search_modal').modal('hide');

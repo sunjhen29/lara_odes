@@ -152,7 +152,7 @@ class SaturdayAuctionController extends Controller
             $details['car'] = $rp_data ? $rp_data->car : '';
             $details['property_type'] = $rp_data ? $rp_data->property_type : $scrape->property_type;
             $details['sold_price'] = $scrape ? $scrape->sold_price : '';
-            $details['sale_type'] = $scrape ? $scrape->sale_type : '';
+            $details['sale_type'] = $scrape ? $scrape->sale_type : 'Sold At Auction';
             $details['contract_date'] = $scrape ? $scrape->contract_date : '';
             $details['color']= $rp_data ? '#ffffe6' : '#e6fff2';
         }
