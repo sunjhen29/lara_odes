@@ -16,56 +16,35 @@
 
 
 <div id="search_modal"class="modal">
-    @include('components.datatable',[
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Find Property</h4>
+    </div>
+    @include('components.datatable_satauction',[
        'title'=>'Search Property',
        'add_url' => '#',
        'add_label' => 'Search',
-       'headers'=> array('State','Property Address','Suburb','Prop Type','Agency Name','Bed','Bath','Car'),
+       'headers'=> array('State','Property','Suburb','Type','Agency Name','Bed'),
        'results'=>$results,
-       'rows'=>array('state','address','suburb','property_type','agency_name','bedroom','bathroom','car'),
+       'rows'=>array('state','property_address','suburb','property_type','agency_name','bedroom'),
        'modify_url' => '/admin/setup/sysusers/',
      ])
 
+    <!-- Validation Error Section -->
+    @if($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+            <ul class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Find Property</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-bordered table-hover table-responsive">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th>State</th>
-                        <th>Property Address</th>
-                        <th class="text-center">Prop. Type</th>
-                        <th>Agency Name</th>
-                        <th>B</th>
-                        <th>B</th>
-                        <th>C</th>
-                    </tr>
-                    </thead>
-                    @foreach ($results as $result)
-                        <tr>
-                            <td>{{ $result->state }}</td>
-                            <td><strong><a class="generate" href="#" data-id="{{ str_slug($result->address_only) }}">{{ $result->address }}</a></strong></td>
-                            <td class="text-center">{{ $result->property_type }}</td>
-                            <td>{{ substr($result->agency_name,0,15) }}</td>
-                            <td>{{ $result->bedroom }}</td>
-                            <td>{{ $result->bathroom }}</td>
-                            <td>{{ $result->car }}</td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div>  <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
@@ -74,13 +53,46 @@
 
 @push('scripts')
 <script>
+    $(document).ready(function() {
+
+    } );
+
+
+
 $(document).ready(function(){
 
-    $(function () {
-        $("#data_table").DataTable();
-    });
+    $('#data_table').DataTable( {
+        'paging' : false,
 
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                        .appendTo( $(column.header()).empty() )
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                            );
 
+                            column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                        } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+
+    //$(function () {
+      //  $("#data_table").DataTable({
+        //    "scrollY": "500px",
+         //   "scrollCollapse": true,
+         //   "paging":         false
+       // });
+   // });
 
     $('.generate').click(function(){
         $('#search_modal').modal('hide');
