@@ -87,9 +87,12 @@
             {!! Form::label('sold_price','Sold Price',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-3 col-md-2">
-            {!! Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'[Aa-Zz0-9]{5,15}','required']) !!}
+            {!! Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'{5,15}']) !!}
         </div>
     </div>
+
+    <br>
+    <br>
 
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
@@ -100,14 +103,12 @@
         </div>
     </div>
 
-    <br>
-    <br>
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
             {!! Form::label('agency_name','Agency Name',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-5 col-md-4">
-            {!! Form::text('agency_name',null,['class'=>'form-control input-sm', 'pattern'=>'[aA-zZ0-9\s\'\.\-/&/]{2,100}', 'list'=>'agency','required']) !!}
+            {!! Form::text('agency_name',null,['class'=>'form-control input-sm', 'pattern'=>'{2,200}', 'list'=>'agency','required']) !!}
         </div>
     </div>
 

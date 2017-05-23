@@ -11,7 +11,6 @@
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
                 <table id="data_table" class="table table-hover">
-
                     <thead>
                     <tr>
                         @foreach($headers as $header)
@@ -20,21 +19,20 @@
                     </tr>
                     </thead>
 
-
                     <tbody>
-                        @foreach($results as $record)
-                            <tr>
-                                @foreach($rows as $row)
-                                    @if($row == 'property_address')
-                                        <td><strong><a class="generate"  data-id='{{ str_slug($record->address_only) }}'>{{ $record->property_address }}</a></strong></td>
-                                    @elseif($row == 'agency_name')
-                                        <td>{{ substr($record->agency_name,0,15) }}</td>
-                                    @else
-                                        <td>{{ $record[$row] }}</td>
-                                    @endif
-                                @endforeach
-                            </tr>
-                        @endforeach
+                    @foreach($results as $record)
+                        <tr>
+                            @foreach($rows as $row)
+                                @if($row == 'property_address')
+                                    <td><strong><a class="generate"  data-id='{{ str_slug($record->address_only) }}'>{{ $record->property_address }}</a></strong></td>
+                                @elseif($row == 'agency_name')
+                                    <td>{{ substr($record->agency_name,0,15) }}</td>
+                                @else
+                                    <td>{{ $record[$row] }}</td>
+                                @endif
+                            @endforeach
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div><!-- /.box-body -->

@@ -2788,12 +2788,12 @@
         "version_normalized": "0.9.9.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/padraic/mockery.git",
+            "url": "https://github.com/mockery/mockery.git",
             "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+            "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
             "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
             "shasum": ""
         },
@@ -4419,6 +4419,138 @@
             "dbal",
             "persistence",
             "queryobject"
+        ]
+    },
+    {
+        "name": "league/fractal",
+        "version": "0.16.0",
+        "version_normalized": "0.16.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/thephpleague/fractal.git",
+            "reference": "d0445305e308d9207430680acfd580557b679ddc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/thephpleague/fractal/zipball/d0445305e308d9207430680acfd580557b679ddc",
+            "reference": "d0445305e308d9207430680acfd580557b679ddc",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "doctrine/orm": "^2.5",
+            "illuminate/contracts": "~5.0",
+            "mockery/mockery": "~0.9",
+            "pagerfanta/pagerfanta": "~1.0.0",
+            "phpunit/phpunit": "~4.0",
+            "squizlabs/php_codesniffer": "~1.5",
+            "zendframework/zend-paginator": "~2.3"
+        },
+        "suggest": {
+            "illuminate/pagination": "The Illuminate Pagination component.",
+            "pagerfanta/pagerfanta": "Pagerfanta Paginator",
+            "zendframework/zend-paginator": "Zend Framework Paginator"
+        },
+        "time": "2017-03-12 01:28:43",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.13-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "League\\Fractal\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Phil Sturgeon",
+                "email": "me@philsturgeon.uk",
+                "homepage": "http://philsturgeon.uk/",
+                "role": "Developer"
+            }
+        ],
+        "description": "Handle the output of complex data structures ready for API output.",
+        "homepage": "http://fractal.thephpleague.com/",
+        "keywords": [
+            "api",
+            "json",
+            "league",
+            "rest"
+        ]
+    },
+    {
+        "name": "yajra/laravel-datatables-oracle",
+        "version": "v6.28.1",
+        "version_normalized": "6.28.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yajra/laravel-datatables.git",
+            "reference": "c4ee9651b3d67d7175c48cb29c05a5c588badc17"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/c4ee9651b3d67d7175c48cb29c05a5c588badc17",
+            "reference": "c4ee9651b3d67d7175c48cb29c05a5c588badc17",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/database": "5.0.*|5.1.*|5.2.*|5.3.*",
+            "illuminate/filesystem": "5.0.*|5.1.*|5.2.*|5.3.*",
+            "illuminate/http": "5.0.*|5.1.*|5.2.*|5.3.*",
+            "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*",
+            "illuminate/view": "5.0.*|5.1.*|5.2.*|5.3.*",
+            "laravelcollective/html": "5.0.*|5.1.*|5.2.*|5.3.*",
+            "league/fractal": "~0.14",
+            "maatwebsite/excel": "^2.0",
+            "php": ">=5.5.9"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9",
+            "phpunit/phpunit": "~4.0"
+        },
+        "suggest": {
+            "barryvdh/laravel-snappy": "Allows exporting of dataTable to PDF using the print view."
+        },
+        "time": "2017-05-05 06:58:45",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "6.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Yajra\\Datatables\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Arjay Angeles",
+                "email": "aqangeles@gmail.com"
+            }
+        ],
+        "description": "jQuery DataTables API for Laravel 4|5",
+        "keywords": [
+            "datatable",
+            "datatables",
+            "datatables jquery plugin",
+            "laravel",
+            "laravel4",
+            "laravel5"
         ]
     }
 ]

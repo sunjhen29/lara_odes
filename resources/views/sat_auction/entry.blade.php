@@ -62,6 +62,38 @@
 $(document).ready(function(){
 
     $('#data_table').DataTable( {
+        //'ajax' : '/sat_auction/entry/lookup',
+        //"columns": [
+        //    { "data": "state" },
+        //    { "data": "unit_no" },
+        //    { "data": "suburb" },
+        //    { "data": "property_type" },
+        //    { "data": "agency_name" },
+        //    { "data": "bedroom" }
+        //],
+
+        //"columnDefs": [
+        //    {
+        //        // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+       //         "render": function ( data, type, row ) {
+        //            var address = row['unit_no'] != '' ? row['unit_no'] + '/' : '' ;
+        //                address = address + row['street_no'] + ' ';
+        //                address = address + row['street_name'] + ' ';
+        //                address = address + row['street_direction'];
+
+        //            return '<strong><a class="generate"  data-id="' + address + '">' + address + '</a></strong>' ;
+        //        },
+        //        "targets": 1
+        //    },
+
+       // ],
+
+
+
+
+
         'paging' : false,
 
         initComplete: function () {

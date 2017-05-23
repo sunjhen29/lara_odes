@@ -18,6 +18,7 @@ use Goutte;
 use Carbon\Carbon;
 
 use Goutte\Client;
+use Yajra\Datatables\Datatables;
 
 class SaturdayAuctionController extends Controller
 {
@@ -66,6 +67,12 @@ class SaturdayAuctionController extends Controller
     {
         $results = Sat_Auction::all();
         return view($this->folder.'/entry',compact('results'));
+    }
+
+    public function lookup(){
+        //$results = Sat_Auction::take(10)->get();
+       //return $results;
+        return Datatables::of(Sat_Auction::all())->make(true);
     }
 
     public function create(RecentSaleRequest $request){
@@ -153,7 +160,7 @@ class SaturdayAuctionController extends Controller
             $details['property_type'] = $rp_data ? $rp_data->property_type : $scrape->property_type;
             $details['sold_price'] = $scrape ? $scrape->sold_price : '';
             $details['sale_type'] = $scrape ? $scrape->sale_type : 'Sold At Auction';
-            $details['contract_date'] = $scrape ? $scrape->contract_date : '';
+            $details['contract_date'] = $rp_data ? $rp_data->contract_date : '';
             $details['color']= $rp_data ? '#ffffe6' : '#e6fff2';
         }
 
