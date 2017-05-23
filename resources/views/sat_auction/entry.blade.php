@@ -120,13 +120,15 @@ $(document).ready(function(){
                 $("input[name='bathroom']").val(data.bathroom).css('background-color',data.color);
                 $("input[name='car']").val(data.car).css('background-color',data.color);
 
+
                 if(data.contract_date != ''){
                     var original_date = data.contract_date;
                     contract_date = original_date.split("-").reverse().join("/");
                     $("input[name='contract_date']").val(contract_date).css('background-color',data.color);
-
-                    //
                 }
+
+                $("select[name='sale_type']").focus();
+
             } else {
                 alert(data.message);
                 $("input[name='agency_name']").val('').prop('readonly',false).css('background-color','#ffe6f3');

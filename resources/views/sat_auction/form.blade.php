@@ -63,13 +63,22 @@
         </div>
     </div>
 
-    <br>
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
-            {!! Form::label('bedroom','Bed',['class'=>'control-label']) !!}
+            {!! Form::label('property_type','Property Type',['class'=>'control-label']) !!}
         </div>
-        <div class="col-sm-2 col-md-1">
-            {!! Form::text('bedroom',null,['class'=>"form-control input-sm", 'pattern'=>'[0-9]{1,2}']) !!}
+        <div class="col-sm-4 col-md-3">
+            {!! Form::select('property_type',['HO'=>'HOUSE','CO'=>'COMMERCIAL','FA'=>'FARM','FL'=>'FLAT','LA'=>'LAND','UN'=>'UNIT','UN 70'=>'TOWNHOUSE'],null,['class'=>'form-control input-sm', 'required']) !!}
+        </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+        <div class="col-sm-2 col-md-offset-2">
+            {!! Form::label('sale_type','Sale Type',['class'=>'control-label']) !!}
+        </div>
+        <div class="col-sm-4 col-md-3">
+            {!! Form::select('sale_type', ['Sold At Auction'=>'Sold At Auction','No Bid'=>'No Bid','Passed In'=>'Passed In','Sold After Auction'=>'Sold After Auction','Sold Prior To Auction'=>'Sold Prior To Auction','Vendor Bid'=>'Vendor Bid','Withdrawn'=>'Withdrawn' ], null, ['class'=>'form-control input-sm', 'required']) !!}
         </div>
     </div>
 
@@ -84,25 +93,6 @@
 
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
-            {!! Form::label('property_type','Property Type',['class'=>'control-label']) !!}
-        </div>
-        <div class="col-sm-4 col-md-3">
-            {!! Form::select('property_type',['HO'=>'HOUSE','CO'=>'COMMERCIAL','FA'=>'FARM','FL'=>'FLAT','LA'=>'LAND','UN'=>'UNIT','UN 70'=>'TOWNHOUSE'],null,['class'=>'form-control input-sm', 'required']) !!}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-2 col-md-offset-2">
-            {!! Form::label('sale_type','Sale Type',['class'=>'control-label']) !!}
-        </div>
-        <div class="col-sm-4 col-md-3">
-            {!! Form::select('sale_type', ['Sold At Auction'=>'Sold At Auction','No Bid'=>'No Bid','Passed In'=>'Passed In','Sold After Auction'=>'Sold After Auction','Sold Prior To Auction'=>'Sold Prior To Auction','Vendor Bid'=>'Vendor Bid','Withdrawn'=>'Withdrawn' ], null, ['class'=>'form-control input-sm', 'required']) !!}
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-2 col-md-offset-2">
             {!! Form::label('contract_date','Contract Date',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-3 col-md-2">
@@ -110,6 +100,8 @@
         </div>
     </div>
 
+    <br>
+    <br>
     <div class="row">
         <div class="col-sm-2 col-md-offset-2">
             {!! Form::label('agency_name','Agency Name',['class'=>'control-label']) !!}
@@ -128,6 +120,15 @@
             {!! Form::text('settlement_date',null,['class'=>'form-control input-sm', 'pattern'=>'', 'readonly']) !!}
         </div>
     </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2 col-md-offset-2">
+            {!! Form::label('bedroom','Bed',['class'=>'control-label']) !!}
+        </div>
+        <div class="col-sm-2 col-md-1">
+            {!! Form::text('bedroom',null,['class'=>"form-control input-sm", 'pattern'=>'[0-9]{1,2}']) !!}
+        </div>
     </div>
 
     <div class="row">
