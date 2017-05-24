@@ -74,6 +74,10 @@ class SaturdayAuctionController extends Controller
        //return $results;
         return Datatables::of(Sat_Auction::all())->make(true);
     }
+    public function ajax_lookup(Request $request){
+        $properties = Sat_Auction::where('suburb',$request->suburb)->get();
+        return \Response::json($properties);
+    }
 
     public function create(RecentSaleRequest $request){
         $record = $this->current_batch->recent_sales()->create($request->all());
@@ -166,6 +170,43 @@ class SaturdayAuctionController extends Controller
 
         return \Response::json($details);
     }
+
+    public function search_property_id($id){
+        $rp_data = Sat_Auction::find($id);
+        $scrape = ScrapeSatAuction::where('slug',$rp_data->slug)->first();
+
+        session()->put('locality', $rp_data->suburb);
+
+
+        $details = [];
+        if (!$rp_data AND !$scrape){
+            $details['message'] = 'No Record Found!! Please check your entry';
+        }else{
+            $details['state'] = $rp_data ? strtoupper($rp_data->state) : strtoupper($scrape->state);
+            $details['unit_no'] = $rp_data ? $rp_data->unit_no : $scrape->unit_no;
+            $details['street_no'] = $rp_data ? $rp_data->street_no : $scrape->street_no;
+            $details['street_name'] = $rp_data ? $rp_data->street_name : $scrape->street_name;
+            $details['street_ext'] = $rp_data ? $rp_data->street_ext : $scrape->street_ext;
+            $details['street_direction'] = $rp_data ? $rp_data->street_direction : $scrape->street_direction;
+            $details['suburb'] = $rp_data ? $rp_data->suburb : $scrape->suburb;
+            $details['post_code'] = $rp_data ? $rp_data->post_code : $scrape->post_code;
+            $details['state'] = $rp_data ? $rp_data->state : $scrape->state;
+            $details['agency_name'] = $rp_data ? $rp_data->agency_name : $scrape->agency_name;
+            $details['bedroom'] = $rp_data ? $rp_data->bedroom : $scrape->bedroom;
+            $details['bathroom'] = $rp_data ? $rp_data->bathroom : '';
+            $details['car'] = $rp_data ? $rp_data->car : '';
+            $details['property_type'] = $rp_data ? $rp_data->property_type : $scrape->property_type;
+            $details['sold_price'] = $scrape ? $scrape->sold_price : '';
+            $details['sale_type'] = $scrape ? $scrape->sale_type : 'Sold At Auction';
+            $details['contract_date'] = $rp_data ? $rp_data->contract_date : '';
+            $details['color']= $rp_data ? '#ffffe6' : '#e6fff2';
+        }
+
+        return \Response::json($details);
+    }
+
+
+
 
     public function scrape($page){
         $link = array('','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');

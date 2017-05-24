@@ -2,7 +2,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><strong>{{ $title or null }}</strong></h3>
+                <h3 class="box-title"><strong>{{ $title or null }}</strong> <a href="#">A</a> | B | C | D | E | F</h3>
                 <div class="box-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <button type="button" class="btn btn-primary btn-md addbutton pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-plus"></span> Close</button>

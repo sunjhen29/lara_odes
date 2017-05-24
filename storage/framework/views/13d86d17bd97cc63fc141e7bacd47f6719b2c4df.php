@@ -8,6 +8,8 @@
         </div>
         <?php echo Form::open(array('role'=>'form','url'=>'/sat_auction/entry','action'=>'POST','class'=>'form-horizontal')); ?>
 
+        <?php echo Form::token(); ?>
+
           <?php echo $__env->make('sat_auction.form',['status'=>'E'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <?php echo Form::close(); ?>
 
@@ -16,20 +18,43 @@
 
 
 <div id="search_modal"class="modal">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Find Property</h4>
-    </div>
-    <?php echo $__env->make('components.datatable_satauction',[
-       'title'=>'Search Property',
-       'add_url' => '#',
-       'add_label' => 'Search',
-       'headers'=> array('State','Property','Suburb','Type','Agency Name','Bed'),
-       'results'=>$results,
-       'rows'=>array('state','property_address','suburb','property_type','agency_name','bedroom'),
-       'modify_url' => '/admin/setup/sysusers/',
-     ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="col-md-6">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Property Search</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
+                <div class="box-body">
+                    <div class="input-group input-group-sm">
+                        <?php echo Form::select('locality', \App\Sat_Auction::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
+
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-info btn-flat">Search</button>
+                    </span>
+                    </div>
+                </div>
+            </form>
+
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Property</th>
+                            <th>Suburb</th>
+                            <th>Type</th>
+                            <th>Agency Name</th>
+                            <th>Bed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     <!-- Validation Error Section -->
     <?php if($errors->any()): ?>
@@ -55,7 +80,117 @@
 <script>
     $(document).ready(function() {
 
+       $("#frmLookup").submit(function (e) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            })
+
+            e.preventDefault();
+            var formData = {
+                suburb: $("select[name='locality']").val(),
+            }
+
+            console.log($("select[name='locality']").val());
+
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo e(url('/sat_auction/entry/lookup')); ?>",
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    $('#records-list > tr').remove();
+                    $.each(data, function (index, value) {
+                        var report = '<tr><td>' + value.state +'</td>';
+                            report += "<td><a onClick='generate(" + value.id +  ")'><strong>";
+                            report += value.unit_no;
+                            if (value.unit_no != ''){
+                                report += '/';
+                            }
+                            report += value.street_no + ' ' + value.street_name ;
+                            report += '</strong></a></td>';
+                            report += '<td>' + value.suburb + '</td>';
+                            report += '<td>' + value.property_type + '</td>';
+                            report += '<td>' + value.agency_name + '</td>';
+                            report += '<td>' + value.bedroom  + '</td></tr>';
+                            $('#records-list').append(report);
+                    });
+                    $('#prod_date').val($('#production_date').val());
+                },
+                error: function (data) {
+                    $('#records-list').remove();
+                    console.log('Error:', data);
+                }
+            });
+        });
+
+
+        $('#frmLookup').submit();
+
+
+        $("select[name='locality']").change(function(){
+            $('#frmLookup').submit();
+        });
+
+
+
+
     } );
+
+    function generate(slug)
+    {
+        $('#search_modal').modal('hide');
+        //$property = $(this).data('id');
+        $property = slug;
+
+        console.log($property);
+        //$.get('/sat_auction/search_property/' + $property , function (data) {
+            $.get('/sat_auction/search_property_id/' + $property , function (data) {
+            console.log(data);
+            if (data.state){
+
+                $("select[name='state']").val(data.state.toUpperCase()).css('background-color',data.color);
+                $("input[name='unit_no']").val(data.unit_no).css('background-color',data.color);
+                $("input[name='street_no']").val(data.street_no).css('background-color',data.color);
+                $("input[name='street_name']").val(data.street_name).css('background-color',data.color);
+                $("input[name='street_ext']").val(data.street_ext).css('background-color',data.color);
+                $("input[name='street_direction']").val(data.street_direction).css('background-color',data.color);
+                $("input[name='suburb']").val(data.suburb).css('background-color',data.color);
+                $("input[name='post_code']").val(data.post_code).css('background-color',data.color);
+
+                $("input[name='agency_name']").val(data.agency_name).css('background-color',data.color);
+                $("select[name='property_type']").val(data.property_type).css('background-color',data.color);
+                $("select[name='sale_type']").val(data.sale_type).css('background-color',data.color);
+                $("input[name='sold_price']").val(data.sold_price).css('background-color',data.color);
+                $("input[name='bedroom']").val(data.bedroom).css('background-color',data.color);
+                $("input[name='bathroom']").val(data.bathroom).css('background-color',data.color);
+                $("input[name='car']").val(data.car).css('background-color',data.color);
+
+
+                if(data.contract_date != ''){
+                    var original_date = data.contract_date;
+                    contract_date = original_date.split("-").reverse().join("/");
+                    $("input[name='contract_date']").val(contract_date).css('background-color',data.color);
+                }
+
+                $("select[name='sale_type']").focus();
+
+            } else {
+                alert(data.message);
+                $("input[name='agency_name']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='bedroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');;
+                $("input[name='sold_price']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='contract_date']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("select[name='sale_type']").val('Sold At Auction').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='bathroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("input[name='car']").val('').prop('readonly',false).css('background-color','#ffe6f3');
+                $("select[name='property_type']").val('HO').prop('readonly',false).css('background-color','#ffe6f3');
+
+            }
+        })
+    }
 
 
 
@@ -90,7 +225,9 @@ $(document).ready(function(){
 
        // ],
 
-
+        "oSearch": {
+            "sSearch": "Abbotsford"
+        },
 
 
 
