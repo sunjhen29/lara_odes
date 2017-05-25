@@ -11,3 +11,6 @@
     border-radius: 3px;
     font-weight: bold;
 }
+a:focus{
+    background-color: lightgreen;
+}

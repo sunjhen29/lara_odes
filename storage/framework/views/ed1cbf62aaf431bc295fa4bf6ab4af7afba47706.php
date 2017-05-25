@@ -109,7 +109,7 @@
 
         </div>
         <div class="col-sm-3 col-md-2">
-            <?php echo Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{5,15}|^Undisclosed${11}']); ?>
+            <?php echo Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{5,15}|[Undisclosed]{11}']); ?>
 
         </div>
     </div>

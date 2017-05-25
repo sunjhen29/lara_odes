@@ -57,8 +57,18 @@
       <file leaf-file-name="dataentry.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/dataentry/dataentry.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state vertical-scroll-proportion="-12.423077">
+              <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dataentry_cus.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/dataentry_cus.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.25897714">
+              <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -67,7 +77,7 @@
       <file leaf-file-name="entry.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/entry.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-29.981817">
+            <state vertical-scroll-proportion="-34.618183">
               <caret line="112" column="24" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
               <folding>
                 <marker date="1495675500714" expanded="true" signature="10454:15314" placeholder="..." />
@@ -109,16 +119,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin/admin.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ExportController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExportController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -129,10 +129,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="form.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="form.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2956327">
+            <state vertical-scroll-proportion="-58.192307">
               <caret line="89" column="117" selection-start-line="89" selection-start-column="117" selection-end-line="89" selection-end-column="117" />
               <folding>
                 <marker date="1495676296888" expanded="true" signature="3525:3835" placeholder="..." />
@@ -217,7 +217,6 @@
         <option value="$PROJECT_DIR$/resources/views/sat_auction/modify.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ReanzController.php" />
         <option value="$PROJECT_DIR$/app/ScrapeSatAuction.php" />
-        <option value="$PROJECT_DIR$/public/css/dataentry_cus.css" />
         <option value="$PROJECT_DIR$/app/Http/Requests/RecentSaleRequest.php" />
         <option value="$PROJECT_DIR$/.env.example" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -233,6 +232,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/SaturdayAuctionController.php" />
         <option value="$PROJECT_DIR$/resources/views/sat_auction/entry.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/sat_auction/form.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/dataentry_cus.css" />
       </list>
     </option>
   </component>
@@ -796,13 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/dataentry_cus.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20348205">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/ScrapeSatAuction.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60918254">
@@ -976,14 +969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/dataentry/dataentry.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExportController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1018,9 +1003,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/batch.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/components/dataentry.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.307692">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <marker date="1489818894000" expanded="true" signature="1635:2030" placeholder="..." />
+            <marker date="1489818894000" expanded="true" signature="1647:2028" placeholder="..." />
+            <marker date="1489818894000" expanded="true" signature="1668:2027" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-58.192307">
+          <caret line="89" column="117" selection-start-line="89" selection-start-column="117" selection-end-line="89" selection-end-column="117" />
+          <folding>
+            <marker date="1495676296888" expanded="true" signature="3525:3835" placeholder="..." />
+            <marker date="1495676296888" expanded="true" signature="3539:3833" placeholder="..." />
+            <marker date="1495676296888" expanded="true" signature="3553:3778" placeholder="..." />
+            <marker date="1495676296888" expanded="true" signature="4482:4874" placeholder="..." />
+            <marker date="1495676296888" expanded="true" signature="4494:4872" placeholder="..." />
+            <marker date="1495676296888" expanded="true" signature="4516:4871" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/entry.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.981817">
+        <state vertical-scroll-proportion="-34.618183">
           <caret line="112" column="24" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
           <folding>
             <marker date="1495675500714" expanded="true" signature="10454:15314" placeholder="..." />
@@ -1061,38 +1081,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/batch.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/dataentry/dataentry.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/components/dataentry.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/css/dataentry_cus.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.307692">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <marker date="1489818894000" expanded="true" signature="1635:2030" placeholder="..." />
-            <marker date="1489818894000" expanded="true" signature="1647:2028" placeholder="..." />
-            <marker date="1489818894000" expanded="true" signature="1668:2027" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/sat_auction/form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2956327">
-          <caret line="89" column="117" selection-start-line="89" selection-start-column="117" selection-end-line="89" selection-end-column="117" />
-          <folding>
-            <marker date="1495676296888" expanded="true" signature="3525:3835" placeholder="..." />
-            <marker date="1495676296888" expanded="true" signature="3539:3833" placeholder="..." />
-            <marker date="1495676296888" expanded="true" signature="3553:3778" placeholder="..." />
-            <marker date="1495676296888" expanded="true" signature="4482:4874" placeholder="..." />
-            <marker date="1495676296888" expanded="true" signature="4494:4872" placeholder="..." />
-            <marker date="1495676296888" expanded="true" signature="4516:4871" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.25897714">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
