@@ -17,7 +17,7 @@
             {!! Form::label('unit_no','Unit No.',['class'=>'control-label ']) !!}
         </div>
         <div class="col-sm-2 col-md-2">
-            {!! Form::text('unit_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aA-zZ\-.]{1,20}','autofocus']) !!}
+            {!! Form::text('unit_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aA-zZ\-.]{1,20}']) !!}
         </div>
     </div>
     <div class="row">
@@ -87,7 +87,7 @@
             {!! Form::label('sold_price','Sold Price',['class'=>'control-label']) !!}
         </div>
         <div class="col-sm-3 col-md-2">
-            {!! Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'{5,15}']) !!}
+            {!! Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{5,15}|[Undisclosed]{11}']) !!}
         </div>
     </div>
 

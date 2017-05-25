@@ -23,7 +23,7 @@
 
         </div>
         <div class="col-sm-2 col-md-2">
-            <?php echo Form::text('unit_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aA-zZ\-.]{1,20}','autofocus']); ?>
+            <?php echo Form::text('unit_no',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9aA-zZ\-.]{1,20}']); ?>
 
         </div>
     </div>
@@ -109,7 +109,7 @@
 
         </div>
         <div class="col-sm-3 col-md-2">
-            <?php echo Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'{5,15}']); ?>
+            <?php echo Form::text('sold_price',null,['class'=>'form-control input-sm', 'pattern'=>'[0-9]{5,15}|^Undisclosed${11}']); ?>
 
         </div>
     </div>
