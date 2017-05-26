@@ -15,17 +15,12 @@
 
     </div>
 </div>
-
-
 <div id="search_modal"class="modal">
     <div class="col-md-6">
-        <!-- Horizontal Form -->
         <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Property Search</h3>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
             <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
                 <div class="box-body">
                     <div class="input-group input-group-sm">
@@ -37,7 +32,6 @@
                     </div>
                 </div>
             </form>
-
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <thead>
@@ -55,21 +49,6 @@
                 </table>
             </div>
         </div>
-
-    <!-- Validation Error Section -->
-    <?php if($errors->any()): ?>
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-            <ul class="alert alert-danger">
-                <?php foreach($errors->all() as $error): ?>
-                    <li><?php echo e($error); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
-
-
 </div><!-- /.modal -->
 
 
@@ -79,48 +58,41 @@
 <?php $__env->startPush('scripts'); ?>
 <script>
     $(document).ready(function() {
-
+        //form validation
         $("#frmDataEntry").submit(function (e) {
             if ($("select[name='sale_type']").val() == 'Passed In' && $("input[name='sold_price']").val() != ''){
-                $("input[name='sold_price']").css('background-color','red');
+                $("input[name='sold_price']").css('background-color','pink');
                 $("input[name='sold_price']").focus();
                 return false;
             } else if ($("select[name='sale_type']").val() == 'No Bid' && $("input[name='sold_price']").val() != ''){
-                $("input[name='sold_price']").css('background-color','red');
+                $("input[name='sold_price']").css('background-color','pink');
                 $("input[name='sold_price']").focus();
                 return false;
             } else if ($("select[name='sale_type']").val() == 'Withdrawn' && $("input[name='sold_price']").val() != ''){
-            $("input[name='sold_price']").css('background-color','red');
+            $("input[name='sold_price']").css('background-color','pink');
                 $("input[name='sold_price']").focus();
                 return false;
             } else if ($("select[name='sale_type']").val() == 'Sold At Auction' && $("input[name='sold_price']").val() == ''){
-                $("input[name='sold_price']").css('background-color','red');
+                $("input[name='sold_price']").css('background-color','pink');
                 $("input[name='sold_price']").focus();
                 return false;
             } else if ($("select[name='sale_type']").val() == 'Sold After Auction' && $("input[name='sold_price']").val() == ''){
-                $("input[name='sold_price']").css('background-color','red');
+                $("input[name='sold_price']").css('background-color','pink');
                 $("input[name='sold_price']").focus();
                 return false;
             } else if ($("select[name='sale_type']").val() == 'Sold Prior To Auction' && $("input[name='sold_price']").val() == ''){
-                $("input[name='sold_price']").css('background-color','red');
+                $("input[name='sold_price']").css('background-color','pink');
                 $("input[name='sold_price']").focus();
                 return false;
             } else if ($("select[name='sale_type']").val() == 'Vendor Bid' && $("input[name='sold_price']").val() == ''){
-                $("input[name='sold_price']").css('background-color','red');
+                $("input[name='sold_price']").css('background-color','pink');
                 $("input[name='sold_price']").focus();
                 return false;
             }
-
-
             return true;
-
-
         });
 
-
-
-
-
+        //search propertties form
         $("#frmLookup").submit(function (e) {
             $.ajaxSetup({
                 headers: {
@@ -132,8 +104,6 @@
             var formData = {
                 suburb: $("select[name='locality']").val(),
             }
-
-            console.log($("select[name='locality']").val());
 
             $.ajax({
                 type: 'POST',
@@ -158,7 +128,6 @@
                             report += '<td>' + value.bedroom  + '</td></tr>';
                             $('#records-list').append(report);
                     });
-                    $('#prod_date').val($('#production_date').val());
                 },
                 error: function (data) {
                     $('#records-list').remove();
@@ -167,19 +136,14 @@
             });
         });
 
-
+        //submit form onload
         $('#frmLookup').submit();
 
-
-
+        //search properties on suburb change
         $("select[name='locality']").change(function(){
             $('#frmLookup').submit();
         });
-
-
-
-
-    } );
+    });
 
     function generate(slug)
     {
@@ -234,97 +198,14 @@
         })
     }
 
-
-
 $(document).ready(function(){
-
-
-
-    $('#data_table').DataTable( {
-        "oSearch": {
-            "sSearch": "Abbotsford"
-        },
-
-
-
-        'paging' : false,
-
-        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                        .appendTo( $(column.header()).empty() )
-                        .on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                            );
-
-                            column
-                                    .search( val ? '^'+val+'$' : '', true, false )
-                                    .draw();
-                        } );
-
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-    } );
-
-    $('.generate').click(function(){
-        $('#search_modal').modal('hide');
-        $property = $(this).data('id');
-
-        console.log($property);
-        $.get('/sat_auction/search_property/' + $property , function (data) {
-            console.log(data);
-            if (data.state){
-
-                $("select[name='state']").val(data.state.toUpperCase()).css('background-color',data.color);
-                $("input[name='unit_no']").val(data.unit_no).css('background-color',data.color);
-                $("input[name='street_no']").val(data.street_no).css('background-color',data.color);
-                $("input[name='street_name']").val(data.street_name).css('background-color',data.color);
-                $("input[name='street_ext']").val(data.street_ext).css('background-color',data.color);
-                $("input[name='street_direction']").val(data.street_direction).css('background-color',data.color);
-                $("input[name='suburb']").val(data.suburb).css('background-color',data.color);
-                $("input[name='post_code']").val(data.post_code).css('background-color',data.color);
-
-                $("input[name='agency_name']").val(data.agency_name).css('background-color',data.color);
-                $("select[name='property_type']").val(data.property_type).css('background-color',data.color);
-                $("select[name='sale_type']").val(data.sale_type).css('background-color',data.color);
-                $("input[name='sold_price']").val(data.sold_price).css('background-color',data.color);
-                $("input[name='bedroom']").val(data.bedroom).css('background-color',data.color);
-                $("input[name='bathroom']").val(data.bathroom).css('background-color',data.color);
-                $("input[name='car']").val(data.car).css('background-color',data.color);
-
-
-                if(data.contract_date != ''){
-                    var original_date = data.contract_date;
-                    contract_date = original_date.split("-").reverse().join("/");
-                    $("input[name='contract_date']").val(contract_date).css('background-color',data.color);
-                }
-
-                $("select[name='sale_type']").focus();
-
-            } else {
-                //alert(data.message);
-                $("input[name='agency_name']").val('').prop('readonly',false).css('background-color','#ffe6f3');
-                $("input[name='bedroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');;
-                $("input[name='sold_price']").val('').prop('readonly',false).css('background-color','#ffe6f3');
-                $("input[name='contract_date']").val('').prop('readonly',false).css('background-color','#ffe6f3');
-                $("select[name='sale_type']").val('Sold At Auction').prop('readonly',false).css('background-color','#ffe6f3');
-                $("input[name='bathroom']").val('').prop('readonly',false).css('background-color','#ffe6f3');
-                $("input[name='car']").val('').prop('readonly',false).css('background-color','#ffe6f3');
-                $("select[name='property_type']").val('HO').prop('readonly',false).css('background-color','#ffe6f3');
-
-            }
-        })
-    });
-
+    //show modal on load
     $('#search_modal').modal('show');
 
+    //set locality on load focus
     $("select[name='locality']").focus();
 
+    //post code search
     $("input[name='suburb']").blur(function(){
         $.get('/sat_auction/search_post_code/' + $("input[name='suburb']").val() + '/' + $("select[name='state']").val() , function (data) {
             console.log(data);
@@ -336,16 +217,24 @@ $(document).ready(function(){
         })
     });
 
+    //set default state
     <?php if(session('last_record')): ?>
         $("select[name='state']").val('<?php echo e(session('last_record')->state); ?>').change();
     <?php endif; ?>
+
+
+    $('#search_modal').on('hide.bs.modal', function () {
+        $("input[name='unit_no']").focus();
+    });
+
+
 
 });
 </script>
 
 <script>
     $(document).ready(function(){
-
+        //search property throug manual input
         var slug = function(str) {
             var $slug = '';
             var trimmed = $.trim(str);
@@ -386,6 +275,9 @@ $(document).ready(function(){
                         contract_date = original_date.split("-").reverse().join("/");
                         $("input[name='contract_date']").val(contract_date).css('background-color',data.color);
                     }
+
+                    $("select[name='sale_type']").focus();
+
                 } else {
                     //alert(data.message);
                     $("input[name='agency_name']").val('').prop('readonly',false).css('background-color','#ffe6f3');
@@ -401,14 +293,12 @@ $(document).ready(function(){
             })
         });
 
-        <?php if(session('last_record')): ?>
-            $("select[name='state']").val('<?php echo e(session('last_record')->state); ?>').change();
-        <?php endif; ?>
+
+
+
 
     });
 </script>
-
-
 <?php $__env->stopPush(); ?>
 
 

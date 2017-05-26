@@ -70,8 +70,6 @@ class SaturdayAuctionController extends Controller
     }
 
     public function lookup(){
-        //$results = Sat_Auction::take(10)->get();
-       //return $results;
         return Datatables::of(Sat_Auction::all())->make(true);
     }
     public function ajax_lookup(Request $request){

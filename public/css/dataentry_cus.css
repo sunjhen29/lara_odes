@@ -12,5 +12,6 @@
     font-weight: bold;
 }
 a:focus{
-    background-color: lightgreen;
+    background-color: #afeeee;
+    color: #4b86b4;
 }
