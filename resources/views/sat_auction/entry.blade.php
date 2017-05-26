@@ -23,7 +23,11 @@
             <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
                 <div class="box-body">
                     <div class="input-group input-group-sm">
-                        {!! Form::select('locality', \App\Sat_Auction::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']) !!}
+                        @if (session('batch_details')->job_name == 'Real Estate View' )
+                            {!! Form::select('locality', \App\Sat_Auction::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']) !!}
+                        @else
+                            {!! Form::select('locality', \App\HomePrice::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']) !!}
+                        @endif
                     <span class="input-group-btn">
                       <button type="submit" class="btn btn-info btn-flat">Search</button>
                     </span>
@@ -198,7 +202,15 @@
 
 $(document).ready(function(){
     //show modal on load
-    $('#search_modal').modal('show');
+
+    @if($errors->any())
+       
+    @else
+        $('#search_modal').modal('show');
+    @endif
+
+
+
 
     //set locality on load focus
     $("select[name='locality']").focus();

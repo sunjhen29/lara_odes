@@ -24,8 +24,13 @@
             <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
                 <div class="box-body">
                     <div class="input-group input-group-sm">
-                        <?php echo Form::select('locality', \App\Sat_Auction::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
+                        <?php if(session('batch_details')->job_name == 'Real Estate View' ): ?>
+                            <?php echo Form::select('locality', \App\Sat_Auction::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
 
+                        <?php else: ?>
+                            <?php echo Form::select('locality', \App\HomePrice::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
+
+                        <?php endif; ?>
                     <span class="input-group-btn">
                       <button type="submit" class="btn btn-info btn-flat">Search</button>
                     </span>
@@ -200,7 +205,15 @@
 
 $(document).ready(function(){
     //show modal on load
-    $('#search_modal').modal('show');
+
+    <?php if($errors->any()): ?>
+       
+    <?php else: ?>
+        $('#search_modal').modal('show');
+    <?php endif; ?>
+
+
+
 
     //set locality on load focus
     $("select[name='locality']").focus();

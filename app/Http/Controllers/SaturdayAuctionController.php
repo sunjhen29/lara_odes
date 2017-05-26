@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\HomePrice;
+use App\ScrapeHomePrice;
 use Doctrine\DBAL\Event\SchemaAlterTableAddColumnEventArgs;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\RecentSaleRequest;
+use App\Http\Requests\SatAuctionRequest;
 use App\Recent_Sale;
 use App\Batch;
 use App\Events\EntryRecordCreated;
@@ -65,19 +68,24 @@ class SaturdayAuctionController extends Controller
 
     public function entry()
     {
-        $results = Sat_Auction::all();
-        return view($this->folder.'/entry',compact('results'));
+        return view($this->folder.'/entry');
     }
 
-    public function lookup(){
-        return Datatables::of(Sat_Auction::all())->make(true);
-    }
+    //public function lookup(){
+      //  return Datatables::of(Sat_Auction::all())->make(true);
+    //}
+
     public function ajax_lookup(Request $request){
-        $properties = Sat_Auction::where('suburb',$request->suburb)->get();
+        if(session('batch_details')->job_name == 'Real Estate View'){
+            $properties = Sat_Auction::where('suburb',$request->suburb)->get();
+        } else {
+            $properties = HomePrice::where('suburb',$request->suburb)->get();
+        }
+
         return \Response::json($properties);
     }
 
-    public function create(RecentSaleRequest $request){
+    public function create(SatAuctionRequest $request){
         $record = $this->current_batch->recent_sales()->create($request->all());
         event(new EntryRecordCreated($this->current_batch,'E',session('batch_name'),$record->id,session('jobnumber')->id));
         flash()->info($record->address.' added successfully.');
@@ -95,7 +103,7 @@ class SaturdayAuctionController extends Controller
         }
     }
 
-    public function storeverify(Recent_Sale $record, RecentSaleRequest $request)
+    public function storeverify(Recent_Sale $record, SatAuctionRequest $request)
     {
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'V',session('batch_name'),$record->id,session('jobnumber')->id));
@@ -109,7 +117,7 @@ class SaturdayAuctionController extends Controller
         return view($this->folder.'/modify',compact('record'));
     }
 
-    public function update(RecentSaleRequest $request,Recent_Sale $record) //must be changed
+    public function update(SatAuctionRequest $request,Recent_Sale $record) //must be changed
     {
         $record->update($request->all());
         event(new EntryRecordCreated($this->current_batch,'U',session('batch_name'),$record->id,session('jobnumber')->id));
@@ -138,10 +146,17 @@ class SaturdayAuctionController extends Controller
        return \Response::json($scrape);
     }
 
+    /** Manual Search
+     *
+     */
     public function search_property($address){
-        $rp_data = Sat_Auction::where('slug',$address)->first();
-        $scrape = ScrapeSatAuction::where('slug',$address)->first();
-
+        if(session('batch_details')->job_name == 'Real Estate View') {
+            $rp_data = Sat_Auction::where('slug', $address)->first();
+            $scrape = ScrapeSatAuction::where('slug', $address)->first();
+        } else {
+            $rp_data = HomePrice::where('slug', $address)->first();
+            $scrape = ScrapeHomePrice::where('slug', $address)->first();
+        }
         $details = [];
         if (!$rp_data AND !$scrape){
             $details['message'] = 'No Record Found!! Please check your entry';
@@ -168,13 +183,17 @@ class SaturdayAuctionController extends Controller
 
         return \Response::json($details);
     }
+
 
     public function search_property_id($id){
-        $rp_data = Sat_Auction::find($id);
-        $scrape = ScrapeSatAuction::where('slug',$rp_data->slug)->first();
-
+        if(session('batch_details')->job_name == 'Real Estate View') {
+            $rp_data = Sat_Auction::find($id);
+            $scrape = ScrapeSatAuction::where('slug', $rp_data->slug)->first();
+        } else {
+            $rp_data = HomePrice::find($id);
+            $scrape = ScrapeHomePrice::where('slug', $rp_data->slug)->first();
+        }
         session()->put('locality', $rp_data->suburb);
-
 
         $details = [];
         if (!$rp_data AND !$scrape){
@@ -202,9 +221,6 @@ class SaturdayAuctionController extends Controller
 
         return \Response::json($details);
     }
-
-
-
 
     public function scrape($page){
         $link = array('','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
