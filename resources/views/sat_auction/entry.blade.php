@@ -204,7 +204,7 @@ $(document).ready(function(){
     //show modal on load
 
     @if($errors->any())
-       
+
     @else
         $('#search_modal').modal('show');
     @endif

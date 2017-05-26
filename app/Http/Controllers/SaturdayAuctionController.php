@@ -7,7 +7,6 @@ use App\ScrapeHomePrice;
 use Doctrine\DBAL\Event\SchemaAlterTableAddColumnEventArgs;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Requests\RecentSaleRequest;
 use App\Http\Requests\SatAuctionRequest;
 use App\Recent_Sale;
 use App\Batch;
@@ -16,6 +15,8 @@ use App\UserProfile;
 use App\AUPostCode;
 use App\Sat_Auction;
 use App\ScrapeSatAuction;
+
+use Illuminate\Support\Facades\Response;
 
 use Goutte;
 use Carbon\Carbon;
@@ -81,8 +82,7 @@ class SaturdayAuctionController extends Controller
         } else {
             $properties = HomePrice::where('suburb',$request->suburb)->get();
         }
-
-        return \Response::json($properties);
+        return Response::json($properties);
     }
 
     public function create(SatAuctionRequest $request){
@@ -138,12 +138,12 @@ class SaturdayAuctionController extends Controller
     //custom functions
     public function search_postcode($suburb,$state){
         $post_code = AUPostCode::where('suburb',$suburb)->where('state',$state)->first();
-        return \Response::json($post_code);
+        return Response::json($post_code);
     }
 
     public function search_suburb($address){
        $scrape = ScrapeSatAuction::where('slug','LIKE',$address.'%')->first();
-       return \Response::json($scrape);
+       return Response::json($scrape);
     }
 
     /** Manual Search
@@ -181,7 +181,7 @@ class SaturdayAuctionController extends Controller
             $details['color']= $rp_data ? '#ffffe6' : '#e6fff2';
         }
 
-        return \Response::json($details);
+        return Response::json($details);
     }
 
 
@@ -219,7 +219,7 @@ class SaturdayAuctionController extends Controller
             $details['color']= $rp_data ? '#ffffe6' : '#e6fff2';
         }
 
-        return \Response::json($details);
+        return Response::json($details);
     }
 
     public function scrape($page){
