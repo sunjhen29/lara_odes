@@ -80,6 +80,7 @@ class SaturdayAuctionController extends Controller
         if(session('batch_details')->job_name == 'Real Estate View'){
             $properties = Sat_Auction::where('suburb',$request->suburb)->get();
         } else {
+
             $properties = HomePrice::where('suburb',$request->suburb)->get();
         }
         return Response::json($properties);

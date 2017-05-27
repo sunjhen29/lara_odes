@@ -18,7 +18,7 @@
     <div class="col-md-6">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Property Search</h3>
+                <h3 class="box-title">Property Search State: {{ session('last_record') ? session('last_record')->state : '' }}</h3>
             </div>
             <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
                 <div class="box-body">

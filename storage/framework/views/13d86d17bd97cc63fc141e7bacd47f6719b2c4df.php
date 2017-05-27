@@ -19,7 +19,7 @@
     <div class="col-md-6">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Property Search</h3>
+                <h3 class="box-title">Property Search State: <?php echo e(session('last_record') ? session('last_record')->state : ''); ?></h3>
             </div>
             <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
                 <div class="box-body">
@@ -28,8 +28,13 @@
                             <?php echo Form::select('locality', \App\Sat_Auction::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
 
                         <?php else: ?>
-                            <?php echo Form::select('locality', \App\HomePrice::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
+                            <?php if(session('last_record')): ?>
+                                <?php echo Form::select('locality', \App\HomePrice::where('state',session('last_record')->state)->select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
 
+                            <?php else: ?>
+                                <?php echo Form::select('locality', \App\HomePrice::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
+
+                            <?php endif; ?>
                         <?php endif; ?>
                     <span class="input-group-btn">
                       <button type="submit" class="btn btn-info btn-flat">Search</button>
