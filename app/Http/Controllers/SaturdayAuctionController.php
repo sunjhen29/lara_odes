@@ -72,20 +72,6 @@ class SaturdayAuctionController extends Controller
         return view($this->folder.'/entry');
     }
 
-    //public function lookup(){
-      //  return Datatables::of(Sat_Auction::all())->make(true);
-    //}
-
-    public function ajax_lookup(Request $request){
-        if(session('batch_details')->job_name == 'Real Estate View'){
-            $properties = Sat_Auction::where('suburb',$request->suburb)->get();
-        } else {
-
-            $properties = HomePrice::where('suburb',$request->suburb)->get();
-        }
-        return Response::json($properties);
-    }
-
     public function create(SatAuctionRequest $request){
         $record = $this->current_batch->recent_sales()->create($request->all());
         event(new EntryRecordCreated($this->current_batch,'E',session('batch_name'),$record->id,session('jobnumber')->id));
@@ -137,6 +123,27 @@ class SaturdayAuctionController extends Controller
     }
 
     //custom functions
+
+    //public function lookup(){
+    //  return Datatables::of(Sat_Auction::all())->make(true);
+    //}
+
+    public function ajax_lookup(Request $request){
+        if(session('batch_details')->job_name == 'Real Estate View'){
+            $properties = Sat_Auction::where('state',$request->filter_state)
+                        ->where('suburb',$request->suburb)
+                        ->get();
+        } else {
+            $properties = HomePrice::where('state',$request->filter_state)
+                        ->where('suburb',$request->suburb)
+                        ->get();
+        }
+
+        return Response::json($properties);
+    }
+
+
+
     public function search_postcode($suburb,$state){
         $post_code = AUPostCode::where('suburb',$suburb)->where('state',$state)->first();
         return Response::json($post_code);
@@ -145,6 +152,19 @@ class SaturdayAuctionController extends Controller
     public function search_suburb($address){
        $scrape = ScrapeSatAuction::where('slug','LIKE',$address.'%')->first();
        return Response::json($scrape);
+    }
+
+
+    public function suburbs_list(Request $request){
+        if(session('batch_details')->job_name == 'Real Estate View') {
+            $suburbs = Sat_Auction::where('state',$request->state)
+                ->select('suburb')->distinct()->pluck("suburb","suburb");
+        } else {
+            $suburbs = HomePrice::where('state',$request->state)
+                ->select('suburb')->distinct()->pluck("suburb","suburb");
+        }
+
+        return Response::json($suburbs);
     }
 
     /** Manual Search

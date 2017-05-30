@@ -24,17 +24,15 @@
             <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
                 <div class="box-body">
                     <div class="input-group input-group-sm">
+                            <?php echo Form::select('filter_state',\App\Publication::where('pub_name',session('batch_details')->job_name)->first()->state_code, session('last_record')->state , ['class'=>'form-control input-sm']); ?>
+
+
                         <?php if(session('batch_details')->job_name == 'Real Estate View' ): ?>
                             <?php echo Form::select('locality', \App\Sat_Auction::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
 
                         <?php else: ?>
-                            <?php if(session('last_record')): ?>
-                                <?php echo Form::select('locality', \App\HomePrice::where('state',session('last_record')->state)->select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
+                            <?php echo Form::select('locality', \App\HomePrice::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
 
-                            <?php else: ?>
-                                <?php echo Form::select('locality', \App\HomePrice::select('suburb')->distinct()->pluck('suburb','suburb'), session('locality'), ['class'=>'form-control input-sm', 'required']); ?>
-
-                            <?php endif; ?>
                         <?php endif; ?>
                     <span class="input-group-btn">
                       <button type="submit" class="btn btn-info btn-flat">Search</button>
@@ -102,6 +100,45 @@
             return true;
         });
 
+
+
+
+        $("select[name='filter_state']").change(function(){
+            var state = $(this).val();
+
+            if(state){
+                $.ajax({
+                    type:"GET",
+                    url:"<?php echo e(url('/sat_auction/api/get-suburbs-list')); ?>?state=" + state,
+                    success:function(res){
+                        console.log(res);
+                        if(res){
+                            $("select[name='locality']").empty();
+                            $.each(res,function(key,value){
+                                $("select[name='locality']").append('<option value="'+key+'">'+value+'</option>');
+                            });
+                            $("select[name='locality']").val('<?php echo e(session('locality')); ?>');
+
+                            $('#frmLookup').submit();
+
+                        }else{
+                            $("select[name='locality']").empty();
+                        }
+                    }
+                });
+            }else{
+                $("select[name='locality']").empty();
+            }
+        });
+
+
+        $("select[name='filter_state']").change();
+
+
+
+
+
+
         //search propertties form
         $("#frmLookup").submit(function (e) {
             $.ajaxSetup({
@@ -113,6 +150,7 @@
             e.preventDefault();
             var formData = {
                 suburb: $("select[name='locality']").val(),
+                filter_state: $("select[name='filter_state']").val()
             }
 
             $.ajax({
