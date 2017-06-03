@@ -1,6 +1,4 @@
 Homestead.yaml
 Homestead.json
 .env
-/.idea
-/.c9
-
+!.c9
