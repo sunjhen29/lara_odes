@@ -231,9 +231,9 @@ Route::post('/profile/{userprofile}/edit', 'AppController@userprofileupdate');
 /**
  * Sandbox Controller 
  */
- Route::get('/sandbox/entry',function(){
-    return view('sandbox.entry');
- });
+ //Route::get('/sandbox/entry',function(){
+ //   return view('sandbox.entry');
+ //});
  
 /**
  * User Auth Controller
