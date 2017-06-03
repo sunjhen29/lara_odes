@@ -98,7 +98,6 @@
 
 
 
-
         $("select[name='filter_state']").change(function(){
             var state = $(this).val();
 
@@ -129,11 +128,6 @@
 
 
         $("select[name='filter_state']").change();
-
-
-
-
-
 
         //search propertties form
         $("#frmLookup").submit(function (e) {
