@@ -24,7 +24,7 @@
             <form method="post" id="frmLookup" class="form-horizontal" action="/sat_auction/entry/lookup">
                 <div class="box-body">
                     <div class="input-group input-group-sm">
-                            <?php echo Form::select('filter_state',\App\Publication::where('pub_name',session('batch_details')->job_name)->first()->state_code, session('last_record')->state , ['class'=>'form-control input-sm']); ?>
+                            <?php echo Form::select('filter_state',\App\Publication::where('pub_name',session('batch_details')->job_name)->first()->state_code, session('last_record') ? session('last_record')->state : null , ['class'=>'form-control input-sm']); ?>
 
 
                         <?php if(session('batch_details')->job_name == 'Real Estate View' ): ?>
@@ -342,11 +342,6 @@ $(document).ready(function(){
                 }
             })
         });
-
-
-
-
-
     });
 </script>
 <?php $__env->stopPush(); ?>

@@ -42,7 +42,6 @@ Route::get('/admin/export/sat_auction','AdminController@showsatauctionexport');
 Route::get('/admin/export/reanz','AdminController@showreanzexport');
 
 
-
 /**
  * Invalid
  * */
@@ -133,7 +132,10 @@ Route::post('/admin/setup/userprofile/{userprofile}/edit', 'UserProfileControlle
 Route::post('/admin/setup/userprofile/delete', 'UserProfileController@userprofiledelete');
 Route::get('/profile/view', 'UserProfileController@showdetails');
 Route::post('/profile/{userprofile}/edit', 'UserProfileController@updatedetails');
- 
+
+
+
+
 /**
  * Reports Controller
  */
@@ -228,13 +230,7 @@ Route::get('/profile','AppController@profile');
 Route::post('/profile/{userprofile}/edit', 'AppController@userprofileupdate');
 
 
-/**
- * Sandbox Controller 
- */
- //Route::get('/sandbox/entry',function(){
- //   return view('sandbox.entry');
- //});
- 
+
 /**
  * User Auth Controller
  */ 
