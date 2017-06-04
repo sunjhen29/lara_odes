@@ -1,8 +1,12 @@
 Homestead.yaml
 Homestead.json
 .env
-/.idea/*
-/.c9/*
-workspace.xml
+/.idea
+/.c9
+/vendor
+
+
+
+
 
 
